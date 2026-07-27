@@ -2,9 +2,9 @@ import './Logo.css';
 import shoplogo from './../../../assets/shoplogo.png';
 
 const Logo = () => (
-  <div className="Logo" data-testid="Logo">
-    <img src={shoplogo} alt="Logo" className='w-10'/>
-  </div>
+  
+    <img src={shoplogo} alt="Logo" className='w-10 h-10 rounded-full'/>
+ 
 );
 
 export default Logo;
