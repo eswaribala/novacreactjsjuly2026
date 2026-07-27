@@ -1,12 +1,13 @@
 
 import './App.css'
+import Logo from './components/atoms/Logo/Logo.jsx';
 
 function App() {
 
 
   return (
     <>
-      <h1>Shop Sphere</h1>
+      <Logo/>
     </>
   )
 }

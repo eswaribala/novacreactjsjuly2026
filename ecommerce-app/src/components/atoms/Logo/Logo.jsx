@@ -1,8 +1,9 @@
 import './Logo.css';
+import shoplogo from './../../../assets/shoplogo.png';
 
 const Logo = () => (
   <div className="Logo" data-testid="Logo">
-    Logo Component
+    <img src={shoplogo} alt="Logo" />
   </div>
 );
 
