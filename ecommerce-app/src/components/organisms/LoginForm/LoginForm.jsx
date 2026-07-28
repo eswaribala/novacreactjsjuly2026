@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FormField from "../../molecules/FormField/FormField";
 import Button from "../../atoms/Button/Button";
+import Input from "../../atoms/Input/Input";
 
 function LoginForm({onLogin,onRegister,isSubmitting}) {
 
@@ -10,16 +11,21 @@ function LoginForm({onLogin,onRegister,isSubmitting}) {
    }
 
    const [values, setValues] = useState(initialValues);
-   const[remeberMe, setRememberMe] = useState(false);
+   const[rememberMe, setRememberMe] = useState(false);
 
    const handleChange = (e) => {
     const {id, value} = e.target;
     setValues({...values, [id]: value});
    }
 
+   const handleSubmit = (e) => {
+    e.preventDefault();
+    onLogin(values, rememberMe);
+   }
 
   return (
-    <form>
+    <>
+    <form onSubmit={handleSubmit}>
       <FormField 
       id="name" 
       label="Name" 
@@ -50,6 +56,27 @@ function LoginForm({onLogin,onRegister,isSubmitting}) {
         {isSubmitting ? 'Logging in...' : 'Login'}
      </Button>
     </form>
+    <div className="mt-4">
+        <Input type="checkbox" 
+        id="rememberMe" checked={rememberMe} 
+           onChange={() => setRememberMe(!rememberMe)} />
+        
+    </div>
+    <div className="mt-4">
+      <Button type="button"
+      className="w-full bg-green-600 hover:bg-green-700">
+        Forgot Password
+      </Button>
+    </div>
+
+    <div className="mt-4">
+      <p>Not Having Account? 
+        <Button type="button" onClick={onRegister} 
+        className="text-blue-600 hover:underline">Register</Button>
+        </p>
+    </div>
+
+    </>
   );
 
 
