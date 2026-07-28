@@ -30,12 +30,25 @@ function AuthCard({ title, children }) {
 
     const activePanel = authPanel[activeForm];
 
+    const handleLogin = (values, rememberMe) => {
+        setIsSubmitting(true);
+        console.log('Login values:', values);
+        console.log('Remember Me:', rememberMe);
+    };
+    const handleRegister = (values) => {
+        setIsSubmitting(true);
+        console.log('Registration values:', values);
+    };
+    const handleToggle = () => {
+        setActiveForm(isLoginActive ? 'register' : 'login');
+        setMessage('');
+    }
     
     return (
         isLoginActive ? (
            <Login onLogin={handleLogin} onRegister={handleRegister} isSubmitting={isSubmitting} />
         ) : (
-          <Registration></Registration>
+          <Registration onRegister={handleRegister} isSubmitting={isSubmitting} />
         )
     );
 
