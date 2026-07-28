@@ -1,9 +1,9 @@
-
-function Button({ label, onClick, type = 'button', disabled = false }) {
+import PrimeButton from 'primereact/button';
+function Button({ children, onClick, type = 'button', disabled = false , className = '', label = ''}) {
   return (
-    <button type={type} onClick={onClick} disabled={disabled}>
-      {label}
-    </button>
+    <PrimeButton type={type} onClick={onClick} disabled={disabled} className={className} label={label}>
+      {children}
+    </PrimeButton>
   );
 }
 
