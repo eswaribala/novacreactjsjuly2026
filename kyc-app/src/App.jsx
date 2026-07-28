@@ -8,12 +8,19 @@ function App() {
 
   return (
     <>
-    <div className="mr-4 ml-4 mt-4">
-    <header className="flex align-baseline">
+     <header className="flex h-40 w-full">
+
+    {/* Logo Section */}
+    <div className="flex w-80 items-center  justify-center">
       <Logo />
-      <Banner/> 
-    </header>
     </div>
+
+    {/* Banner Section */}
+    <div className="flex-1 flex items-center">
+      <Banner />
+    </div>
+
+  </header>
     </>
   )
 }
