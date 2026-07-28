@@ -3,7 +3,7 @@ import FormField from "../../molecules/FormField/FormField";
 import Button from "../../atoms/Button/Button";
 import Input from "../../atoms/Input/Input";
 
-function LoginForm({onLogin,onRegister,isSubmitting}) {
+function Login({onLogin,onRegister,isSubmitting}) {
 
    const initialValues ={
     name: '',
@@ -85,4 +85,4 @@ function LoginForm({onLogin,onRegister,isSubmitting}) {
 }
 
 
-export default LoginForm;
+export default Login;
