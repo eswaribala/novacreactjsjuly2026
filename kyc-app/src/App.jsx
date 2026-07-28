@@ -9,7 +9,7 @@ function App() {
   return (
     <>
     <div className="mr-4 ml-4 mt-4">
-    <header className="flex">
+    <header className="flex align-baseline">
       <Logo />
       <Banner/> 
     </header>
