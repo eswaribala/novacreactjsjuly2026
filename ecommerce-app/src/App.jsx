@@ -3,11 +3,8 @@ import Banner from './components/atoms/Banner/Banner.jsx';
 import Logo from './components/atoms/Logo/Logo.jsx';
 
 
-import { useState } from 'react';
-
-
 function App() {
-  const [activeMenu, setActiveMenu] = useState("Dashboard");
+  
   return (
     <>
     <div className="ml-10 mt-2 mr-10">
