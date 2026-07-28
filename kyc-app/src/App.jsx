@@ -1,12 +1,13 @@
 
 import './App.css'
+import Logo from './components/atoms/Logo/Logo.jsx'
 
 function App() {
  
 
   return (
     <>
-      
+      <Logo />
     </>
   )
 }
