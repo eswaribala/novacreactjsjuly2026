@@ -2,7 +2,7 @@ import { useState } from "react";
 import FormField from "../../molecules/FormField/FormField";
 import Button from "../../atoms/Button/Button";
 
-function LoginForm({onLogin,onRegister}) {
+function LoginForm({onLogin,onRegister,isSubmitting}) {
 
    const initialValues ={
     name: '',
@@ -45,7 +45,10 @@ function LoginForm({onLogin,onRegister}) {
        placeholder="Enter your password"
        className=""
       />
-      <Button type="submit" disabled={false} className="">Login</Button>
+      <Button type="submit" disabled={isSubmitting} 
+      className="w-full bg-blue-600 hover:bg-blue-700">
+        {isSubmitting ? 'Logging in...' : 'Login'}
+     </Button>
     </form>
   );
 
