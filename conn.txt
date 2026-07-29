@@ -1,0 +1,1 @@
+mongo_uri=mongodb+srv://aicounsellor2026_db_user:b625wYm57rgwQqAu@trainingcluster.4jinzus.mongodb.net/?appName=trainingcluster
