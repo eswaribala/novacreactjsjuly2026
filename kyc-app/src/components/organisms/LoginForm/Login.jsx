@@ -116,7 +116,31 @@ function Login({isSubmitting,onLogin,onRegister}){
                 Forgot Password
             </PrimeButton>
         </div>
-
+        <div className="flex justify-center mt-4">
+            <p> Not Having an account?
+            <PrimeButton 
+            id="register" 
+            label="Register" 
+            onClick={onRegister}
+            className="h-14
+            w-72
+            rounded-xl
+            bg-green-600
+            text-lg
+            font-semibold
+            text-white
+            shadow-md
+            transition-all
+            duration-300
+            hover:bg-green-700
+            hover:shadow-lg
+            focus:outline-none
+            focus:ring-4
+            focus:ring-green-200">
+                Register
+            </PrimeButton>
+            </p>
+        </div>
         </>
     );
     
