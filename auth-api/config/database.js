@@ -1,7 +1,8 @@
-require('dotenv').config();
 export async function connectToDatabase() {
     const mongoose = require('mongoose');
-    const dbURI = process.env.MONGO_URI;
+    const dotenv = require("dotenv");
+    dotenv.config();   
+    const dbURI = process.env.mongo_uri;
     try {
         await mongoose.connect(dbURI, {
             useNewUrlParser: true,
