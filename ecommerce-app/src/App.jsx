@@ -1,8 +1,6 @@
 
 import Header from './components/molecules/Header/Header.jsx';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import AuthPage from './pages/AuthPage.jsx';
-import Home from './pages/HomePage.jsx';
+
 import AppRoutes from './components/molecules/Routes/AppRoutes.jsx';
 function App() {
   
