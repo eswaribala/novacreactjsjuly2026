@@ -2,6 +2,7 @@ import { useState } from "react";
 import FormField from "../../molecules/FormField/FormField";
 import Button from "../../atoms/Button/Button";
 import Input from "../../atoms/Input/Input";
+import Label from "../../atoms/Label/Label";
 
 function Login({onLogin,onRegister,isSubmitting}) {
 
@@ -36,7 +37,7 @@ function Login({onLogin,onRegister,isSubmitting}) {
       required
       placeholder="Enter your name"
       onChange={handleChange}
-      className=""
+      className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       
       />
       <FormField 
@@ -49,22 +50,53 @@ function Login({onLogin,onRegister,isSubmitting}) {
        name="password"
        required
        placeholder="Enter your password"
-       className=""
+       className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       />
+      <div className="flex justify-center">
       <Button type="submit" disabled={isSubmitting} 
-      className="w-full bg-blue-600 hover:bg-blue-700">
+      className="h-14
+      w-72
+      rounded-xl
+      bg-blue-600
+      text-lg
+      font-semibold
+      text-white
+      shadow-md
+      transition-all
+      duration-300
+      hover:bg-blue-700
+      hover:shadow-lg
+      focus:outline-none
+      focus:ring-4
+      focus:ring-blue-200">
         {isSubmitting ? 'Logging in...' : 'Login'}
      </Button>
+      </div>
     </form>
     <div className="mt-4">
+      
         <Input type="checkbox" 
         id="rememberMe" checked={rememberMe} 
-           onChange={() => setRememberMe(!rememberMe)} />
-        
+           onChange={() => setRememberMe(!rememberMe)} className="mr-5" />
+        <Label text="Remember Me" htmlFor="rememberMe"/>
     </div>
-    <div className="mt-4">
+    <div className="flex justify-center">
       <Button type="button"
-      className="w-full bg-green-600 hover:bg-green-700">
+      className="h-14
+      w-72
+      rounded-xl
+      bg-green-600
+      text-lg
+      font-semibold
+      text-white
+      shadow-md
+      transition-all
+      duration-300
+      hover:bg-green-700
+      hover:shadow-lg
+      focus:outline-none
+      focus:ring-4
+      focus:ring-blue-200">
         Forgot Password
       </Button>
     </div>

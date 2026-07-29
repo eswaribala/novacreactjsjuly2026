@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@primeuix/styled": "^1.0.0",
+    "lucide-react": "^1.27.0",
     "primeicons": "^8.0.0",
     "primereact": "^10.9.8",
     "react": "^19.2.7",

@@ -19,56 +19,73 @@ function Registration({onRegister,onLogin,isSubmitting}) {
    }
 
    const validateForm = () => {
-      
-    const { name, email, password, confirmPassword } = values;
-   
-    if (!name || !email || !password || !confirmPassword) {
-       setErrorMessages({ general: "All fields are required." });
-      return false;
-    }
-    if (password !== confirmPassword) {
-      setErrorMessages({ password: "Passwords do not match." });
-      return false;
-    }
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      setErrorMessages({ email: "Invalid email format." });
-      return false;
-    }
-    if (password.length < 6) {
-      setErrorMessages({ passwordLength: "Password must be at least 6 characters long." });
-      return false;
-    }
-    if (!/[A-Z]/.test(password)) {
-      setErrorMessages({ passwordUppercase: "Password must contain at least one uppercase letter." });
-      return false;
-    }
-    if (!/[0-9]/.test(password)) {
-      setErrorMessages({ passwordNumber: "Password must contain at least one number." });
-      return false;
-    }
-    if (!/[!@#$%^&*]/.test(password)) {
-      setErrorMessages({ passwordSpecialChar: "Password must contain at least one special character." });
-      return false;
-    }
-    if (!/^[a-zA-Z0-9]+$/.test(name)) {
-      setErrorMessages({ name: "Name must not contain special characters." });
-      return false;
-    }
-    return true;
-   }
+    const errors = {};
 
+    const name = values.name.trim();
+    const email = values.email.trim();
+    const password = values.password;
+    const confirmPassword = values.confirmPassword;
+
+    if (!name) {
+      errors.name = "Name is required.";
+    } else if (!/^[a-zA-Z ]+$/.test(name)) {
+      errors.name = "Name can contain only letters and spaces.";
+    }
+
+    if (!email) {
+      errors.email = "Email is required.";
+    } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+      errors.email = "Enter a valid email address.";
+    }
+
+    if (!password) {
+      errors.password = "Password is required.";
+    } else if (password.length < 6) {
+      errors.password =
+        "Password must be at least 6 characters.";
+    } else if (!/[A-Z]/.test(password)) {
+      errors.password =
+        "Password must contain one uppercase letter.";
+    } else if (!/[0-9]/.test(password)) {
+      errors.password =
+        "Password must contain one number.";
+    } else if (!/[!@#$%^&*]/.test(password)) {
+      errors.password =
+        "Password must contain one special character.";
+    }
+
+    if (!confirmPassword) {
+      errors.confirmPassword =
+        "Confirm password is required.";
+    } else if (password !== confirmPassword) {
+      errors.confirmPassword =
+        "Passwords do not match.";
+    }
+
+    setErrorMessages(errors);
+
+    return Object.keys(errors).length === 0;
+  };
    const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateForm()) {
       return;
     }
+    console.log('Registration values:', values);
     onRegister(values);
    }
 
   return (
     <>
-    <Message type="error" text={errorMessages} className="mb-4" />
-    <form onSubmit={handleSubmit} className="space-y-4">     
+      <form onSubmit={handleSubmit} noValidate
+  className="space-y-4">
+         {errorMessages.general && (
+        <Message
+          type="error"
+          text={errorMessages.general}
+          className="mb-4"
+        />
+      )}  
       <FormField 
        id="name" 
        label="Name" 
@@ -78,7 +95,7 @@ function Registration({onRegister,onLogin,isSubmitting}) {
        required 
        placeholder="Enter your name" 
        error={errorMessages.name}
-       className="" />
+       className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
 
        <FormField 
        id="password" 
@@ -89,7 +106,7 @@ function Registration({onRegister,onLogin,isSubmitting}) {
        required 
        placeholder="Enter your password" 
        error={errorMessages.password}
-       className="" />
+       className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
        <FormField 
        id="confirmPassword" 
        label="Confirm Password"
@@ -99,7 +116,7 @@ function Registration({onRegister,onLogin,isSubmitting}) {
        required 
        placeholder="Confirm your password" 
        error={errorMessages.confirmPassword}
-       className="" />
+       className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
        <FormField 
        id="email" 
        label="Email" 
@@ -109,12 +126,28 @@ function Registration({onRegister,onLogin,isSubmitting}) {
        required 
        error={errorMessages.email}
        placeholder="Enter your email" 
-       className="" />
-  
+       className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+    <div className="flex justify-center">
     <Button type="submit" disabled={isSubmitting}
-    className="w-full bg-blue-600 hover:bg-blue-700">
+    className="h-14
+      
+      w-72
+      rounded-xl
+      bg-blue-600
+      text-lg
+      font-semibold
+      text-white
+      shadow-md
+      transition-all
+      duration-300
+      hover:bg-blue-700
+      hover:shadow-lg
+      focus:outline-none
+      focus:ring-4
+      focus:ring-blue-200">
       {isSubmitting ? 'Registering...' : 'Register'}
     </Button>
+    </div>
     <div className="mt-4 text-center">
       <p>Already have an account? <Button type="button" onClick={onLogin} className="text-blue-600 hover:underline">Login</Button></p>
     </div>
