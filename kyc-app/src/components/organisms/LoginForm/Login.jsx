@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import FormField from '../../molecules/FormField/FormField';
-import PrimeButton from '../../atoms/PrimeButton/PrimeButton';
+import PrimeButton from "./../../atoms/Button/Button.jsx"
 import Input from '../../atoms/Input/Input';
 import Label from '../../atoms/Label/Label';
 

@@ -1,6 +1,6 @@
 import FormField from "../../molecules/FormField/FormField";
 import Message from "../../atoms/Message/Message";
-import PrimeButton from "../../atoms/PrimeButton/PrimeButton";
+import PrimeButton from "./../../atoms/Button/Button.jsx"
 import { useState } from "react";
 function Registration({onRegister,onLogin,isSubmitting}) {
 
