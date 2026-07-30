@@ -1,4 +1,4 @@
-import AuthPad from "../components/AuthPad/AuthPad.jsx";
+import AuthPad from "./../components/organisms/AuthPad/AuthPad.jsx";
 function AuthPage() {
 
     return (
