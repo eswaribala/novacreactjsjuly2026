@@ -2,22 +2,23 @@ import { useState } from 'react';
 import Login from './../LoginForm/Login.jsx'
 import Registration from './../RegistrationForm/Registration.jsx'
 import AuthToggle from './../../molecules/AuthToggle/AuthToggle.jsx'
+import {Lock, UserCircle} from 'lucide-react'
 
 const authPanel={
     login:{
-        icon: 'login',
+        icon: Lock,
         title: 'Login',
         description: 'Access your account by logging in with your credentials.',
-        backgroundColor: 'bg-blue-500',
-        textColor: 'text-blue-500',
+        backgroundColor: 'bg-blue-100',
+        textColor: 'text-blue-800',
 
     },
     register:{
-        icon: 'register',
+        icon: UserCircle,
         title: 'Register',
         description: 'Create a new account to get started with our services.',
-        backgroundColor: 'bg-purple-500',
-        textColor: 'text-purple-500',
+        backgroundColor: 'bg-purple-100',
+        textColor: 'text-purple-800',
     }
 
 }

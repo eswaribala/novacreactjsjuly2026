@@ -1,29 +1,50 @@
-import Label from '../../atoms/Label/Label';
-import Input from '../../atoms/Input/Input';
+import Label from "../../atoms/Label/Label";
+import Input from "../../atoms/Input/Input";
 
-function FormField(props) {
+function FormField({
+  id,
+  name,
+  placeholder,
+  required,
+  autoComplete,
+  minLength,
+  maxLength,
+  label,
+  type,
+  value,
+  onChange,
+  error,
+  className = "",
+}) {
+  return (
+    <div className="form-field">
+      <Label
+        htmlFor={id}
+        text={label}
+        className="mb-2 block font-medium text-gray-900"
+      />
 
-    const { id,name,placeholder,required,autocomplete,minLength,maxLength,label, htmlFor, type, value, onChange, error,className } = props;
+      <Input
+        id={id}
+        name={name}
+        placeholder={placeholder}
+        required={required}
+        autoComplete={autoComplete}
+        minLength={minLength}
+        maxLength={maxLength}
+        type={type}
+        className={className}
+        value={value}
+        onChange={onChange}
+      />
 
-    return (
-        <div className="form-field">
-            <Label htmlFor={htmlFor} className={className}>{label}</Label>
-            <Input
-                id={id}
-                name={name}
-                placeholder={placeholder}
-                required={required}
-                autoComplete={autocomplete}
-                minLength={minLength}
-                maxLength={maxLength}
-                type={type}
-                value={value}
-                onChange={onChange}
-            />
-            {error && <span className="error">{error}</span>}
-        </div>
-    );
-
+      {error && (
+        <span className="mt-1 block text-sm text-red-600">
+          {error}
+        </span>
+      )}
+    </div>
+  );
 }
 
 export default FormField;
