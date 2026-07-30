@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import Login from './../LoginForm/Login.jsx'
+import Registration from './../RegistrationForm/Registration.jsx'
+import AuthToggle from './../../molecules/AuthToggle/AuthToggle.jsx'
 
 const authPanel={
     login:{
@@ -25,6 +28,30 @@ function AuthPad() {
     const[isSubmitting, setIsSubmitting] = useState(false);
     const isLoginActive = activeForm === 'login';
     const activePanel = authPanel[activeForm];
+    const ActiveIcon = activePanel.icon;
+    
+    const handleToggle = (form) => {
+        setActiveForm(form);
+    }
+
+    const handleLogin = async (values, rememberMe) => {
+        setIsSubmitting(true);
+        // Simulate an API call for login
+        setTimeout(() => {
+            console.log('Login successful with credentials:', values, 'Remember me:', rememberMe);
+            setIsSubmitting(false);
+        }, 2000);
+    }
+
+    const handleRegister = async (userInfo) => {
+        setIsSubmitting(true);
+        // Simulate an API call for registration
+        setTimeout(() => {
+            console.log('Registration successful with user info:', userInfo);
+            setIsSubmitting(false);
+        }, 2000);
+    }
+
 
     return(
          <section className="grid w-full max-w-5xl overflow-hidden
