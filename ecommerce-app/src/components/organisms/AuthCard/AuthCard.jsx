@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import AuthToggle from "../../molecules/AuthToggle/AuthToggle";
 import { Lock, CircleUserRound} from "lucide-react";
 
+const API_URL = import.meta.env.VITE_API_URL;
 
 const authPanel={
     login: {
@@ -55,6 +56,20 @@ function AuthCard() {
     setIsSubmitting(true);
 
     console.log("Registration values:", values);
+    fetch(`${API_URL}/register`, {
+      method: "POST",
+      headers: {  
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    }).then(response => response.json())
+      .then(data => {
+        console.log("Registration successful:", data);
+      })
+      .catch(error => {
+        console.error("Registration failed:", error);
+      });
+
 
     // await registerApi(values);
   } catch (error) {

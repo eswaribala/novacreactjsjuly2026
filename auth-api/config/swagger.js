@@ -42,12 +42,11 @@ const swaggerOptions = {
 
         LoginRequest: {
           type: "object",
-          required: ["email", "password"],
+          required: ["name", "password"],
           properties: {
-            email: {
+            name: {
               type: "string",
-              format: "email",
-              example: "parameswari@example.com",
+              example: "Parameswari",
             },
             password: {
               type: "string",

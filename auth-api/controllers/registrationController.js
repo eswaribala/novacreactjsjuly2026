@@ -1,18 +1,18 @@
 const User = require("../models/user");
-const bcrypt = require("bcrypt");
+//const bcrypt = require("bcrypt");
 
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, password } = req.body;
 
-    if (!name || !email || !password) {
+    if (!name || !password) {
       return res.status(400).json({
-        message: "Please provide name, email, and password",
+        message: "Please provide name,email and password",
       });
     }
 
     // Check whether the user already exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ name });
 
     if (existingUser) {
       return res.status(400).json({
@@ -21,13 +21,13 @@ const registerUser = async (req, res) => {
     }
 
     // Hash the password before storing it
-    const hashedPassword = await bcrypt.hash(password, 10);
+   // const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create and save the new user
     const newUser = new User({
       name,
       email,
-      password: hashedPassword,
+      password: password,
     });
 
     const savedUser = await newUser.save();

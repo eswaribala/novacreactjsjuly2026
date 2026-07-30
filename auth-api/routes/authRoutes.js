@@ -60,7 +60,7 @@ router.post("/register", registerUser);
  * /api/auth/login:
  *   post:
  *     summary: Login an existing user
- *     description: Validates the user's email and password.
+ *     description: Validates the user's name and password.
  *     tags:
  *       - Authentication
  *     requestBody:
@@ -83,13 +83,13 @@ router.post("/register", registerUser);
  *                 user:
  *                   $ref: '#/components/schemas/User'
  *       400:
- *         description: Email or password was not provided
+ *         description: Name or password was not provided
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
- *         description: Invalid email or password
+ *         description: Invalid name or password
  *         content:
  *           application/json:
  *             schema:
