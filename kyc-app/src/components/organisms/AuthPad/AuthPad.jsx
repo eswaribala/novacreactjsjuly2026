@@ -93,3 +93,5 @@ function AuthPad() {
     )
 
 }
+
+export default AuthPad;
