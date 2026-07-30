@@ -1,41 +1,52 @@
-//registration to save user data in database
-require('dotenv').config();
-const User = require('../models/user');
-export async function registerUser(req, res) {
+const User = require("../models/user");
+const bcrypt = require("bcrypt");
+
+const registerUser = async (req, res) => {
+  try {
     const { name, email, password } = req.body;
+
     if (!name || !email || !password) {
-        return res.status(400)
-        .json(
-            { message: 'Please provide name, email, and password' });
+      return res.status(400).json({
+        message: "Please provide name, email, and password",
+      });
     }
 
-    //user exists check
+    // Check whether the user already exists
+    const existingUser = await User.findOne({ email });
 
-    User.findOne({ email })
-        .then((existingUser) => {
-            if (existingUser) {
-                return res.status(400)
-                .json({ message: 'User already exists' });
-            }
-        })
-        .catch((error) => {
-            return res.status(500).json({ message: 'Server error', error });
-        });
-    
-       //create new user
-       const newUser = new User({ name, email, password });
-       newUser.save()
-           .then((user) => {
-               return res.status(201).
-               json({ message: 'User registered successfully', user });
-           })
-           .catch((error) => {
-               return res.status(500).
-               json({ message: 'Server error', error });
-           });
+    if (existingUser) {
+      return res.status(400).json({
+        message: "User already exists",
+      });
+    }
 
+    // Hash the password before storing it
+    const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Create and save the new user
+    const newUser = new User({
+      name,
+      email,
+      password: hashedPassword,
+    });
 
-}
+    const savedUser = await newUser.save();
 
+    return res.status(201).json({
+      message: "User registered successfully",
+      user: {
+        id: savedUser._id,
+        name: savedUser.name,
+        email: savedUser.email,
+      },
+    });
+  } catch (error) {
+    console.error("Registration error:", error);
 
+    return res.status(500).json({
+      message: "Server error",
+    });
+  }
+};
+
+module.exports = { registerUser };
