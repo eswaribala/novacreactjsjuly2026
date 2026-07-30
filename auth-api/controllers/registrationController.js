@@ -3,9 +3,9 @@ const User = require("../models/user");
 
 const registerUser = async (req, res) => {
   try {
-    const { name, password } = req.body;
+    const { name, email,password } = req.body;
 
-    if (!name || !password) {
+    if (!name || !email || !password) {
       return res.status(400).json({
         message: "Please provide name,email and password",
       });
