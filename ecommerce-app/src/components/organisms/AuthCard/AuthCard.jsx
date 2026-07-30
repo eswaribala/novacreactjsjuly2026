@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthToggle from "../../molecules/AuthToggle/AuthToggle";
 import { Lock, CircleUserRound} from "lucide-react";
-
+import { register, login } from "../../../api/auth";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const authPanel={
@@ -51,24 +51,13 @@ function AuthCard() {
     setIsSubmitting(false);
   }
     };
-    const handleRegister = (values) => {
+    const handleRegister = async (values) => {
        try {
     setIsSubmitting(true);
 
     console.log("Registration values:", values);
-    fetch(`${API_URL}/register`, {
-      method: "POST",
-      headers: {  
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    }).then(response => response.json())
-      .then(data => {
-        console.log("Registration successful:", data);
-      })
-      .catch(error => {
-        console.error("Registration failed:", error);
-      });
+    const response = await register(values);
+    console.log("Registration response:", response);
 
 
     // await registerApi(values);
