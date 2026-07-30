@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthToggle from "../../molecules/AuthToggle/AuthToggle";
 import { Lock, CircleUserRound} from "lucide-react";
-import { register } from "../../../services/authservices.js";
+import { register,login } from "../../../services/authservices.js";
 
 
 const authPanel={
@@ -37,12 +37,14 @@ function AuthCard() {
 
     const navigate = useNavigate();
 
-    const handleLogin = (values, rememberMe) => {
+    const handleLogin = async (values, rememberMe) => {
        try {
     setIsSubmitting(true);
 
     console.log("Login values:", values);
     console.log("Remember Me:", rememberMe);
+    const response = await login(values);
+    console.log("Login response:", response);
     navigate("/home");
     // await loginApi(values);
   } catch (error) {
