@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthToggle from "../../molecules/AuthToggle/AuthToggle";
 import { Lock, CircleUserRound} from "lucide-react";
-import { register, login } from "../../../api/auth";
-const API_URL = import.meta.env.VITE_API_URL;
+import { register } from "../../../services/authservices.js";
+
 
 const authPanel={
     login: {
@@ -58,6 +58,7 @@ function AuthCard() {
     console.log("Registration values:", values);
     const response = await register(values);
     console.log("Registration response:", response);
+    setActiveForm("login");
 
 
     // await registerApi(values);
