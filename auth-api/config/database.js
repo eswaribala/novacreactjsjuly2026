@@ -7,7 +7,11 @@ const connectToDatabase = async () => {
     throw new Error("MONGO_URI is missing in the .env file");
   }
 
-  await mongoose.connect(dbURI);
+  await mongoose.connect(dbURI,{
+     serverSelectionTimeoutMS: 10000,
+      connectTimeoutMS: 10000,
+  }
+  );
 
   console.log("Connected to the database");
 };

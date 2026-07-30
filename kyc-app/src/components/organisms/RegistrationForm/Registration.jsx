@@ -1,6 +1,6 @@
+import Button from "../../atoms/Button/Button";
 import FormField from "../../molecules/FormField/FormField";
 import Message from "../../atoms/Message/Message";
-import PrimeButton from "./../../atoms/Button/Button.jsx"
 import { useState } from "react";
 function Registration({onRegister,onLogin,isSubmitting}) {
 
@@ -128,7 +128,7 @@ function Registration({onRegister,onLogin,isSubmitting}) {
        placeholder="Enter your email" 
        className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
     <div className="flex justify-center">
-    <PrimeButton type="submit" disabled={isSubmitting}
+    <Button type="submit" disabled={isSubmitting}
     className="h-14
       
       w-72
@@ -146,10 +146,10 @@ function Registration({onRegister,onLogin,isSubmitting}) {
       focus:ring-4
       focus:ring-blue-200">
       {isSubmitting ? 'Registering...' : 'Register'}
-    </PrimeButton>
+    </Button>
     </div>
     <div className="mt-4 text-center">
-      <p>Already have an account? <PrimeButton type="button" onClick={onLogin} className="text-blue-600 hover:underline">Login</PrimeButton></p>
+      <p>Already have an account? <Button type="button" onClick={onLogin} className="text-blue-600 hover:underline">Login</Button></p>
     </div>
     
     </form>

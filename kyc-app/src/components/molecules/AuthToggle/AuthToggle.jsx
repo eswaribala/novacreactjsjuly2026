@@ -1,7 +1,7 @@
 import PrimeButton from '../../atoms/Button/Button.jsx';
 import {LogIn, UserPlus} from 'lucide-react';
 function AuthToggle({activeForm,onToggle}) {
- console.log('activeForm in AuthToggle:', activeForm);
+ //console.log('activeForm in AuthToggle:', activeForm);
  return(
     <div className="mb-8 flex items-center gap-4">
       <PrimeButton 
