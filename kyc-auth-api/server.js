@@ -4,6 +4,10 @@ cors=require('cors');
 dotenv=require('dotenv');
 dotenv.config();
 connectDB=require('./config/database');
+swaggerSpecification=require('./config/swagger');
+swaggerUi=require('swagger-ui-express');
+
+
 app=express();
 connectDB();
 
@@ -14,6 +18,8 @@ app.use(cors({
 //define endpoints
 app.use(express.json());
 //routes
+app.use('/api-docs', swaggerUi.serve, 
+    swaggerUi.setup(swaggerSpecification));
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/health', async (req, res) => {
     res.status(200).json({ message: 'API is healthy' });
