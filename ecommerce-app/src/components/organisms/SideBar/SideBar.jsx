@@ -18,13 +18,8 @@ function SideBar() {
                         menu={menuItem} isOpen={openMenu === menuItem.label} 
                         onToggle={handleToggle}/>
                     ) : (
-                        <MenuItem key={index} 
-                            label={menuItem.label} 
-                            icon={menuItem.icon} 
-                            path={menuItem.path}
-                            hasChildren={menuItem.hasChildren}
-                            onClick={() => handleToggle(menuItem.label)}
-                            isOpen={openMenu === menuItem.label}
+                        <MenuItem key={menuItem.id}{...menuItem}
+                            
                         />
                     );
                 })}
