@@ -20,6 +20,12 @@ app.use(express.json());
 //routes
 app.use('/api-docs', swaggerUi.serve, 
     swaggerUi.setup(swaggerSpecification));
+//Optional OpenAPI JSON endpoint
+app.get("/api-docs.json", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.send(swaggerSpecification);
+});
+
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/health', async (req, res) => {
     res.status(200).json({ message: 'API is healthy' });
@@ -30,6 +36,7 @@ const PORT = process.env.PORT || 5000;
 function startServer() {
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
+        console.log(`Swagger docs available at http://localhost:${PORT}/api-docs`);
     });
 }
 
