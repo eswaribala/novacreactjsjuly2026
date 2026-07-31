@@ -4,19 +4,17 @@ import { useState } from 'react';
 import SideBarMenu from '../../molecules/SideBarMenu/SideBarMenu';
 import MenuItem from '../../atoms/MenuItem/MenuItem';
 function SideBar() {
-    const [openMenu, setOpenMenu] = useState('Orders');
-    const handleToggle = (menuName) => {
-        setOpenMenu(menuName);
-    };
+    const [openMenu, setOpenMenu] = useState('orders');
+    const handleToggle = (menuId) => { setOpenMenu((current) => (current === menuId ? null : menuId)); };
 
     return(
-        <div className="sidebar">
+        <nav className="sidebar-navigation" aria-label="Main navigation">
            
-                {menuData.map((menuItem, index) => {
+                {menuData.map((menuItem) => {
                     return menuItem.children ? (
-                        <SideBarMenu key={index} 
-                        menu={menuItem} isOpen={openMenu === menuItem.label} 
-                        onToggle={handleToggle}/>
+                        <SideBarMenu key={menuItem.id} 
+                        isOpen={openMenu === menuItem.id} 
+                        onToggle={handleToggle} menu={menuItem}/>
                     ) : (
                         <MenuItem key={menuItem.id}{...menuItem}
                             
@@ -24,7 +22,7 @@ function SideBar() {
                     );
                 })}
           
-        </div>
+        </nav>
     )
 }
 

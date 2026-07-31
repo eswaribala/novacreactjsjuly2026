@@ -5,25 +5,28 @@ function MenuItem({ label,icon:Icon,path,hasChildren,onClick,isOpen }) {
 
     const content=(
         <>
-        <span>
+        <div className="flex items-center gap-2">
+        <span className="flex items-center gap-2">
             {Icon && <span className="menu-item-icon"><Icon /></span>}
             <span className="menu-item-label">{label}</span>
         </span>
         {hasChildren && <span className="menu-item-arrow">{isOpen ? '▼' : '▶'}
             </span>}
+           
+        </div>
         </>
     )
 
     if(hasChildren) {
         return (
-            <Button className="menu-item" onClick={onClick}>
+            <Button type="button" className="menu-item" onClick={onClick}>
                 {content}
             </Button>
         )
     }
 
     return(
-        <NavLink to={path} className="menu-item">
+        <NavLink to={path} end={path === "/"} className={({ isActive }) => `menu-item menu-link ${isActive ? "menu-item-active" : ""}`}>
             {content}
         </NavLink>
     )
