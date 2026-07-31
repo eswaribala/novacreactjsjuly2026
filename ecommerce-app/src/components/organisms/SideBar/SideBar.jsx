@@ -15,10 +15,17 @@ function SideBar() {
                 {menuData.map((menuItem, index) => {
                     return menuItem.children ? (
                         <SideBarMenuItem key={index} 
-                        menuItem={menuItem} openMenu={openMenu} 
+                        menu={menuItem} isOpen={openMenu === menuItem.label} 
                         onToggle={handleToggle}/>
                     ) : (
-                        <MenuItem key={index} menuItem={menuItem} />
+                        <MenuItem key={index} 
+                            label={menuItem.label} 
+                            icon={menuItem.icon} 
+                            path={menuItem.path}
+                            hasChildren={menuItem.hasChildren}
+                            onClick={() => handleToggle(menuItem.label)}
+                            isOpen={openMenu === menuItem.label}
+                        />
                     );
                 })}
           
