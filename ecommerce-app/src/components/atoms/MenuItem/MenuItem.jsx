@@ -5,7 +5,7 @@ function MenuItem({ label,icon:Icon,path,hasChildren,onClick,isOpen }) {
 
     const content=(
         <>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 py-5">
         <span className="flex items-center gap-2">
             {Icon && <span className="menu-item-icon"><Icon /></span>}
             <span className="menu-item-label">{label}</span>

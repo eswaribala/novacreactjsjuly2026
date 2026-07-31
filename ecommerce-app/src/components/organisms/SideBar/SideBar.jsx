@@ -8,7 +8,7 @@ function SideBar() {
     const handleToggle = (menuId) => { setOpenMenu((current) => (current === menuId ? null : menuId)); };
 
     return(
-        <nav className="sidebar-navigation" aria-label="Main navigation">
+        <nav className="sidebar-navigation font-bold text-1xl" aria-label="Main navigation">
            
                 {menuData.map((menuItem) => {
                     return menuItem.children ? (

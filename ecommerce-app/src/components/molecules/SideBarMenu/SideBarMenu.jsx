@@ -7,7 +7,7 @@ function SideBarMenu({ menu, isOpen, onToggle }) {
     Array.isArray(menu.children) && menu.children.length > 0;
 
   return (
-    <div className="sidebar-menu">
+    <div className="sidebar-menu-group">
       <MenuItem
         label={menu.label}
         icon={menu.icon}
@@ -17,7 +17,7 @@ function SideBarMenu({ menu, isOpen, onToggle }) {
       />
 
       {isOpen && hasChildren && (
-        <div className="sidebar-submenu">
+        <div className="sidebar-submenu flex flex-col gap-2">
           {menu.children.map((child) => (
             <NavLink
               key={child.id}
