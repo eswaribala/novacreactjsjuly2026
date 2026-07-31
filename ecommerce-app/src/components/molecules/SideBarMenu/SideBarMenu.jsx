@@ -1,5 +1,6 @@
 //create SideBarMenu component from MenuItem
 
+import { NavLink } from 'react-router-dom';
 import MenuItem from '../atoms/MenuItem/MenuItem';
 function SideBarMenu({menu,isOpen,onToggle}) {
     return(
@@ -10,9 +11,9 @@ function SideBarMenu({menu,isOpen,onToggle}) {
             {isOpen && menu.children && (
                 <div className="sidebar-submenu">
                     {menu.children.map((child) => (
-                        <MenuItem key={child.id} label={child.label} icon={child.icon} path={child.path}
-                        hasChildren={child.hasChildren} onClick={() => onToggle(child.id)} 
-                        isOpen={isOpen} />
+                        <NavLink key={child.id} to={child.path} onClick={() => onToggle(child.id)}>
+                            {child.label}
+                        </NavLink>
                     ))}
                 </div>
             )}
