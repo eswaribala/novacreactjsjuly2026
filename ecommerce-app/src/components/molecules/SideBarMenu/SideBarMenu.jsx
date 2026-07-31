@@ -1,7 +1,7 @@
 //create SideBarMenu component from MenuItem
 
 import { NavLink } from 'react-router-dom';
-import MenuItem from '../atoms/MenuItem/MenuItem';
+import MenuItem from '../../atoms/MenuItem/MenuItem';
 function SideBarMenu({menu,isOpen,onToggle}) {
     return(
         <div className="sidebar-menu">

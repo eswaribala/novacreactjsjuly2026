@@ -1,8 +1,8 @@
 //create sidebar using sidebar menu and menu item
 import {menuData} from '../../../data/menuData';
 import { useState } from 'react';
-import SideBarMenuItem from '../molecules/SideBarMenu/SideBarMenu';
-import MenuItem from '../molecules/MenuItem/MenuItem';
+import SideBarMenu from '../../molecules/SideBarMenu/SideBarMenu';
+import MenuItem from '../../atoms/MenuItem/MenuItem';
 function SideBar() {
     const [openMenu, setOpenMenu] = useState('Orders');
     const handleToggle = (menuName) => {
@@ -14,7 +14,7 @@ function SideBar() {
            
                 {menuData.map((menuItem, index) => {
                     return menuItem.children ? (
-                        <SideBarMenuItem key={index} 
+                        <SideBarMenu key={index} 
                         menu={menuItem} isOpen={openMenu === menuItem.label} 
                         onToggle={handleToggle}/>
                     ) : (

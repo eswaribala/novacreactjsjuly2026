@@ -11,6 +11,7 @@ function App() {
     <div className="ml-10 mt-2 mr-10">
     <Header />
     <AppRoutes/>
+    
     </div>
     
     </>
