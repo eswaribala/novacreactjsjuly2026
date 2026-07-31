@@ -1,13 +1,13 @@
 //orders,products,customers,discounts,settings,reviews,inventory,dashboard
-
+import { ScanFace,ShoppingCart,Package,Users,Percent,CirclePile,Star,Settings} from "lucide-react"
 export const menuData=[{
     id:"dashboard",
     label:"Dashboard",
-    icon:"bx bx-home",
+    icon:ScanFace,
 },{
     id:"orders",
     label:"Orders",
-    icon:"bx bx-cart",
+    icon:ShoppingCart,
     children:[
     {
         id:"addOrders",
@@ -31,7 +31,7 @@ export const menuData=[{
 {
     id:"products",
     label:"Products",
-    icon:"bx bx-box",
+    icon:Package,
     children:[
     {
         id:"addProducts",
@@ -54,7 +54,7 @@ export const menuData=[{
 {
     id:"customers",
     label:"Customers",
-    icon:"bx bx-user",
+    icon:Users,
     children:[
     {
         id:"addCustomers",
@@ -77,7 +77,7 @@ export const menuData=[{
 {
     id:"discounts",
     label:"Discounts",
-    icon:"bx bx-tag",
+    icon:Percent,
     children:[
     {
         id:"addDiscounts",
@@ -100,7 +100,7 @@ export const menuData=[{
 {
     id:"inventory",
     label:"Inventory",
-    icon:"bx bx-archive",
+    icon:CirclePile,
     children:[
         {
             id:"addInventory",
@@ -124,12 +124,12 @@ export const menuData=[{
 {
     id:"reviews",
     label:"Reviews",
-    icon:"bx bx-star",
+    icon:Star,
 },
 {
     id:"settings",
     label:"Settings",
-    icon:"bx bx-cog",
+    icon:Settings,
 }
 
 ]
