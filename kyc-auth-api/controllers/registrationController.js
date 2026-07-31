@@ -1,6 +1,8 @@
 const User=require('../models/userModel');
 
 const registerUser = async (req, res) => {
+
+    console.log('Received registration request:', req.body);
     try {
         const { name, email, password } = req.body;
 

@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import AuthPage from '../../../pages/AuthPage.jsx';
 import Home from '../../../pages/HomePage.jsx';
+import AdminHome from '../../../pages/AdminHome.jsx';
 
 function AppRoutes(){
     
@@ -14,6 +15,8 @@ function AppRoutes(){
 
         {/* Home Page */}
         <Route path="/home" element={<Home />} />
+        {/* Admin Page */}
+        <Route path="/admin" element={<AdminHome />} />
 
         {/* 404 Page */}
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />
