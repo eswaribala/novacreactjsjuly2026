@@ -17,7 +17,7 @@ function SideBarMenu({ menu, isOpen, onToggle }) {
       />
 
       {isOpen && hasChildren && (
-        <div className="sidebar-submenu flex flex-col gap-2">
+        <div className="sidebar-submenu flex flex-col gap-2 text-red-300 ml-10">
           {menu.children.map((child) => (
             <NavLink
               key={child.id}

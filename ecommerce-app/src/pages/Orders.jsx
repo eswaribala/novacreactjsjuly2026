@@ -1,4 +1,4 @@
-function Orders() {
+export function Orders() {
     return (
         <div>
             <h1>Orders Page</h1>
@@ -6,4 +6,30 @@ function Orders() {
         </div>
     );
 }
-export default Orders;
+
+export function AddOrders() {
+    return (
+        <div>
+            <h1>Orders Page</h1>
+            {/* Add your orders content here */}
+        </div>
+    );
+}
+
+export function UpdateOrders() {
+    return (
+        <div>
+            <h1>Orders Page</h1>
+            {/* Add your orders content here */}
+        </div>
+    );
+}
+
+export function DeleteOrders() {
+    return (
+        <div>
+            <h1>Orders Page</h1>
+            {/* Add your orders content here */}
+        </div>
+    );
+}
