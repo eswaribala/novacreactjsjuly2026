@@ -1,9 +1,9 @@
 //routes for registration and login
 const express = require('express');
 const router = express.Router();
-const authController = require('../controllers/authController');
-
-router.post('/register', authController.registerUser);
-router.post('/login', authController.loginUser);
+const registrationController = require('../controllers/registrationController');
+const loginController = require('../controllers/loginController');
+router.post('/register', registrationController.registerUser);
+router.post('/login', loginController.loginUser);
 
 module.exports = router;
