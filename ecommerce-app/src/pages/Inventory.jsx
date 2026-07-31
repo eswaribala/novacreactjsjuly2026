@@ -9,7 +9,7 @@ export function Inventory() {
 export function AddInventory() {
     return (
         <div>
-            <h1>Inventory Page</h1>
+            <h1>Add Inventory Page</h1>
             {/* Add your inventory content here */}
         </div>
     );
@@ -18,7 +18,7 @@ export function AddInventory() {
 export function UpdateInventory() {
     return (
         <div>
-            <h1>Inventory Page</h1>
+            <h1>Update Inventory Page</h1>
             {/* Add your inventory content here */}
         </div>
     );
