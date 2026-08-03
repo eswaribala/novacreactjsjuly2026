@@ -69,7 +69,7 @@ function AddProduct() {
       <form onSubmit={handleSubmit} noValidate
   className="space-y-4 ">
   <fieldset className="border border-blue-700 p-4 rounded-lg">
-      <legend className="mb-4 text-2xl text-center font-semibold text-gray-900 dark:text-white">
+      <legend className="mb-4 text-2xl text-center font-semibold text-blue-600 dark:text-white">
         Add New Product
       </legend>
 
