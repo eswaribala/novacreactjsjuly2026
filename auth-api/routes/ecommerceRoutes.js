@@ -1,5 +1,5 @@
 const router = require("./routesInstance");
-const { addProduct } = require("../controllers/ecommerceController");
+const { addProduct } = require("../controllers/productController");
 /**
  * @swagger
  * /api/auth/add-product:
@@ -40,4 +40,5 @@ const { addProduct } = require("../controllers/ecommerceController");
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-router.post("/api/auth/add-product", addProduct);
+router.post("/add-product", addProduct);
+module.exports = router;

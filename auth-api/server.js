@@ -6,7 +6,7 @@ const swaggerUi = require("swagger-ui-express");
 
 const { connectToDatabase } = require("./config/database");
 const authRoutes = require("./routes/authRoutes");
-
+const ecommerceRoutes = require("./routes/ecommerceRoutes");
 const swaggerSpecification = require("./config/swagger");
 
 const app = express();
@@ -41,6 +41,7 @@ app.get("/api-docs.json", (req, res) => {
 
 // Authentication routes
 app.use("/api/auth", authRoutes);
+app.use("/api/auth", ecommerceRoutes);
 
 
 // Global error handler
