@@ -6,6 +6,7 @@ const swaggerUi = require("swagger-ui-express");
 
 const { connectToDatabase } = require("./config/database");
 const authRoutes = require("./routes/authRoutes");
+
 const swaggerSpecification = require("./config/swagger");
 
 const app = express();
@@ -41,12 +42,13 @@ app.get("/api-docs.json", (req, res) => {
 // Authentication routes
 app.use("/api/auth", authRoutes);
 
+
 // Global error handler
 app.use((err, req, res, next) => {
   console.error(err);
 
-  res.status(500).json({
-    message: "Unexpected server error",
+  res.status(err.status || 500).json({
+    message: err.message || "Unexpected server error",
   });
 });
 

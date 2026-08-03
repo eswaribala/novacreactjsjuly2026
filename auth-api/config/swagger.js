@@ -74,6 +74,58 @@ const swaggerOptions = {
           },
         },
 
+        Product: {
+          type: "object",
+          properties: {
+          
+            name: {
+              type: "string",
+              example: "Sample Product",
+            },
+            description: {
+              type: "string",
+              example: "This is a sample product description.",
+            },
+            category: {
+              type: "string",
+              example: "Electronics",
+            },
+            price: {
+              type: "number",
+              example: 99.99,
+            },
+            stock: {
+              type: "number",
+              example: 100,
+            },
+          },
+        },
+        AddProductRequest: {
+          type: "object",
+          required: ["name", "description", "category", "price", "stock"],
+          properties: {
+            name: {
+              type: "string",
+              example: "Sample Product",
+            },
+            description: {
+              type: "string",
+              example: "This is a sample product description.",
+            },
+            category: {
+              type: "string",
+              example: "Electronics",
+            },
+            price: {
+              type: "number",
+              example: 99.99,
+            },
+            stock: {
+              type: "number",
+              example: 100,
+            },
+          },
+        },
         ErrorResponse: {
           type: "object",
           properties: {
