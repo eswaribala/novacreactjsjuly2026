@@ -1,6 +1,7 @@
 
 import Header from './components/molecules/Header/Header.jsx'
-import AuthPage from './pages/AuthPage.jsx'
+import AuthRoutes from './components/molecules/Routes/AuthRoutes.jsx'
+
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     <>
     <div className="ml-10 mt-2 mr-10">
      <Header />
-     <AuthPage/>
+      <AuthRoutes />
      </div>
     
     </>

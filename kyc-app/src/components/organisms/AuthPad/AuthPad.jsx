@@ -3,7 +3,8 @@ import Login from './../LoginForm/Login.jsx'
 import Registration from './../RegistrationForm/Registration.jsx'
 import AuthToggle from './../../molecules/AuthToggle/AuthToggle.jsx'
 import {Lock, UserCircle} from 'lucide-react'
-import { register } from './../../../services/authservice.js';
+import { login, register } from './../../../services/authservice.js';
+import {useNavigate} from 'react-router-dom'
 
 const authPanel={
     login:{
@@ -31,6 +32,7 @@ function AuthPad() {
     const isLoginActive = activeForm === 'login';
     const activePanel = authPanel[activeForm];
     const ActiveIcon = activePanel.icon;
+    const navigate = useNavigate();
     
     const handleToggle = (form) => {
         setActiveForm(form);
@@ -39,10 +41,10 @@ function AuthPad() {
     const handleLogin = async (values, rememberMe) => {
         setIsSubmitting(true);
         // Simulate an API call for login
-        setTimeout(() => {
-            console.log('Login successful with credentials:', values, 'Remember me:', rememberMe);
-            setIsSubmitting(false);
-        }, 2000);
+        const response =await login(values, rememberMe);
+        console.log('Login response:', response);
+        setIsSubmitting(false);
+        navigate('/home');
     }
 
     const handleRegister = async (userInfo) => {
