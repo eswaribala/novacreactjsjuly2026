@@ -8,7 +8,11 @@ function SideBar() {
     const handleToggle = (menuId) => { setOpenMenu((current) => (current === menuId ? null : menuId)); };
 
     return(
-        <nav className="sidebar-navigation font-bold text-1xl" aria-label="Main navigation">
+         <aside className="sidebar">
+      <nav
+        className="sidebar-navigation font-bold text-xl"
+        aria-label="Main navigation"
+      >
            
                 {menuData.map((menuItem) => {
                     return menuItem.children ? (
@@ -23,7 +27,8 @@ function SideBar() {
                 })}
           
         </nav>
-    )
+        </aside>
+    );
 }
 
 export default SideBar;

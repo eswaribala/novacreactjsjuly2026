@@ -10,51 +10,229 @@ import Dashboard from '../../../pages/Dashboard.jsx';
 import Settings from '../../../pages/Settings.jsx';
 import Reviews from '../../../pages/Reviews.jsx';
 import {Discount, AddDiscount, UpdateDiscount, DeleteDiscount} from '../../../pages/Discount.jsx';
+import CrudPage from '../../organisms/CrudPage/CrudPage.jsx';
 
-function AppRoutes(){
-    
-    return (
-        <Routes>
-        {/* Default Route */}
-        <Route path="/" element={<Navigate to="/login" replace />} />
+function AppRoutes() {
+  return (
+    <Routes>
+      {/* Default */}
+      <Route path="/" element={<Navigate to="/login" replace />} />
 
-        {/* Login Page */}
-        <Route path="/login" element={<AuthPage />} />
+      {/* Pages without sidebar */}
+      <Route path="/login" element={<AuthPage />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/admin" element={<AdminHome />} />
 
-        {/* Home Page */}
-        <Route path="/home" element={<Home />} />
-        {/* Admin Page */}
-        <Route path="/admin" element={<AdminHome />} />
-         <Route path="/orders" element={<Orders />}/>
-          <Route path="/orders/add" element={<AddOrders />} />
-          <Route path="/orders/update" element={<UpdateOrders />} />
-          <Route path="/orders/delete" element={<DeleteOrders />} />
-         
-          <Route path="/products" element={<Products />}/>
-          <Route path="/products/add" element={<AddProducts />} />
-          <Route path="/products/update" element={<UpdateProducts />} />
-          <Route path="/products/delete" element={<DeleteProducts />} />
-          <Route path="/inventory" element={<Inventory />}/>
-          <Route path="/inventory/add" element={<AddInventory />} />
-          <Route path="/inventory/update" element={<UpdateInventory />} />
-          <Route path="/inventory/delete" element={<DeleteInventory />} />
+      {/* Pages with sidebar */}
+       <Route element={<CrudPage />}>
+      <Route
+        path="/dashboard"
+        element={
+          
+            <Dashboard />
+        }
+      />
+
+      <Route
+        path="/orders"
+        element={
         
-          <Route path="/customers" element={<Customers />}/>
-          <Route path="/customers/add" element={<AddCustomers />} />
-          <Route path="/customers/update" element={<UpdateCustomers />} />
-          <Route path="/customers/delete" element={<DeleteCustomers />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-         <Route path="/settings" element={<Settings />} />
-         <Route path="/reviews" element={<Reviews />} />
-        <Route path="/discount" element={<Discount />}/>
-        <Route path="/discount/add" element={<AddDiscount />} />
-        <Route path="/discount/update" element={<UpdateDiscount />} />
-        <Route path="/discount/delete" element={<DeleteDiscount />} />
+            <Orders />
+         
+        }
+      />
 
+      <Route
+        path="/orders/add"
+        element={
+        
+            <AddOrders />
+         
+        }
+      />
 
-        {/* 404 Page */}
-        <Route path="*" element={<h1>404 - Page Not Found</h1>} />
-      </Routes>
-    )
+      <Route
+        path="/orders/update"
+        element={
+          
+            <UpdateOrders />
+          
+        }
+      />
+
+      <Route
+        path="/orders/delete"
+        element={
+          
+            <DeleteOrders />
+         
+        }
+      />
+
+      <Route
+        path="/products"
+        element={
+         
+            <Products />
+          
+        }
+      />
+
+      <Route
+        path="/products/add"
+        element={
+          
+            <AddProducts />
+       
+        }
+      />
+
+      <Route
+        path="/products/update"
+        element={
+          
+            <UpdateProducts />
+         
+        }
+      />
+
+      <Route
+        path="/products/delete"
+        element={
+         
+            <DeleteProducts />
+          
+        }
+      />
+
+      <Route
+        path="/inventory"
+        element={
+         
+            <Inventory />
+          
+        }
+      />
+
+      <Route
+        path="/inventory/add"
+        element={
+          
+            <AddInventory />
+        
+        }
+      />
+
+      <Route
+        path="/inventory/update"
+        element={
+         
+            <UpdateInventory />
+          
+        }
+      />
+
+      <Route
+        path="/inventory/delete"
+        element={
+        
+            <DeleteInventory />
+         
+        }
+      />
+
+      <Route
+        path="/customers"
+        element={
+          
+            <Customers />
+       
+        }
+      />
+
+      <Route
+        path="/customers/add"
+        element={
+          
+            <AddCustomers />
+          
+        }
+      />
+
+      <Route
+        path="/customers/update"
+        element={
+         
+            <UpdateCustomers />
+         
+        }
+      />
+
+      <Route
+        path="/customers/delete"
+        element={
+            <DeleteCustomers />
+        }
+      />
+
+      <Route
+        path="/discount"
+        element={
+          
+            <Discount />
+       
+        }
+      />
+
+      <Route
+        path="/discount/add"
+        element={
+         
+            <AddDiscount />
+       
+        }
+      />
+
+      <Route
+        path="/discount/update"
+        element={
+          
+            <UpdateDiscount />
+         
+        }
+      />
+
+      <Route
+        path="/discount/delete"
+        element={
+          
+            <DeleteDiscount />
+          
+        }
+      />
+
+      <Route
+        path="/settings"
+        element={
+          
+            <Settings />
+         
+        }
+      />
+
+      <Route
+        path="/reviews"
+        element={
+          
+            <Reviews />
+        
+        }
+      />
+    </Route>
+      <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+  
+    </Routes>
+  );
 }
-export default AppRoutes
+
+export default AppRoutes;
