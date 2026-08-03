@@ -5,10 +5,10 @@ export async function fectchData(endpoint, options = {}) {
    headers: {
     'Content-Type': 'application/json',
   }, ...options});
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || 'An error occurred while fetching data.');
-
-  }
+   if (!response.ok) {
+        const errorData = await response.json()
+        .then(data => data).catch(() => ({}));
+        throw new Error(errorData.message || 'An error occurred while fetching data.');
+    }
   return response.json();
 }
