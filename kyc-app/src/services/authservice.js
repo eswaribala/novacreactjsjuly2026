@@ -6,3 +6,10 @@ export const register = async (userData) => {
         body: JSON.stringify(userData),
     });
 }
+
+export const login = async (credentials) => {
+    return await fetchData('login', {
+        method: 'POST',
+        body: JSON.stringify(credentials),
+    });
+}
