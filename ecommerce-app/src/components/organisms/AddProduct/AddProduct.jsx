@@ -1,6 +1,7 @@
 import Button from "../../atoms/Button/Button";
 import FormField from "../../molecules/FormField/FormField";
 import Message from "../../atoms/Message/Message";
+import TextArea from "../../atoms/TextArea/TextArea";
 import { useState } from "react";
 function AddProduct() {
 
@@ -66,7 +67,12 @@ function AddProduct() {
   return (
     <>
       <form onSubmit={handleSubmit} noValidate
-  className="space-y-4">
+  className="space-y-4 ">
+  <fieldset className="border border-blue-700 p-4 rounded-lg">
+      <legend className="mb-4 text-2xl text-center font-semibold text-gray-900 dark:text-white">
+        Add New Product
+      </legend>
+
          {errorMessages.general && (
         <Message
           type="error"
@@ -74,6 +80,7 @@ function AddProduct() {
           className="mb-4"
         />
       )}  
+      <div className="flex flex-col gap-4 font-bold text-gray-900 text-3xl">
       <FormField 
        id="name" 
        label="Name" 
@@ -85,7 +92,7 @@ function AddProduct() {
        error={errorMessages.name}
        className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
 
-       <FormField 
+       <TextArea 
        id="description" 
        label="Description" 
        type="text" 
@@ -99,7 +106,7 @@ function AddProduct() {
        id="price" 
        label="Price"
        type="number" 
-       value={values.price} 
+       value={values.price==0?"":values.price} 
        onChange={handleChange} 
        required 
        placeholder="Enter product price" 
@@ -119,13 +126,13 @@ function AddProduct() {
        id="stock" 
        label="Stock" 
        type="number" 
-       value={values.stock} 
+       value={values.stock==0?"":values.stock} 
        onChange={handleChange}        
        required 
        error={errorMessages.stock}
-       placeholder="Enter product stock" 
+       placeholder="Enter product stock"
        className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
-       
+    </div>   
     <div className="flex justify-center">
     <Button type="submit"
     className="h-14
@@ -144,10 +151,10 @@ function AddProduct() {
       focus:outline-none
       focus:ring-4
       focus:ring-blue-200">
-      {'Add Product'}
+      Submit
     </Button>
     </div>
-    
+    </fieldset>
     </form>
     </>
     

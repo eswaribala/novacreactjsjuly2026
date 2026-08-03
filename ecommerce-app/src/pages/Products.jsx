@@ -1,3 +1,4 @@
+import AddProduct  from "../components/organisms/AddProduct/AddProduct";
 export function Products() {
     return (
         <div>
@@ -8,9 +9,8 @@ export function Products() {
 }
 export function AddProducts() {
     return (
-        <div>
-            <h1>Add Products Page</h1>
-            {/* Add your products content here */}
+        <div className="flex flex-col full">
+            <AddProduct/>
         </div>
     );
 }
