@@ -3,6 +3,7 @@ import Login from './../LoginForm/Login.jsx'
 import Registration from './../RegistrationForm/Registration.jsx'
 import AuthToggle from './../../molecules/AuthToggle/AuthToggle.jsx'
 import {Lock, UserCircle} from 'lucide-react'
+import { register } from './../../../services/authservice.js';
 
 const authPanel={
     login:{
@@ -46,11 +47,10 @@ function AuthPad() {
 
     const handleRegister = async (userInfo) => {
         setIsSubmitting(true);
-        // Simulate an API call for registration
-        setTimeout(() => {
-            console.log('Registration successful with user info:', userInfo);
-            setIsSubmitting(false);
-        }, 2000);
+        const response = await register(userInfo);
+        console.log('Registration response:', response);
+        setActiveForm('login');
+        setIsSubmitting(false);
     }
 
 
