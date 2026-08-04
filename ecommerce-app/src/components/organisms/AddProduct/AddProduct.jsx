@@ -5,9 +5,10 @@ import TextArea from "../../atoms/TextArea/TextArea";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createProduct } from "../../../redux/features/products/productSlicer";
+import { useNavigate } from "react-router-dom";
 function AddProduct() {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
    const initialValues ={
     name: '',
     description: '',
@@ -75,6 +76,7 @@ function AddProduct() {
       await dispatch(createProduct(productData)).unwrap();
       setValues(initialValues);
       setErrorMessages({});
+      navigate("/products");
     } catch (requestError) {
       console.error("Product creation failed:", requestError);
     }

@@ -56,4 +56,18 @@ const addProduct = async (req, res) => {
   }
 };
 
-module.exports = { addProduct };
+const fetchProducts = async (req, res) => {
+  try {
+    const products = await Product.find();
+    return res.status(200).json({
+      products,
+    });
+  } catch (error) {
+    console.error("Fetch products error:", error);
+    return res.status(500).json({
+      message: "Server error",
+    });
+  }
+};
+
+module.exports = { addProduct, fetchProducts };

@@ -126,6 +126,18 @@ const swaggerOptions = {
             },
           },
         },
+        FetchProductsResponse: {
+          type: "object",
+          properties: {
+            products: {
+              type: "array",
+              items: {  
+                $ref: "#/components/schemas/Product" },
+              },
+            },
+          },
+          
+
         ErrorResponse: {
           type: "object",
           properties: {
