@@ -3,7 +3,10 @@ import FormField from "../../molecules/FormField/FormField";
 import Message from "../../atoms/Message/Message";
 import TextArea from "../../atoms/TextArea/TextArea";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createProduct } from "../../../redux/features/products/productSlicer";
 function AddProduct() {
+  const dispatch = useDispatch();
 
    const initialValues ={
     name: '',
@@ -55,12 +58,26 @@ function AddProduct() {
 
     return Object.keys(errors).length === 0;
   };
-   const handleSubmit = (e) => {
+   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
       return;
     }
     console.log('New Product values:', values);
+    const productData = { 
+      name: values.name.trim(), 
+      description: values.description.trim(), 
+      price: Number(values.price), 
+      category: values.category.trim(), 
+      stock: Number(values.stock), 
+    };
+    try {
+      await dispatch(createProduct(productData)).unwrap();
+      setValues(initialValues);
+      setErrorMessages({});
+    } catch (requestError) {
+      console.error("Product creation failed:", requestError);
+    }
     
    }
 
