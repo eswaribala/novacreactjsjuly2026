@@ -1,8 +1,9 @@
+import HomeScreen from "../components/organisms/HomeScreen/HomeScreen";
+
 function HomePage() {
   return (
-    <div>
-      <h1>Welcome to the Home Page</h1>
-      <p>This is the main landing page of the application.</p>
+   <div className="bg-black text-amber-50 w-50">
+      <HomeScreen/>
     </div>
   );
 }

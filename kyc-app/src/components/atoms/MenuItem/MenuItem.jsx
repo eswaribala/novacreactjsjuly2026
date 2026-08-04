@@ -24,7 +24,12 @@ function MenuItem({icon:Icon, label,path,hasChildren,onClick,isOpen }) {
     }
 
     return(
-         <NavLink to={path} end={path === "/"} className={({ isActive }) => `menu-item menu-link ${isActive ? "menu-item-active" : ""}`}>
+         <NavLink to={path} end={path === "/"} 
+         className={({ isActive }) =>
+        `flex w-full items-center px-4 hover:bg-gray-100 ${
+          isActive ? "bg-gray-100 text-blue-600" : ""
+        }`
+      }>
             {content}
         </NavLink>
     )

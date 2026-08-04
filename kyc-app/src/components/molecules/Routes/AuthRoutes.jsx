@@ -20,11 +20,11 @@ function AuthRoutes() {
            <Route path="*" element={<h1>404 - Page Not Found</h1>} />
            {/* Add more for kyc routes as needed */}
            <Route  element={<HomeScreen/>}>
-            <Route path="/masters/change-password" element={<ChangePassword/>} />
-            <Route path="/transactions/beneficiary-pan" element={<BeneficiaryPAN/>} />
-            <Route path="/reports/mis-report" element={<MISReport/>} />
-            <Route path="/profile" element={<Profile/>} />
-            <Route path="/closed-pan" element={<ClosedPAN/>} />
+            <Route path="/home/masters/change-password" element={<ChangePassword/>} />
+            <Route path="/home/transactions/beneficiary-pan" element={<BeneficiaryPAN/>} />
+            <Route path="/home/reports/mis-report" element={<MISReport/>} />
+            <Route path="/home/profile" element={<Profile/>} />
+            <Route path="/home/closed-pan" element={<ClosedPAN/>} />
            </Route>
 
         </Routes>

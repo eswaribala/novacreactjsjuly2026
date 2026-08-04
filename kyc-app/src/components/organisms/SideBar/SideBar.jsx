@@ -8,7 +8,7 @@ function SideBar() {
     const handleToggle = (menuId) => { setOpenMenu((current) => (current === menuId ? null : menuId)); };
 
     return (
-        <aside className="sidebar">
+        <aside className="w-72 min-h-[calc(100vh-180px)] shrink-0  bg-white">
       <nav
         className="sidebar-navigation font-bold text-xl"
         aria-label="Main navigation"

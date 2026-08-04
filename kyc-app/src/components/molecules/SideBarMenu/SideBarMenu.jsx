@@ -12,16 +12,24 @@ function SideBarMenu({menu,isOpen,onToggle}){
                 label={menu.label}
                 path={menu.path}
                 hasChildren={hasChildren}
-                onClick={onToggle}
+                onClick={() => onToggle(menu.id)}
                 isOpen={isOpen}
             >
             </MenuItem>
             {isOpen && hasChildren && (
                 <div className="ml-4">
                     {menu.children.map((child) => (
-                        <NavLink to={child.path} end={child.path === "/"} className={({ isActive }) => `menu-item menu-link ${isActive ? "menu-item-active" : ""}`}>
-                            {child.label}
-                        </NavLink>
+                        <NavLink
+                            key={child.id}
+                            to={child.path}
+                            className={({ isActive }) =>
+                                `submenu-item ${
+                                isActive ? "submenu-item-active" : ""
+                                }`
+                            }
+                            >
+                    {child.label}
+            </NavLink>
                     ))}
                 </div>
             )}
