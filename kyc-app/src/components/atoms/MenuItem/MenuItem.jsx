@@ -1,0 +1,35 @@
+import Button from '../Button/Button';
+import { NavLink } from 'react-router-dom';
+
+function MenuItem({icon:Icon, label,path,hasChildren,onClick,isOpen }) {
+  const content=(
+    <>
+    <div className='flex items-center gap-2  py-2'>
+        <span className='text-gray-500 text-lg'>
+           {Icon && <span className='text-gray-500 text-lg'>{<Icon />}</span>}
+        </span>
+        <span className='text-gray-500 text-sm'>{label}</span>
+        {hasChildren && <span className="menu-item-arrow">{isOpen ? '▼' : '▶'}
+            </span>}
+    </div>
+    </>
+    )
+
+    if(hasChildren){
+        return (
+           <Button onClick={onClick} className='w-full flex items-center justify-between px-4 py-2 text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100'>
+               {content}
+           </Button>
+        )
+    }
+
+    return(
+         <NavLink to={path} end={path === "/"} className={({ isActive }) => `menu-item menu-link ${isActive ? "menu-item-active" : ""}`}>
+            {content}
+        </NavLink>
+    )
+   
+  
+}
+
+export default MenuItem;
