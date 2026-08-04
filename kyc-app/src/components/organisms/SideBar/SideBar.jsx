@@ -4,7 +4,7 @@ import {useState} from 'react';
 import MenuItem from '../../atoms/MenuItem/MenuItem';
 
 function SideBar() {
-     const [openMenu, setOpenMenu] = useState('orders');
+     const [openMenu, setOpenMenu] = useState('masters');
     const handleToggle = (menuId) => { setOpenMenu((current) => (current === menuId ? null : menuId)); };
 
     return (
