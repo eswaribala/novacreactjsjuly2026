@@ -17,7 +17,7 @@ function SideBarMenu({menu,isOpen,onToggle}){
             >
             </MenuItem>
             {isOpen && hasChildren && (
-                <div className="ml-8">
+                <div className="ml-12">
                     {menu.children.map((child) => (
                         <NavLink
                             key={child.id}
