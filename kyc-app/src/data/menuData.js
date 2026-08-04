@@ -9,7 +9,7 @@ export const menuData = [
             {
                 id: 'change-password',
                 label: 'Change Password',
-                path: 'home/masters/change-password'
+                path: '/masters/change-password'
             }
 
         ]
@@ -22,7 +22,7 @@ export const menuData = [
             {
                 id:'beneficiary-pan',
                 label:'Beneficiary PAN',
-                path:'home/transactions/beneficiary-pan'
+                path:'/transactions/beneficiary-pan'
             },
             
            
@@ -36,7 +36,7 @@ export const menuData = [
             {
                 id:'mis-report',
                 label:'MIS Report',
-                path:'home/reports/mis-report'
+                path:'/reports/mis-report'
 
             }
         ]
@@ -45,12 +45,12 @@ export const menuData = [
         id: 'profile',
         label: 'Profile',
         icon: UserPen,
-        path: 'home/profile'
+        path: '/profile'
     },
     {
         id: 'closed-pan',
         label: 'Closed PAN',
         icon: MessageCircleX,
-        path: 'home/closed-pan'
+        path: '/closed-pan'
     }
 ]
