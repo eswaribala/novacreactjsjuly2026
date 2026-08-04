@@ -24,32 +24,8 @@ export const menuData = [
                 label:'Beneficiary PAN',
                 path:'transactions/beneficiary-pan'
             },
-            {
-                id:'policy-service',
-                label:'Policy Service',
-                children:[{
-                    id:'payouts',
-                    label:'Payouts',
-                    path:'transactions/policy-service/payouts'
-                },
-                {
-                    id:'non-payouts',
-                    label:'Non Payouts',
-                    children:[{
-                        id:'email-update',
-                        label:'Email Update',
-                        path:'transactions/policy-service/non-payouts/email-update'
-                    },
-                    {
-                        id:'mobile-update',
-                        label:'Mobile Update',
-                        path:'transactions/policy-service/non-payouts/mobile-update'
-                    }
-                    ]
-
-                }
-            ]
-            }
+            
+           
         ]
     },
     {
@@ -69,14 +45,12 @@ export const menuData = [
         id: 'profile',
         label: 'Profile',
         icon: UserPen,
-        children: [
-        ]
+        path: 'profile'
     },
     {
         id: 'closed-pan',
         label: 'Closed PAN',
         icon: MessageCircleX,
-        children: [
-        ]
+        path: 'closed-pan'
     }
 ]
