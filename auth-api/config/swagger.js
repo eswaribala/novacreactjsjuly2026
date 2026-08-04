@@ -126,17 +126,29 @@ const swaggerOptions = {
             },
           },
         },
+        
         FetchProductsResponse: {
           type: "object",
-          properties: {
+          properties: { 
             products: {
               type: "array",
-              items: {  
-                $ref: "#/components/schemas/Product" },
+              items: {
+                $ref: "#/components/schemas/Product",
               },
             },
           },
-          
+        },
+
+       
+        FetchProductByIdResponse: {
+          type: "object",
+          properties: {
+            product: {
+              $ref: "#/components/schemas/Product",
+            },
+          },
+        },
+
 
         ErrorResponse: {
           type: "object",

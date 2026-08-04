@@ -76,6 +76,17 @@ function AddProduct() {
       await dispatch(createProduct(productData)).unwrap();
       setValues(initialValues);
       setErrorMessages({});
+       // Notify View Products pages open in other browser tabs
+        const productChannel = new BroadcastChannel("products-channel");
+
+        productChannel.postMessage({
+          type: "PRODUCT_ADDED",
+        });
+
+        productChannel.close();
+
+    setValues(initialValues);
+    setErrorMessages({});
       navigate("/products");
     } catch (requestError) {
       console.error("Product creation failed:", requestError);

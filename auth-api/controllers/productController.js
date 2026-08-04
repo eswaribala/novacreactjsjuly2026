@@ -70,4 +70,26 @@ const fetchProducts = async (req, res) => {
   }
 };
 
-module.exports = { addProduct, fetchProducts };
+const fetchProductById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    //search for the product by productId in the database
+    const product = await Product.findOne({ productId: id });
+
+    if (!product) {
+      return res.status(404).json({
+        message: "Product not found",
+      });
+    }
+    return res.status(200).json({
+      product,
+    });
+  } catch (error) {
+    console.error("Fetch product by ID error:", error);
+    return res.status(500).json({
+      message: "Server error",
+    });
+  }
+};
+
+module.exports = { addProduct, fetchProducts, fetchProductById };

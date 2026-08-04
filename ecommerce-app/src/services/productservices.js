@@ -11,3 +11,10 @@ export const getProducts=async () => {
     method: 'GET',
    })
 }
+
+export const updateProduct=async (productId, productData) => {
+   return await fetchData(`update-product/${productId}`,{
+    method: 'PUT',
+    body: JSON.stringify(productData),
+   })
+}
