@@ -1,6 +1,6 @@
 //create slicer for add product using redux toolkit
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { addProduct } from '../../../services/productservices.js';
+import { addProduct, getProducts } from '../../../services/productservices.js';
 import { createSlice } from '@reduxjs/toolkit';
 export const createProduct=createAsyncThunk(
     //create action type 'products/createProduct' and pass productData as payload
@@ -17,6 +17,18 @@ export const createProduct=createAsyncThunk(
         }
     }
 );
+
+export const fetchProducts=createAsyncThunk(
+    'products/fetchProducts',
+    async (_, thunkAPI) => {
+        try {
+            const response = await getProducts();
+            return response;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+); 
 
 const initialValues={
     products: [],
@@ -52,7 +64,20 @@ const productSlicer=createSlice({
             state.loading = false;
             state.error = action.payload;
         });
+        builder.addCase(fetchProducts.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        });
+        builder.addCase(fetchProducts.fulfilled, (state, action) => {
+            state.loading = false;
+            state.products = action.payload;
+        });       
+        builder.addCase(fetchProducts.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        }); 
     }
+    
 });
 
 export const { clearState } = productSlicer.actions;

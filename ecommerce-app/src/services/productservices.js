@@ -5,3 +5,9 @@ export const addProduct=async (productData) => {
     body: JSON.stringify(productData),
    })
 };
+
+export const getProducts=async () => {
+   return await fetchData('fetch-products',{
+    method: 'GET',
+   })
+}
