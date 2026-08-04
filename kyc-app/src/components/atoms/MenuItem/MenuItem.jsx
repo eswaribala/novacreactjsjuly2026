@@ -5,10 +5,10 @@ function MenuItem({icon:Icon, label,path,hasChildren,onClick,isOpen }) {
   const content=(
     <>
     <div className='flex items-center gap-2  py-2'>
-        <span className='text-gray-500 text-lg'>
-           {Icon && <span className='text-gray-500 text-lg'>{<Icon />}</span>}
+        <span className='text-gray-500 '>
+           {Icon && <span className='text-gray-500 '>{<Icon />}</span>}
         </span>
-        <span className='text-gray-500 text-sm'>{label}</span>
+        <span className='text-gray-500 '>{label}</span>
         {hasChildren && <span className="menu-item-arrow">{isOpen ? '▼' : '▶'}
             </span>}
     </div>
@@ -17,7 +17,7 @@ function MenuItem({icon:Icon, label,path,hasChildren,onClick,isOpen }) {
 
     if(hasChildren){
         return (
-           <Button onClick={onClick} className='w-full flex items-center justify-between px-4 py-2 text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100'>
+           <Button onClick={onClick} className='w-full flex items-center justify-between  px-4 py-2 text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100'>
                {content}
            </Button>
         )
