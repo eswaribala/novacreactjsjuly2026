@@ -92,4 +92,35 @@ const fetchProductById = async (req, res) => {
   }
 };
 
-module.exports = { addProduct, fetchProducts, fetchProductById };
+
+
+const updateProduct = async (req, res) => {
+  try {
+    
+    const { productId,name, description, category, price, stock } = req.body;
+
+    const updatedProduct = await Product.findOneAndUpdate(
+      { productId: productId },
+      { name, description, category, price, stock },
+      { new: true }
+    );
+
+    if (!updatedProduct) {
+      return res.status(404).json({
+        message: "Product not found",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Product updated successfully",
+      product: updatedProduct,
+    });
+  } catch (error) {
+    console.error("Update product error:", error);
+    return res.status(500).json({
+      message: "Server error",
+    });
+  }
+};
+
+module.exports = { addProduct, fetchProducts, fetchProductById, updateProduct };

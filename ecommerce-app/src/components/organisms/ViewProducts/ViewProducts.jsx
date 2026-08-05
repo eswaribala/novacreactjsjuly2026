@@ -51,7 +51,7 @@ function ViewProducts() {
     }
      const handleEdit = (product) => {
     // Implement your edit logic here, e.g., navigate to an edit page or open a modal
-    console.log(`Edit product: ${product}`);
+    console.log(`Edit product: ${JSON.stringify(product)}`);
     setIsEditDialogOpen(true);
     setSelectedProduct(product);
     

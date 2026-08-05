@@ -7,6 +7,8 @@ import { useState } from "react";
 function EditProduct({product}) {
   
    const initialValues ={
+    id: product?.id ||product?._id||'',
+    productId: product?.productId || '',
     name: product?.name || '',
     description: product?.description || '',
     price: product?.price || 0,
