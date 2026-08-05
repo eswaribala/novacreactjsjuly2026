@@ -55,6 +55,26 @@ const swaggerOptions = {
             },
           },
         },
+        ChangePasswordRequest: {
+          type: "object",
+          required: ["name", "oldPassword", "newPassword"],
+          properties: {
+            name: {
+              type: "string",
+              example: "Parameswari",
+            },
+            oldPassword: {
+              type: "string",
+              format: "password",
+              example: "OldPassword@123",
+            },
+            newPassword: {
+              type: "string",
+              format: "password",
+              example: "NewPassword@123",
+            },
+          },
+        },
 
         User: {
           type: "object",
