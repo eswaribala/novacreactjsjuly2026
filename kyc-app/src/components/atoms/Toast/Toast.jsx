@@ -5,7 +5,7 @@ function Toast(){
         <div>
             <ToastContainer position="top-right" theme="colored" 
             closeOnClick  
-            autoClose={3000}>
+            autoClose={5000}>
                 
             </ToastContainer>
         </div>

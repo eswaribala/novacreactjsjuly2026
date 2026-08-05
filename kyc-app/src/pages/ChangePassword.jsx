@@ -85,6 +85,7 @@ function ChangePassword() {
        setIsSubmitting(false);
        setToastMessage(true);
        toast.success("Password changed successfully!");
+       setValues(initialValues);
        
    }).catch(error => {
        console.error(error);

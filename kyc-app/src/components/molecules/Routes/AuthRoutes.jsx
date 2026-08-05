@@ -12,6 +12,7 @@ import ClosedPAN from '../../../pages/ClosedPAN';
 import Payout from '../../../pages/Payout';
 import EmailUpdate from '../../../pages/EmailUpdate';
 import MobileUpdate from '../../../pages/MobileUpdate';
+import AdminHome from '../../../pages/AdminHome';
 
 
 
@@ -20,6 +21,7 @@ function AuthRoutes() {
         <Routes>
             <Route path="/" element={<AuthPad/>} />
             <Route path="/home" element={<HomePage/>} />
+            <Route path="/admin" element={<AdminHome/>} />
             
            <Route path="*" element={<h1>404 - Page Not Found</h1>} />
            {/* Add more for kyc routes as needed */}
