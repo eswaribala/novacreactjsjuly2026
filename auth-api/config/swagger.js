@@ -187,7 +187,28 @@ const swaggerOptions = {
             },
           },
         },
-        
+        DeleteProductRequest: {
+          type: "object",
+          required: ["productId"],
+          properties: {
+            productId: {
+              type: "string",
+              example: "688b40628e7e1f1234567890",
+            },
+          },
+        },
+        DeleteProductResponse: {
+          type: "object",
+          properties: {
+            message: {
+              type: "string",
+              example: "Product deleted successfully",
+            },
+            product: {
+              $ref: "#/components/schemas/Product",
+            },
+          },
+        },
 
         ErrorResponse: {
           type: "object",

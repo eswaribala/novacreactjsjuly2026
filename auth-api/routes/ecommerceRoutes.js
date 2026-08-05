@@ -3,6 +3,7 @@ const { addProduct } = require("../controllers/productController");
 const { fetchProducts } = require("../controllers/productController");
 const { fetchProductById } = require("../controllers/productController");
 const { updateProduct } = require("../controllers/productController");
+const { deleteProduct } = require("../controllers/productController");
 /**
  * @swagger
  * /api/auth/add-product:
@@ -150,5 +151,44 @@ router.get("/fetch-product/:id", fetchProductById);
  */
 
 router.put("/update-product", updateProduct);
+
+/**
+ * @swagger
+ * /api/auth/delete-product/{id}:
+ *   delete:
+ *     summary: Delete a product by ID
+ *     tags:
+ *       - Products
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: product ID
+ *         schema:
+ *           type: string
+ *           example: 688b40628e7e1f1234567890
+ *     responses:
+ *       200:
+ *         description: Product deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/DeleteProductByIdResponse'
+ *       404:
+ *         description: Product not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+
+
+router.delete("/delete-product", deleteProduct);
 
 module.exports = router;
