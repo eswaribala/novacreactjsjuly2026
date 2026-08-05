@@ -84,7 +84,7 @@ const productSlicer=createSlice({
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
             state.loading = false;
             state.products = action.payload.products;
-            console.log("Fetched products:", action.payload.products);
+          //  console.log("Fetched products:", action.payload.products);
         });       
         builder.addCase(fetchProducts.rejected, (state, action) => {
             state.loading = false;

@@ -5,7 +5,7 @@ import AuthToggle from './../../molecules/AuthToggle/AuthToggle.jsx'
 import {Lock, UserCircle} from 'lucide-react'
 import { login, register } from './../../../services/authservice.js';
 import {useNavigate} from 'react-router-dom'
-
+import { useAuth } from '../../../contexts/AuthContext.jsx';
 const authPanel={
     login:{
         icon: Lock,
@@ -33,6 +33,7 @@ function AuthPad() {
     const activePanel = authPanel[activeForm];
     const ActiveIcon = activePanel.icon;
     const navigate = useNavigate();
+    const { contextLogin } = useAuth();
     
     const handleToggle = (form) => {
         setActiveForm(form);
@@ -44,6 +45,7 @@ function AuthPad() {
         const response =await login(values, rememberMe);
         console.log('Login response:', response);
         setIsSubmitting(false);
+        contextLogin(values); // Update the user state in AuthContext
         navigate('/home');
     }
 

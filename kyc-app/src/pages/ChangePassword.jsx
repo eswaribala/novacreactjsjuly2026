@@ -1,7 +1,7 @@
 import { useState } from "react";
 import FormField from "./../components/molecules/FormField/FormField";
 import Button from "../components/atoms/Button/Button";
-
+import { useAuth } from "../contexts/AuthContext.jsx";
 
 function ChangePassword() {
 
@@ -15,6 +15,8 @@ function ChangePassword() {
   
    const [isSubmitting, setIsSubmitting] = useState(false);
 
+   const { contextLogin } = useAuth();
+
    const handleChange = (e) => {
     const {id, value} = e.target;
     setValues({...values, [id]: value});
@@ -23,6 +25,7 @@ function ChangePassword() {
    const handleSubmit = (e) => {
     e.preventDefault();
    setIsSubmitting(true);
+   console.log('Value from AuthProvider:', contextLogin);
    }
 
   return (
