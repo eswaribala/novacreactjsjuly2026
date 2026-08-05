@@ -5,6 +5,8 @@ import TextArea from "../../atoms/TextArea/TextArea";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editProduct } from "../../../redux/features/products/productSlicer";
+import Toast from "../../atoms/Toast/Toast";
+import { toast } from "react-toastify";
 
 function EditProduct({product}) {
   
@@ -20,6 +22,7 @@ function EditProduct({product}) {
 
    const [values, setValues] = useState(initialValues);
    const [errorMessages, setErrorMessages] = useState({});
+   const [showToast, setShowToast] = useState(false);
    const dispatch = useDispatch();
    const handleChange = (e) => {
     const {id, value} = e.target;
@@ -67,7 +70,16 @@ function EditProduct({product}) {
       return;
     }
     console.log(`Edit Product values: ${JSON.stringify(values)}`);
-    dispatch(editProduct({ productData: values }));
+     const response = await dispatch(editProduct({ productData: values }));
+     if (response.error) {
+       setShowToast(true);
+        toast.error("Failed to update product");
+     }
+    if (!response.error) {
+      setShowToast(true);
+      toast.success("Product updated successfully");
+      setValues(initialValues);
+    }
     
     
    }
@@ -164,6 +176,7 @@ function EditProduct({product}) {
     </div>
     </fieldset>
     </form>
+    {showToast && <Toast />}
     </>
     
   );
