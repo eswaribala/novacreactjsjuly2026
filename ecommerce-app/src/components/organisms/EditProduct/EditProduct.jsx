@@ -3,6 +3,8 @@ import FormField from "../../molecules/FormField/FormField";
 import Message from "../../atoms/Message/Message";
 import TextArea from "../../atoms/TextArea/TextArea";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { editProduct } from "../../../redux/features/products/productSlicer";
 
 function EditProduct({product}) {
   
@@ -18,6 +20,7 @@ function EditProduct({product}) {
 
    const [values, setValues] = useState(initialValues);
    const [errorMessages, setErrorMessages] = useState({});
+   const dispatch = useDispatch();
    const handleChange = (e) => {
     const {id, value} = e.target;
     setValues({...values, [id]: value});
@@ -63,7 +66,8 @@ function EditProduct({product}) {
     if (!validateForm()) {
       return;
     }
-    alert(`Edit Product values: ${JSON.stringify(values)}`);
+    console.log(`Edit Product values: ${JSON.stringify(values)}`);
+    dispatch(editProduct({ productData: values }));
     
     
    }

@@ -97,7 +97,7 @@ const productSlicer=createSlice({
         });
         builder.addCase(editProduct.fulfilled, (state, action) => {
             state.loading = false;
-            const index = state.products.findIndex(product => product.id === action.payload.id);
+            const index = state.products.findIndex(product => product.productId === action.payload.productId);
             if (index !== -1) {
                 state.products[index] = action.payload;
             }
