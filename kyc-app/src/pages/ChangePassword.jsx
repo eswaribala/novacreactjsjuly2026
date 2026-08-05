@@ -3,6 +3,8 @@ import FormField from "./../components/molecules/FormField/FormField";
 import Button from "../components/atoms/Button/Button";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import { changePassword } from "../services/authservice.js";
+import { Toast } from "../components/atoms/Toast/Toast.jsx";
+import {toast} from "react-toastify";
 
 function ChangePassword() {
 
@@ -17,6 +19,8 @@ function ChangePassword() {
    const [isSubmitting, setIsSubmitting] = useState(false);
 
    const [errorMessages, setErrorMessages] = useState({});
+
+   const [toastMessage, setToastMessage] = useState(false);
 
    const { user} = useAuth();
 
@@ -78,9 +82,15 @@ function ChangePassword() {
    }).then(response => {
        console.log(response);
        setIsSubmitting(false);
+       setToastMessage(true);
+       toast.success("Password changed successfully!");
+       
    }).catch(error => {
        console.error(error);
-       setIsSubmitting(false);
+        setIsSubmitting(false);
+        setToastMessage(true);
+       toast.error("Failed to change password. Please try again.");
+      
    });
    }
 
@@ -147,7 +157,7 @@ function ChangePassword() {
      </Button>
       </div>
     </form>
-   
+    {toastMessage && <Toast/>}
 
     </>
   );
