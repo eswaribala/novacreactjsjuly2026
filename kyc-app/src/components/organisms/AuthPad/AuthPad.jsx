@@ -45,7 +45,8 @@ function AuthPad() {
         const response =await login(values, rememberMe);
         console.log('Login response:', response);
         setIsSubmitting(false);
-        contextLogin(values); // Update the user state in AuthContext
+        
+        contextLogin(values.name); // Update the user state in AuthContext
         navigate('/home');
     }
 

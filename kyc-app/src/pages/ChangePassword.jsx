@@ -15,7 +15,7 @@ function ChangePassword() {
   
    const [isSubmitting, setIsSubmitting] = useState(false);
 
-   const { contextLogin } = useAuth();
+   const { user} = useAuth();
 
    const handleChange = (e) => {
     const {id, value} = e.target;
@@ -25,7 +25,7 @@ function ChangePassword() {
    const handleSubmit = (e) => {
     e.preventDefault();
    setIsSubmitting(true);
-   console.log('Value from AuthProvider:', contextLogin);
+   console.log(JSON.stringify(user));
    }
 
   return (
