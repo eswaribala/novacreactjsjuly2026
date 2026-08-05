@@ -2,6 +2,7 @@ const router = require("./routesInstance");
 const { addProduct } = require("../controllers/productController");
 const { fetchProducts } = require("../controllers/productController");
 const { fetchProductById } = require("../controllers/productController");
+const { updateProduct } = require("../controllers/productController");
 /**
  * @swagger
  * /api/auth/add-product:
@@ -107,5 +108,47 @@ router.get("/fetch-products", fetchProducts);
 
 
 router.get("/fetch-product/:id", fetchProductById);
+/**
+ * @swagger
+ * /api/auth/update-product:
+ *   put:
+ *     summary: Update a product
+ *     description: Updates an existing product in the catalog.
+ *     tags:
+ *       - Products
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/UpdateProductRequest'
+ *     responses:
+ *       201:
+ *         description: Product updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Product updated successfully
+ *                 product:
+ *                   $ref: '#/components/schemas/Product'
+ *       400:
+ *         description: Missing fields or product already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+
+router.put("/update-product", updateProduct);
 
 module.exports = router;

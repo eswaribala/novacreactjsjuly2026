@@ -148,7 +148,46 @@ const swaggerOptions = {
             },
           },
         },
-
+         
+        UpdateProductRequest: {
+          type: "object",
+          required: ["productId", "name", "description", "category", "price", "stock"],
+          properties: {
+            productId: {
+              type: "string",
+              example: "688b40628e7e1f1234567890",
+            },
+            name: {
+              type: "string",
+              example: "Updated Product Name",
+            },
+            description: {
+              type: "string", 
+              example: "Updated product description.",
+            },
+            category: {
+              type: "string",
+              example: "Updated Category",
+            },
+            price: {
+              type: "number",
+              example: 149.99,
+            },
+            stock: {
+              type: "number",
+              example: 50,
+            },
+          },
+        },
+        UpdateProductResponse: {
+          type: "object",
+          properties: {
+            product: {
+              $ref: "#/components/schemas/Product",
+            },
+          },
+        },
+        
 
         ErrorResponse: {
           type: "object",
