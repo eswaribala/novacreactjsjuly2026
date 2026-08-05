@@ -127,7 +127,7 @@ const deleteProduct = async (req, res) => {
   try {
     const { productId } = req.params;
     
-    const deletedProduct = await Product.findOneAndDelete({ productId });
+    const deletedProduct = await Product.findOneAndDelete({ productId: productId });
 
     if (!deletedProduct) {
       return res.status(404).json({

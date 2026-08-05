@@ -154,14 +154,14 @@ router.put("/update-product", updateProduct);
 
 /**
  * @swagger
- * /api/auth/delete-product/{id}:
+ * /api/auth/delete-product/{productId}:
  *   delete:
  *     summary: Delete a product by ID
  *     tags:
  *       - Products
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: productId
  *         required: true
  *         description: product ID
  *         schema:
@@ -189,6 +189,6 @@ router.put("/update-product", updateProduct);
  */
 
 
-router.delete("/delete-product", deleteProduct);
+router.delete("/delete-product/:productId", deleteProduct);
 
 module.exports = router;
