@@ -13,3 +13,10 @@ export const login = async (credentials) => {
         body: JSON.stringify(credentials),
     });
 }
+
+export const changePassword=async(Credentials)=>{
+    return await fetchData('change-password', {
+        method: 'POST',
+        body: JSON.stringify(Credentials),
+    });
+}
