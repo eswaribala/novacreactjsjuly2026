@@ -3,7 +3,7 @@ import FormField from "./../components/molecules/FormField/FormField";
 import Button from "../components/atoms/Button/Button";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import { changePassword } from "../services/authservice.js";
-import { Toast } from "../components/atoms/Toast/Toast.jsx";
+import Toast from "../components/atoms/Toast/Toast.jsx";
 import {toast} from "react-toastify";
 
 function ChangePassword() {
@@ -74,8 +74,9 @@ function ChangePassword() {
     setIsSubmitting(false);
     return;
    }
+   console.log(JSON.stringify(user));
    changePassword({
-       name: user.name,
+       name: user,
        oldPassword: values.oldPassword,
        newPassword: values.newPassword,
       
