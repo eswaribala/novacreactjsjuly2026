@@ -123,4 +123,28 @@ const updateProduct = async (req, res) => {
   }
 };
 
-module.exports = { addProduct, fetchProducts, fetchProductById, updateProduct };
+const deleteProduct = async (req, res) => {
+  try {
+    const { productId } = req.params;
+    
+    const deletedProduct = await Product.findOneAndDelete({ productId });
+
+    if (!deletedProduct) {
+      return res.status(404).json({
+        message: "Product not found",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Product deleted successfully",
+      product: deletedProduct,
+    });
+  } catch (error) {
+    console.error("Delete product error:", error);
+    return res.status(500).json({
+      message: "Server error",
+    });
+  }
+};
+
+module.exports = { addProduct, fetchProducts, fetchProductById, updateProduct, deleteProduct };
