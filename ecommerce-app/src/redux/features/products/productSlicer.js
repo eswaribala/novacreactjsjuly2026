@@ -1,6 +1,6 @@
 //create slicer for add product using redux toolkit
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { addProduct, getProducts, updateProduct } from '../../../services/productservices.js';
+import { addProduct, getProducts, updateProduct, deleteProduct } from '../../../services/productservices.js';
 import { createSlice } from '@reduxjs/toolkit';
 export const createProduct=createAsyncThunk(
     //create action type 'products/createProduct' and pass productData as payload
@@ -35,6 +35,19 @@ export const editProduct=createAsyncThunk(
     async ({ productData }, thunkAPI) => {
         try {
             const response = await updateProduct(productData);
+            return response;
+        }
+        catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+);
+
+export const deleteProductAsync=createAsyncThunk(
+    'products/deleteProduct',
+    async (productId, thunkAPI) => {
+        try {
+            const response = await deleteProduct(productId);
             return response;
         }
         catch (error) {
@@ -121,6 +134,26 @@ const productSlicer=createSlice({
             state.loading = false;
             state.error = action.payload;
         }
+        );
+        builder.addCase(deleteProductAsync.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+            state.successMessage = "";
+        }
+        );
+        builder.addCase(deleteProductAsync.fulfilled, (state, action) => {
+            state.loading = false;
+            const deletedProductId = action.payload.productId || action.payload.id || action.payload;
+            state.products = state.products.filter(
+                (product) => String(product.productId) !== String(deletedProductId)
+            );
+            state.successMessage = "Product deleted successfully";
+        }
+        );
+        builder.addCase(deleteProductAsync.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        }   
         );
         
     }

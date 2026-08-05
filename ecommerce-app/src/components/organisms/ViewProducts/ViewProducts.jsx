@@ -1,7 +1,7 @@
 
 import {useSelector,useDispatch} from "react-redux";
 import {useEffect, useState} from "react";
-import {fetchProducts} from "../../../redux/features/products/productSlicer.js";
+import {fetchProducts,deleteProductAsync} from "../../../redux/features/products/productSlicer.js";
 import Button  from "../../atoms/Button/Button.jsx";
 import EditProduct from "../EditProduct/EditProduct.jsx";
 import Toast from "../../atoms/Toast/Toast";
@@ -69,6 +69,18 @@ function ViewProducts() {
   const handleDelete = (productId) => {
     // Implement your delete logic here, e.g., dispatch a delete action or show a confirmation dialog
     console.log(`Delete product with ID: ${productId}`);
+    dispatch(deleteProductAsync(productId))
+      .then((response) => {
+        if (!response.error) {  
+          setShowToast(true);
+          toast.success("Product deleted successfully");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting product:", error);
+        setShowToast(true);
+        toast.error("Failed to delete product");
+      });
   }
 
   

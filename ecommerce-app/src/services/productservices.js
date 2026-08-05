@@ -18,3 +18,9 @@ export const updateProduct=async (productData) => {
     body: JSON.stringify(productData),
    })
 }
+
+export const deleteProduct=async (productId) => {
+   return await fetchData(`delete-product/${productId}`,{
+    method: 'DELETE',
+   })
+}
