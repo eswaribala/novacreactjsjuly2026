@@ -12,8 +12,8 @@ export const getProducts=async () => {
    })
 }
 
-export const updateProduct=async (productId, productData) => {
-   return await fetchData(`update-product/${productId}`,{
+export const updateProduct=async (productData) => {
+   return await fetchData(`update-product`,{
     method: 'PUT',
     body: JSON.stringify(productData),
    })

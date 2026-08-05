@@ -32,9 +32,9 @@ export const fetchProducts=createAsyncThunk(
 
 export const editProduct=createAsyncThunk(
     'products/editProduct',
-    async ({ productId, productData }, thunkAPI) => {
+    async ({ productData }, thunkAPI) => {
         try {
-            const response = await updateProduct(productId, productData);
+            const response = await updateProduct(productData);
             return response;
         }
         catch (error) {
