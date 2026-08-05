@@ -5,10 +5,9 @@ import TextArea from "../../atoms/TextArea/TextArea";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editProduct } from "../../../redux/features/products/productSlicer";
-import Toast from "../../atoms/Toast/Toast";
-import { toast } from "react-toastify";
 
-function EditProduct({product}) {
+
+function EditProduct({onOpen, product}) {
   
    const initialValues ={
     id: product?.id ||product?._id||'',
@@ -20,9 +19,19 @@ function EditProduct({product}) {
     stock: product?.stock || 0,    
     }
 
+    const clearValues = {
+    id: '',
+    productId: 0,
+    name: '',
+    description: '',
+    price:  0,
+    category: '',
+    stock:  0   
+    }
+
    const [values, setValues] = useState(initialValues);
    const [errorMessages, setErrorMessages] = useState({});
-   const [showToast, setShowToast] = useState(false);
+  
    const dispatch = useDispatch();
    const handleChange = (e) => {
     const {id, value} = e.target;
@@ -71,14 +80,13 @@ function EditProduct({product}) {
     }
     console.log(`Edit Product values: ${JSON.stringify(values)}`);
      const response = await dispatch(editProduct({ productData: values }));
-     if (response.error) {
-       setShowToast(true);
-        toast.error("Failed to update product");
-     }
+    
     if (!response.error) {
-      setShowToast(true);
-      toast.success("Product updated successfully");
-      setValues(initialValues);
+      // alert(JSON.stringify(values));
+      
+      setValues(clearValues);
+      onOpen(false);
+     
     }
     
     
@@ -86,8 +94,10 @@ function EditProduct({product}) {
 
   return (
     <>
+       
       <form onSubmit={handleSubmit} noValidate
   className="space-y-4 ">
+  
   <fieldset className="border border-blue-700 p-4 rounded-lg">
       <legend className="mb-4 text-2xl text-center font-semibold text-blue-600 dark:text-white">
         Edit Product
@@ -176,7 +186,7 @@ function EditProduct({product}) {
     </div>
     </fieldset>
     </form>
-    {showToast && <Toast />}
+    
     </>
     
   );

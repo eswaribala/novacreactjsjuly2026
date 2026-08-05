@@ -96,14 +96,27 @@ const productSlicer=createSlice({
             state.successMessage = "";
         });
         builder.addCase(editProduct.fulfilled, (state, action) => {
-            state.loading = false;
-            const index = state.products.findIndex(product => product.productId === action.payload.productId);
-            if (index !== -1) {
-                state.products[index] = action.payload;
-            }
-            state.successMessage = "Product updated successfully";
-        }
+        state.loading = false;
+
+        const updatedProduct =
+            action.payload.data ||
+            action.payload.product ||
+            action.payload;
+
+        const index = state.products.findIndex(
+            (product) =>
+            String(product.productId) === String(updatedProduct.productId)
         );
+
+        if (index !== -1) {
+            state.products[index] = {
+            ...state.products[index],
+            ...updatedProduct,
+            };
+        }
+
+        state.successMessage = "Product updated successfully";
+        });
         builder.addCase(editProduct.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload;

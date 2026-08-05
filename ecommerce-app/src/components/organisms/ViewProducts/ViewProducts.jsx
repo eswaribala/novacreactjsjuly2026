@@ -4,12 +4,14 @@ import {useEffect, useState} from "react";
 import {fetchProducts} from "../../../redux/features/products/productSlicer.js";
 import Button  from "../../atoms/Button/Button.jsx";
 import EditProduct from "../EditProduct/EditProduct.jsx";
-
+import Toast from "../../atoms/Toast/Toast";
+import { toast } from "react-toastify";
 function ViewProducts() {
     const dispatch = useDispatch();
     const { products, loading, error } = useSelector((state) => state.products);
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
+    const [showToast, setShowToast] = useState(false);
    
 
        
@@ -49,6 +51,13 @@ function ViewProducts() {
     if (!Array.isArray(products) || products.length === 0) {
         return <p>No products available.</p>;
     }
+
+     const handleDialogOpen=(value)=>{
+      setIsEditDialogOpen(value);
+      setShowToast(true);
+      toast.success("Product updated successfully");
+     }
+
      const handleEdit = (product) => {
     // Implement your edit logic here, e.g., navigate to an edit page or open a modal
     console.log(`Edit product: ${JSON.stringify(product)}`);
@@ -139,12 +148,15 @@ function ViewProducts() {
 
       <EditProduct
         product={selectedProduct}
+        onOpen={handleDialogOpen}
         onClose={() => setIsEditDialogOpen(false)}
         onUpdated={() => setIsEditDialogOpen(false)}
       />
     </div>
   </div>
 )}
+
+      {showToast && <Toast />}
         </>
     );
 }
