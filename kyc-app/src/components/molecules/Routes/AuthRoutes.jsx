@@ -5,25 +5,30 @@ import ProtectedRoute from "./ProtectedRoute";
 import AuthPad from "../../organisms/AuthPad/AuthPad";
 import HomeScreen from "../../organisms/HomeScreen/HomeScreen";
 
-import BeneficiaryPAN from "../../../pages/BeneficiaryPAN";
+import { lazy, Suspense } from "react";
+const BeneficiaryPAN = lazy(() => import("../../../pages/BeneficiaryPAN"));
+
 import HomePage from "../../../pages/HomePage";
-import ChangePassword from "../../../pages/ChangePassword";
-import MISReport from "../../../pages/MISReport";
-import Profile from "../../../pages/Profile";
-import ClosedPAN from "../../../pages/ClosedPAN";
-import Payout from "../../../pages/Payout";
-import EmailUpdate from "../../../pages/EmailUpdate";
-import MobileUpdate from "../../../pages/MobileUpdate";
+
+const ChangePassword = lazy(() => import("../../../pages/ChangePassword"));
+const MISReport = lazy(() => import("../../../pages/MISReport"));
+const Profile = lazy(() => import("../../../pages/Profile"));
+const ClosedPAN = lazy(() => import("../../../pages/ClosedPAN"));
+const Payout = lazy(() => import("../../../pages/Payout"));
+const EmailUpdate = lazy(() => import("../../../pages/EmailUpdate"));
+const MobileUpdate = lazy(() => import("../../../pages/MobileUpdate"));
 import AdminHome from "../../../pages/AdminHome";
 
-import AddPolicy from "../../organisms/AddPolicy/AddPolicy";
-import EditPolicy from "../../organisms/EditPolicy/EditPolicy";
-import DeletePolicy from "../../organisms/DeletePolicy/DeletePolicy";
-import ViewPolicy from "../../organisms/ViewPolicy/ViewPolicy";
+const AddPolicy = lazy(() => import("../../organisms/AddPolicy/AddPolicy"));
+const EditPolicy = lazy(() => import("../../organisms/EditPolicy/EditPolicy"));
+const DeletePolicy = lazy(() => import("../../organisms/DeletePolicy/DeletePolicy"));
+const ViewPolicy = lazy(() => import("../../organisms/ViewPolicy/ViewPolicy"));
 
 function AuthRoutes() {
   return (
+     <Suspense fallback={<div>Loading...</div>}> 
     <Routes>
+    
       <Route path="/" element={<Navigate to="/login" replace />} />
 
       <Route path="/login" element={<AuthPad />} />
@@ -91,6 +96,7 @@ function AuthRoutes() {
 
       <Route path="*" element={<h1>404 - Page Not Found</h1>} />
     </Routes>
+    </Suspense>
   );
 }
 
