@@ -45,10 +45,10 @@ function AddPolicy() {
        id="policyNo" 
        label="Policy Number" 
        type="text" 
-       value={values.policyNo} 
+       value={values.policyNo==0?"":values.policyNo} 
        onChange={handleChange} 
        required 
-       placeholder="Enter your policy number" 
+       placeholder="Enter the policy number" 
        error={errorMessages.policyNo}
        className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
 

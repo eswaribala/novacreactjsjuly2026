@@ -12,7 +12,7 @@ function DropDownList({ id, name,options,placeholder, required,className, onChan
                 <option value="">{placeholder}</option>
                 {options.map((option) => (                   
 
-                    <option key={option.value} value={option.value}>
+                    <option key={option.value} value={option.label}>
                         {option.label}
                     </option>
                 ))}
