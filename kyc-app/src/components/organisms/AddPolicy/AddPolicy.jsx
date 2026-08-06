@@ -2,6 +2,8 @@ import { useState } from "react";
 import FormField from "../../molecules/FormField/FormField";
 import Message from "../../atoms/Message/Message";
 import Button from "../../atoms/Button/Button";
+import DropDownList from "../../atoms/DropDownList/DropDownList";
+import  { beneficiaryTypeData } from "../../../data/beneficiaryTypeData.js";
 const initialValues={
    policyNo:0,
    policyHolderName:"",
@@ -57,16 +59,16 @@ function AddPolicy() {
        placeholder="Enter the policy holder name" 
        error={errorMessages.policyHolderName}
        className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
-       <FormField 
-       id="beneficiaryType" 
-       label="Beneficiary Type"
-       type="text" 
-       value={values.beneficiaryType} 
-       onChange={handleChange} 
-       required 
-       placeholder="Enter the beneficiary type" 
-       error={errorMessages.beneficiaryType}
-       className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+       <DropDownList
+        id="beneficiaryType"
+        name="beneficiaryType"
+        options={beneficiaryTypeData}
+        placeholder="Select the beneficiary type"
+        required
+        className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        onChange={handleChange}
+        selectedOption={values.beneficiaryType}
+       /> 
        <FormField 
        id="documentType" 
        label="Document Type" 
