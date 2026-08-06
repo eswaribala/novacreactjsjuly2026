@@ -1,9 +1,10 @@
+import CustomerViewProducts from "../components/organisms/CustomerViewProducts/CustomerViewProducts";
+
 function HomePage() {
   return (
-    <div className="home-page">
-      <h1>Welcome to the Home Page</h1>
-      {/* Add more content here */}
-    </div>
+    <>
+    <CustomerViewProducts />
+    </>
   );
 }
 
