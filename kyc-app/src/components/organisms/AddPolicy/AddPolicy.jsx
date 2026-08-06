@@ -16,13 +16,15 @@ const initialValues={
 function AddPolicy() {
 
   const[values,setValues]=useState(initialValues);
+  const[selectedOption,setSelectedOption]=useState("");
+
   const[errorMessages,setErrorMessages]=useState({});
 
   const handleChange=(e)=>{
     const {id,value}=e.target;
     setValues({...values,[id]:value});
   }
-
+  
   const handleSubmit=(e)=>{
     e.preventDefault();
     
@@ -68,6 +70,7 @@ function AddPolicy() {
         required
         className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         onChange={handleChange}
+        
         selectedOption={values.beneficiaryType}
        /> 
        <DropDownList
@@ -78,6 +81,7 @@ function AddPolicy() {
         required
         className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         onChange={handleChange}
+        
         selectedOption={values.documentType}
        /> 
 
@@ -89,7 +93,7 @@ function AddPolicy() {
        onChange={handleChange}        
        required 
        error={errorMessages.documentNumber}
-       placeholder="Enter the document number" 
+       placeholder={`Enter ${values.documentType} number`}
        className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" /> 
     <div className="flex justify-center">
     <Button type="submit" disabled={false}
