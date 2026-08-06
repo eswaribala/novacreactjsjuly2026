@@ -3,7 +3,7 @@ import Input from '../../atoms/Input/Input'
 
 
 function FormField(props) {
-    const { id,name,text, autocomplete, required, type = 'text', value, error, onChange,  className = '', placeholder } = props
+    const { id,name,text, autocomplete, required, type = 'text', value, error, onChange, ref, className = '', placeholder } = props
     return (
         <div className="form-field">
             <Label htmlFor={name} className={className}>{text}</Label>
@@ -17,6 +17,7 @@ function FormField(props) {
                 autoComplete={autocomplete}
                 required={required}
                 placeholder={placeholder}
+                ref={ref}
             />
             {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
         </div>

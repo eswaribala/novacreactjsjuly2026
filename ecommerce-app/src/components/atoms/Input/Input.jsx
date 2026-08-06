@@ -1,4 +1,4 @@
-function Input({ id, name, onChange, required, autoComplete, type, placeholder, value,className="" }) {
+function Input({ id, name, onChange, required, autoComplete, type, placeholder, value, ref,className="" }) {
   return (
     <input
       type={type}
@@ -6,6 +6,7 @@ function Input({ id, name, onChange, required, autoComplete, type, placeholder, 
       value={value}
       onChange={onChange}
       id={id}
+      ref={ref}
       name={name}
       required={required}
       autoComplete={autoComplete}

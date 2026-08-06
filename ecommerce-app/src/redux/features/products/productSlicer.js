@@ -142,14 +142,22 @@ const productSlicer=createSlice({
         }
         );
         builder.addCase(deleteProductAsync.fulfilled, (state, action) => {
-            state.loading = false;
-            const deletedProductId = action.payload.productId || action.payload.id || action.payload;
-            state.products = state.products.filter(
-                (product) => String(product.productId) !== String(deletedProductId)
-            );
-            state.successMessage = "Product deleted successfully";
-        }
+        state.loading = false;
+
+        const deletedProductId =
+            action.payload.product?.productId ??
+            action.payload.product?.id ??
+            action.payload.product ??
+            action.meta.arg;
+
+        state.products = state.products.filter(
+            (product) =>
+                String(product.productId ?? product.id) !==
+                String(deletedProductId)
         );
+
+        state.successMessage = "Product deleted successfully";
+    });
         builder.addCase(deleteProductAsync.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload;

@@ -2,10 +2,11 @@ import Button from "../../atoms/Button/Button";
 import FormField from "../../molecules/FormField/FormField";
 import Message from "../../atoms/Message/Message";
 import TextArea from "../../atoms/TextArea/TextArea";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createProduct } from "../../../redux/features/products/productSlicer";
 import { useNavigate } from "react-router-dom";
+import {useRef} from "react";
 function AddProduct() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ function AddProduct() {
 
    const [values, setValues] = useState(initialValues);
    const [errorMessages, setErrorMessages] = useState({});
+   const nameRef = useRef(null);
    const handleChange = (e) => {
     const {id, value} = e.target;
     setValues({...values, [id]: value});
@@ -59,6 +61,11 @@ function AddProduct() {
 
     return Object.keys(errors).length === 0;
   };
+
+  useEffect(() => {
+  console.log(nameRef.current);
+  nameRef.current?.focus();
+}, []);
    const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
@@ -119,6 +126,7 @@ function AddProduct() {
        onChange={handleChange} 
        required 
        placeholder="Enter your name" 
+       ref={nameRef}
        error={errorMessages.name}
        className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
 

@@ -2,10 +2,11 @@
 import {useSelector,useDispatch} from "react-redux";
 import {useEffect, useState} from "react";
 import {fetchProducts,deleteProductAsync} from "../../../redux/features/products/productSlicer.js";
-import Button  from "../../atoms/Button/Button.jsx";
 import EditProduct from "../EditProduct/EditProduct.jsx";
 import Toast from "../../atoms/Toast/Toast";
 import { toast } from "react-toastify";
+import ProductRow from "../../molecules/ProductRow/ProductRow.jsx";
+import {useCallback} from "react";
 function ViewProducts() {
     const dispatch = useDispatch();
     const { products, loading, error } = useSelector((state) => state.products);
@@ -40,33 +41,22 @@ function ViewProducts() {
   };
     }, [dispatch]);
 
-    if (loading) {
-        return <p>Loading products...</p>;
-    }
-    if (error) {
-        return <p>Error: {error}</p>;
-    }
-      
-    //check if products is an array and has elements before rendering the table
-    if (!Array.isArray(products) || products.length === 0) {
-        return <p>No products available.</p>;
-    }
-
-     const handleDialogOpen=(value)=>{
+   
+     const handleDialogOpen=useCallback((value)=>{
       setIsEditDialogOpen(value);
       setShowToast(true);
       toast.success("Product updated successfully");
-     }
+     }, []);
 
-     const handleEdit = (product) => {
+     const handleEdit = useCallback((product) => {
     // Implement your edit logic here, e.g., navigate to an edit page or open a modal
     console.log(`Edit product: ${JSON.stringify(product)}`);
     setIsEditDialogOpen(true);
     setSelectedProduct(product);
     
 
-  }
-  const handleDelete = (productId) => {
+  }, []);
+  const handleDelete = useCallback((productId) => {
     // Implement your delete logic here, e.g., dispatch a delete action or show a confirmation dialog
     console.log(`Delete product with ID: ${productId}`);
     dispatch(deleteProductAsync(productId))
@@ -81,9 +71,20 @@ function ViewProducts() {
         setShowToast(true);
         toast.error("Failed to delete product");
       });
-  }
+  }, [dispatch]);
 
-  
+   if (loading) {
+        return <p>Loading products...</p>;
+    }
+    if (error) {
+        return <p>Error: {error}</p>;
+    }
+      
+    //check if products is an array and has elements before rendering the table
+    if (!Array.isArray(products) || products.length === 0) {
+        return <p>No products available.</p>;
+    }
+
     return (
         <>
         <div className="p-4 w-full">
@@ -102,28 +103,14 @@ function ViewProducts() {
                     </tr>
                 </thead>
                 <tbody>
-                    {products.map((product) => (
-                        <tr key={product._id || product.id} className={` items-center ${
-        products.indexOf(product) % 2 === 0 ? "bg-white" : "bg-gray-100"
-      }`}>
-                            <td className="border border-gray-300 px-4 py-3">{ product.productId}</td>
-                            <td className="border border-gray-300 px-4 py-3">{product.name}</td>
-                            <td className="border border-gray-300 px-4 py-3">{product.description}</td>
-                            <td className="border border-gray-300 px-4 py-3">{product.category}</td>
-                            <td className="border border-gray-300 px-4 py-3">{parseInt(product.price)}</td>
-                            <td className="border border-gray-300 px-4 py-3">{product.stock}</td>
-                            <td>
-                                <div className="flex gap-2 justify-center items-center">
-                                <Button type="button" className="w-20 inline-block rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700" onClick={() => handleEdit(product)}>
-                                    Edit
-                                </Button>
-                           
-                                <Button type="button" className="w-20 inline-block rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700" onClick={() => handleDelete(product._id || product.id)}>
-                                    Delete
-                                </Button>
-                                </div>
-                            </td>
-                        </tr>
+                    {products.map((product,index) => (
+                        <ProductRow
+                          key={product._id}
+                          index={index}
+                          product={product}
+                          onEdit={handleEdit}
+                          onDelete={handleDelete}
+                        />
                     ))}
                 </tbody>
             </table>

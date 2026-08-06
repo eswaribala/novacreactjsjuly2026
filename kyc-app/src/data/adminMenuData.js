@@ -8,22 +8,22 @@ export const adminMenuData = [
             {
                 id: 'addPolicy',
                 label: 'Add Policy',
-                path: '/policy/add-policy'
+                path: 'policy/add'
             },
             {
                 id: 'editPolicy',
                 label: 'Edit Policy',
-                path: '/policy/edit-policy'
+                path: 'policy/edit'
             },
             {
                 id: 'deletePolicy',
                 label: 'Delete Policy',
-                path: '/policy/delete-policy'
+                path: 'policy/delete'
             },
             {
                 id: 'viewPolicy',
                 label: 'View Policy',
-                path: '/policy/view-policy'
+                path: 'policy/view'
             }
 
         ]
