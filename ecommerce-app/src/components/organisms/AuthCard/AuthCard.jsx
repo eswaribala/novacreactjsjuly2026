@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import AuthToggle from "../../molecules/AuthToggle/AuthToggle";
 import { Lock, CircleUserRound} from "lucide-react";
 import { register,login } from "../../../services/authservices.js";
-
+import { useAuth } from "../../../contexts/AuthContext.jsx";
 
 const authPanel={
     login: {
@@ -33,6 +33,8 @@ function AuthCard() {
     const[isSubmitting, setIsSubmitting] = useState(false);
     const isLoginActive = activeForm === 'login';
 
+    const { contextLogin } = useAuth();
+
     const activePanel = authPanel[activeForm];
 
     const navigate = useNavigate();
@@ -43,6 +45,8 @@ function AuthCard() {
 
     console.log("Login values:", values);
     console.log("Remember Me:", rememberMe);
+    contextLogin(values.name); // Update the context with user data
+
     if(values.name==="admin" && values.password==="admin"){
         navigate("/admin");
         return;
