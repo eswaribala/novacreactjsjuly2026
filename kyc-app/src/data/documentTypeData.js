@@ -1,28 +1,28 @@
 export const documentTypeData = [
     {
-        id: 1,
-        name: 'Adhar Card',
+        value: 1,
+        label: 'Adhar Card',
         description: 'An identity adhar card is an official document for verification'
     },
     {
-        id: 2,
-        name: 'Passport',
+        value: 2,
+        label: 'Passport',
         description: 'An identity passport is an official document for verification'
     },
     {
-        id: 3,
-        name: 'Voter ID',
+        value: 3,
+        label: 'Voter ID',
         description: 'An identity voter ID is an official document for verification'
 
     },
     {
-        id: 4,
-        name: 'Driving License',
+        value: 4,
+        label: 'Driving License',
         description: 'An identity driving license is an official document for verification'
     },
     {
-        id: 5,
-        name: 'PAN Card',
+        value: 5,
+        label: 'PAN Card',
         description: 'An identity PAN card is an official document for verification'
     }
 ];
