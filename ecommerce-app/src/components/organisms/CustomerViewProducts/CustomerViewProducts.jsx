@@ -28,12 +28,15 @@ function CustomerViewProducts() {
 
     return (
         <>
-        <div className="p-4 w-full">
-            <h2>Products</h2>
+        <div className="grid grid-cols-1 gap-4 
+           sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-4 py-6">
+           
             
-                    {products.map((product) => (
+                    {products.map((product,index) => (
+                        
                         <ProductCard
                             key={product._id}
+                            index={index}
                             product={product}
                         />
                     ))}
