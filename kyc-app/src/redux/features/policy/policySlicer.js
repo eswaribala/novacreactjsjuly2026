@@ -7,9 +7,10 @@ export const savePolicyAsync = createAsyncThunk(
     async (policyData,thunkAPI) => {
         try {
             const response = await savePolicy(policyData);
-            return response;
+            return response||response.policy||response.data;
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.message);
+            return thunkAPI.rejectWithValue(error.message) || 
+            thunkAPI.rejectWithValue('Failed to save policy');
         }
 
     }
