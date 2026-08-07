@@ -7,7 +7,7 @@ import  { beneficiaryTypeData } from "../../../data/beneficiaryTypeData.js";
 import {documentTypeData} from "../../../data/documentTypeData.js";
 import {useRef} from "react";
 import {useDispatch} from "react-redux";
-import { savePolicyAsync } from "../../../redux/actions/policyActions.js";
+import { savePolicyAsync } from "../../../redux/features/policy/policySlicer.js";
 
 const initialValues={
    policyNo:0,
@@ -55,6 +55,7 @@ function AddPolicy() {
   }
 
   const handleSubmit=(e)=>{
+    console.log("handleSubmit called",values);
     e.preventDefault();
     if(!validateForm()){
       return;
