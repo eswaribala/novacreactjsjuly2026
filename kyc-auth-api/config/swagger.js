@@ -81,8 +81,8 @@ const swaggerOptions = {
           required: ["policyNo", "policyHolderName", "beneficiaryType", "documentType", "documentNumber"],
           properties: {
             policyNo: {
-              type: "string",
-              example: "POL123456",
+              type: "number",
+              example: 123456,
             },
             policyHolderName: {
               type: "string",

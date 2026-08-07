@@ -23,7 +23,7 @@ const createPolicy = async (req, res) => {
             { message: 'Policy saved successfully' });
     } catch (error) {
         res.status(500).json(
-            { message: 'Server error' });
+            { message: error });
     }
 };
 
