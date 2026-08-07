@@ -30,6 +30,7 @@ app.get("/api-docs.json", (req, res) => {
 });
 
 app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/policy', require('./routes/policyRoutes'));
 app.use('/api/health', async (req, res) => {
     res.status(200).json({ message: 'API is healthy' });
 }

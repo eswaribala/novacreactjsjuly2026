@@ -1,5 +1,5 @@
 //routes for registration and login
-const router = require("./routesInstance");
+const router = require("./routerInstance");
 const registrationController = require('../controllers/registrationController');
 const loginController = require('../controllers/loginController');
 const changePasswordController = require('../controllers/changePasswordController');

@@ -1,6 +1,6 @@
 const Policy=require('../models/policyModel');
 
-const savePolicy = async (req, res) => {
+const createPolicy = async (req, res) => {
 
     console.log('Received policy request:', req.body);
     try {
@@ -27,4 +27,4 @@ const savePolicy = async (req, res) => {
     }
 };
 
-module.exports = { registerUser };
+module.exports = { createPolicy };
