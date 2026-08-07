@@ -8,6 +8,8 @@ import {documentTypeData} from "../../../data/documentTypeData.js";
 import {useRef} from "react";
 import {useDispatch} from "react-redux";
 import { savePolicyAsync } from "../../../redux/features/policy/policySlicer.js";
+import Toast from "../../atoms/Toast/Toast";
+import {toast} from "react-toastify";
 
 const initialValues={
    policyNo:0,
@@ -21,6 +23,7 @@ function AddPolicy() {
 
   const[values,setValues]=useState(initialValues);
   const[selectedOption,setSelectedOption]=useState("");
+  const[isSubmitted,setIsSubmitted]=useState(false);
 
   const[errorMessages,setErrorMessages]=useState({});
 
@@ -54,13 +57,22 @@ function AddPolicy() {
     return Object.keys(errors).length===0;
   }
 
-  const handleSubmit=(e)=>{
+  const handleSubmit=async (e)=>{
     console.log("handleSubmit called",values);
     e.preventDefault();
     if(!validateForm()){
       return;
     }
-    dispatch(savePolicyAsync(values));
+  
+   const response= await  dispatch(savePolicyAsync(values));
+   
+   if(savePolicyAsync.fulfilled.match(response)){
+    setIsSubmitted(true);
+    toast.success('Policy saved successfully');
+    setValues(initialValues);
+    setErrorMessages({});
+   }
+
   }
 
   useEffect(()=>{
@@ -162,6 +174,7 @@ function AddPolicy() {
     </fieldset>
     
     </form>
+    {isSubmitted && <Toast />}
     </>
   );
 }
