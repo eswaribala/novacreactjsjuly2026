@@ -1,6 +1,5 @@
 //routes for registration and login
-const express = require('express');
-const router = express.Router();
+const router = require("./routesInstance");
 const registrationController = require('../controllers/registrationController');
 const loginController = require('../controllers/loginController');
 const changePasswordController = require('../controllers/changePasswordController');
