@@ -17,4 +17,49 @@ export const savePolicyAsync = createAsyncThunk(
     
 );
 
+const initialValues ={
+    policies: [],
+    status: 'idle',
+    error: null,
+    loading: false,
+    successMessage: ''
+}
+
+//create slice with reducer
+
+const policySlice = createSlice({
+    name: 'policy',
+    initialState: initialValues,
+    reducers: {
+       clearPolicyMessage: (state) => {
+            state.status = 'idle';
+            state.error = null;
+            state.loading = false;
+            state.successMessage = '';
+        }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(savePolicyAsync.pending, (state) => {
+                state.status = 'loading';
+                state.loading = true;
+                state.error = null;
+                state.successMessage = '';
+            })
+            .addCase(savePolicyAsync.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.loading = false;
+                state.successMessage = 'Policy saved successfully';
+                state.policies.push(action.payload);
+            })
+            .addCase(savePolicyAsync.rejected, (state, action) => {
+                state.status = 'failed';
+                state.loading = false;
+                state.error = action.payload || 'Failed to save policy';
+            });
+    }
+});
+
+export const { clearPolicyMessage } = policySlice.actions;
+export default policySlice.reducer;
 
