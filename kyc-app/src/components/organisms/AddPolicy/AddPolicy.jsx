@@ -41,6 +41,8 @@ function AddPolicy() {
           className="mb-4"
         />
       )}  
+      <fieldset className="border border-gray-300 p-4 rounded-lg ">
+       <legend className=" text-xl text-center font-semibold text-gray-900 dark:text-white">Add Policy</legend> 
       <FormField 
        id="policyNo" 
        label="Policy Number" 
@@ -115,8 +117,9 @@ function AddPolicy() {
       focus:ring-blue-200">
       {'Add Policy'}
     </Button>
-    </div>
     
+    </div>
+    </fieldset>
     
     </form>
     </>
