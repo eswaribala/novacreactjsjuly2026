@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 
 const RemoteButton = lazy(
-  () => import("buttonRemote/MfeButton")
+  () => import("productRemote/MfeButton")
 );
 
 function App() {

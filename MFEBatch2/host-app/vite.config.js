@@ -10,7 +10,7 @@ export default defineConfig({
       name: "hostApp",
 
       remotes: {
-        buttonRemote:
+        productRemote:
           "http://localhost:5001/assets/remoteEntry.js",
       },
 
