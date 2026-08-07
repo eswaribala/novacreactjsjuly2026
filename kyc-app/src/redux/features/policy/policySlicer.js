@@ -81,6 +81,7 @@ const policySlice = createSlice({
             state.status = 'succeeded';
             state.loading = false;
             state.policies = action.payload;
+            console.log('Policies fetched successfully:', action.payload);
         })
         .addCase(getPoliciesAsync.rejected, (state, action) => {
             state.status = 'failed';

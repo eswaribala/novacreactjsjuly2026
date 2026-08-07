@@ -29,7 +29,7 @@ function ViewPolicy() {
     <div>
       <h2>View Policy</h2>
       {/* Add your content for viewing a policy here */}
-      <table>
+      <table border="1" borderColor="black" cellPadding="5" cellSpacing="0">
         <thead>
           <tr>
             <th>Policy Number</th>
@@ -37,16 +37,20 @@ function ViewPolicy() {
             <th>Beneficiary Type</th>
             <th>Document Type</th>
             <th>Document Number</th>
+
           </tr>
         </thead>
         <tbody>
-          {policies.map((policy) => (
-            <tr key={policy.policyNo}>
-              <td>{policy.policyNo}</td>
-              <td>{policy.policyHolderName}</td>
-              <td>{policy.beneficiaryType}</td>
-              <td>{policy.documentType}</td>
-              <td>{policy.documentNumber}</td>
+          {policies.map((policy, index) => (
+            <tr key={policy.policyNo} className={`${
+    index % 2 === 0 ? "bg-white" : "bg-gray-100"
+  } hover:bg-blue-100`} >
+              {/* Display policy details in table cells with alternative row colors */}
+              <td className="border border-gray-300 px-4 py-3">{policy.policyNo}</td>
+              <td className="border border-gray-300 px-4 py-3">{policy.policyHolderName}</td>
+              <td className="border border-gray-300 px-4 py-3">{policy.beneficiaryType}</td>
+              <td className="border border-gray-300 px-4 py-3">{policy.documentType}</td>
+              <td className="border border-gray-300 px-4 py-3">{policy.documentNumber}</td>
             </tr>
           ))}
         </tbody>
