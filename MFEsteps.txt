@@ -1,0 +1,69 @@
+button-remote
+      │
+      │ exposes ./MfeButton
+      ▼
+remoteEntry.js
+      │
+      │ loaded through HTTP
+      ▼
+host-app
+      │
+      │ import("buttonRemote/MfeButton")
+      ▼
+Remote Button displayed in Host
+
+
+react-mfe/
+│
+├── button-remote/
+│   ├── src/
+│   │   ├── components/
+│   │   │   └── MfeButton.jsx
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── vite.config.js
+│   └── package.json
+│
+└── host-app/
+    ├── src/
+    │   ├── App.jsx
+    │   └── main.jsx
+    ├── vite.config.js
+    └── package.json
+
+
+
+mkdir react-mfe
+cd react-mfe
+npm create vite@latest button-remote -- --template react
+
+cd button-remote
+npm install
+npm install @originjs/vite-plugin-federation
+
+Create:
+
+button-remote/src/components/MfeButton.jsx
+Replace button-remote/vite.config.js
+Replace button-remote/src/App.jsx
+
+
+npm run build
+npm run preview
+
+http://localhost:5001
+
+http://localhost:5001/assets/remoteEntry.js
+
+
+create hostapp from react-mfe
+npm create vite@latest host-app -- --template react
+cd host-app
+npm install
+npm install @originjs/vite-plugin-federation
+
+Replace host-app/vite.config.js:
+
+Replace host-app/src/App.jsx:
+
+
