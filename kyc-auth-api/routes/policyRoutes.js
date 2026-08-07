@@ -21,7 +21,7 @@ const policyController = require('../controllers/policyController');
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/RegisterRequest'
+ *             $ref: '#/components/schemas/CreatePolicyRequest'
  *     responses:
  *       201:
  *         description: Policy created successfully
@@ -34,7 +34,7 @@ const policyController = require('../controllers/policyController');
  *                   type: string
  *                   example: Policy created successfully
  *                 policy:
- *                   $ref: '#/components/schemas/Policy'
+ *                   $ref: '#/components/schemas/CreatePolicyRequest'
  *       400:
  *         description: Missing fields or user already exists
  *         content:
