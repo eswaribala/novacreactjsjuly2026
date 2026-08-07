@@ -4,14 +4,16 @@ import {useEffect} from "react";
 import {fetchProducts} from "../../../redux/features/products/productSlicer.js";
 import ProductCard from "../../molecules/ProductCard/ProductCard.jsx";
 import {Search} from 'lucide-react';
+import useProductSearch from "../../../hooks/productSearchHook.jsx";
 
 function CustomerViewProducts() {
     const dispatch = useDispatch();
     const { products, loading, error } = useSelector((state) => state.products);
+    const { searchTerm, setSearchTerm, filteredProducts } = useProductSearch({ products });
          
     const handleSearchChange = (e) => {
         // Implement search functionality here
-        console.log(e.target.value);
+        setSearchTerm(e.target.value);
     };
     useEffect(() => {
         dispatch(fetchProducts());
@@ -40,7 +42,7 @@ function CustomerViewProducts() {
             name="search"
             label="Search Products"
             placeholder="Search products..."
-            value=""
+            value={searchTerm}
             onChange={handleSearchChange}
             className="w-100 pl-10 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
            />
@@ -51,7 +53,7 @@ function CustomerViewProducts() {
            sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-4 py-6">
            
             
-                    {products.map((product,index) => (
+                    {filteredProducts.map((product,index) => (
                         
                         <ProductCard
                             key={product._id}
