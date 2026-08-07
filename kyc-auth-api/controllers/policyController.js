@@ -28,7 +28,7 @@ const createPolicy = async (req, res) => {
 };
 
 
-export const getAllPolicies = async (req, res) => {
+const getAllPolicies = async (req, res) => {
     try {
         const policies = await Policy.find();
         res.status(200).json(policies);

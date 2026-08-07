@@ -49,6 +49,35 @@ const policyController = require('../controllers/policyController');
  *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post('/create', policyController.createPolicy);
+/**
+ * 
+ * @swagger
+ * /api/auth/getAll:
+ *   get:
+ *     summary: Get all policies
+ *    description: Retrieves a list of all policies.
+ *    tags:
+ *     - Policy
+ *   responses:
+ *    200:
+ *    description: A list of policies
+ *   content:
+ *    application/json:
+ *      schema:
+ *       type: array
+ *      items:
+ *      $ref: '#/components/schemas/CreatePolicyRequest'
+ *               
+ *  500:
+ *   description: Server error
+ *  content:
+ *      application/json:
+ *        schema:
+ *            $ref: '#/components/schemas/ErrorResponse'
+ * 
+ */
+
+router.get('/getAll', policyController.getAllPolicies);
 
 
 module.exports = router;
