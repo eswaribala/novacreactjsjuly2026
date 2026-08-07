@@ -76,6 +76,45 @@ const swaggerOptions = {
           },
         },
 
+        SavePolicyRequest: {
+          type: "object",
+          required: ["policyNo", "policyHolderName", "beneficiaryType", "documentType", "documentNumber"],
+          properties: {
+            policyNo: {
+              type: "string",
+              example: "POL123456",
+            },
+            policyHolderName: {
+              type: "string",
+              example: "John Doe",
+            },
+            beneficiaryType: {
+              type: "string",
+              example: "Spouse",
+            },
+            documentType: {
+              type: "string",
+              example: "Passport",
+            },
+            documentNumber: {
+              type: "string",
+              example: "A1234567",
+            },
+          },
+        },
+
+        SavePolicyResponse:{
+          type: "object",
+          properties: {
+            message: {
+              type: "string",
+              example: "Policy saved successfully",
+            },
+          },
+          required: ["message"],          
+
+        },
+
         User: {
           type: "object",
           properties: {
