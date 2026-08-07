@@ -72,6 +72,21 @@ const policySlice = createSlice({
                 state.loading = false;
                 state.error = action.payload || 'Failed to save policy';
             });
+        builder.addCase(getPoliciesAsync.pending, (state) => {
+            state.status = 'loading';
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(getPoliciesAsync.fulfilled, (state, action) => {
+            state.status = 'succeeded';
+            state.loading = false;
+            state.policies = action.payload;
+        })
+        .addCase(getPoliciesAsync.rejected, (state, action) => {
+            state.status = 'failed';
+            state.loading = false;
+            state.error = action.payload || 'Failed to fetch policies';
+        });
     }
 });
 
