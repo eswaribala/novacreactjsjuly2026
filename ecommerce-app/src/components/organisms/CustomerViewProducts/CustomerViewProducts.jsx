@@ -1,4 +1,5 @@
 import FormField from "../../molecules/FormField/FormField.jsx";
+import CategoryCard from "../../molecules/CategoryCard/CategoryCard.jsx";
 import {useSelector,useDispatch} from "react-redux";
 import {useEffect} from "react";
 import {fetchProducts} from "../../../redux/features/products/productSlicer.js";
@@ -51,6 +52,22 @@ function CustomerViewProducts() {
            />
             
 
+        </div>
+         <div className="grid grid-cols-1 gap-4 
+           sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-4 py-6">
+                {/* filter distinct category from products */}
+                {Array.from(new Set(products.map(product => product.category))).map((category, index) => {
+                    const product = products.find(product => product.category === category);
+                    return (
+                        <CategoryCard
+                            key={category}
+                            index={index}
+                            product={product}
+                        />
+                    );
+                })}
+            
+                   
         </div>
         <div className="grid grid-cols-1 gap-4 
            sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-4 py-6">
