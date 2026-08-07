@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 
-const RemoteButton = lazy(
-  () => import("productRemote/MfeButton")
+const RemoteButton = lazy(() =>
+  import("productRemote/MfeButton")
 );
 
 function App() {
@@ -18,13 +18,17 @@ function App() {
     >
       <h1>Host Application</h1>
 
-      <p>The button below comes from the remote application.</p>
+      <p>
+        The button below comes from the remote application.
+      </p>
 
       <Suspense fallback={<p>Loading remote button...</p>}>
         <RemoteButton
-          label="Click Remote Button"
           onClick={handleRemoteButtonClick}
-        />
+          className="px-4 py-2 bg-blue-600 text-white rounded"
+        >
+          Click Remote Button
+        </RemoteButton>
       </Suspense>
     </div>
   );
