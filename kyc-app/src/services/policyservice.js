@@ -6,3 +6,9 @@ export const savePolicy = async (policyData) => {
         body: JSON.stringify(policyData),
     });
 }
+
+export const getPolicies = async () => {
+    return await fetchData('getAll', {
+        method: 'GET',
+    });
+}
