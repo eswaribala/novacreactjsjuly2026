@@ -5,6 +5,7 @@ import {fetchProducts} from "../../../redux/features/products/productSlicer.js";
 import ProductCard from "../../molecules/ProductCard/ProductCard.jsx";
 import {Search} from 'lucide-react';
 import useProductSearch from "../../../hooks/productSearchHook.jsx";
+import ProductCarousel from "../ProductCarousel/ProductCarousel.jsx";
 
 function CustomerViewProducts() {
     const dispatch = useDispatch();
@@ -34,6 +35,8 @@ function CustomerViewProducts() {
 
     return (
         <>
+        {/* Add carousel here if needed */}
+        <ProductCarousel />
         {/* Add a search bar or filter options here if needed */}
         <div className="relative w-full mt-4 ">
            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" /> 
