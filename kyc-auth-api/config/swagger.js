@@ -76,7 +76,7 @@ const swaggerOptions = {
           },
         },
 
-        SavePolicyRequest: {
+        CreatePolicyRequest: {
           type: "object",
           required: ["policyNo", "policyHolderName", "beneficiaryType", "documentType", "documentNumber"],
           properties: {
@@ -103,17 +103,7 @@ const swaggerOptions = {
           },
         },
 
-        SavePolicyResponse:{
-          type: "object",
-          properties: {
-            message: {
-              type: "string",
-              example: "Policy saved successfully",
-            },
-          },
-          required: ["message"],          
-
-        },
+       
 
         User: {
           type: "object",
