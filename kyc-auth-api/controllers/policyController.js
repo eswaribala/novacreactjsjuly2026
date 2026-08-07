@@ -27,4 +27,14 @@ const createPolicy = async (req, res) => {
     }
 };
 
-module.exports = { createPolicy };
+
+export const getAllPolicies = async (req, res) => {
+    try {
+        const policies = await Policy.find();
+        res.status(200).json(policies);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+}
+
+module.exports = { createPolicy,getAllPolicies };
