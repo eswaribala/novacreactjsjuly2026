@@ -52,6 +52,23 @@ function Cart() {
         </span>
       </div>
 
+        {/* Cart Items */}
+        <div className="p-4">
+          {cartItems.length === 0 ? (
+            <p className="text-gray-500">
+              Your cart is empty.
+            </p>
+          ) : (
+            <ul>
+              {cartItems.map((item) => (
+                <li key={item.id} className="mb-2">
+                  {item.name} - Quantity: {item.quantity}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
     </div>
   );
 }
