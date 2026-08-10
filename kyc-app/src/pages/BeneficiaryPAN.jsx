@@ -4,6 +4,12 @@ import { getPolicyByCustomerNameAsync} from '../redux/features/policy/policySlic
 import DropDownList from '../components/atoms/DropDownList/DropDownList';
 import { useAuth } from "../contexts/AuthContext.jsx";
 
+const cardColors=[
+  "bg-red-100",
+    "bg-green-100","bg-blue-100","bg-yellow-100",
+    "bg-purple-100","bg-pink-100","bg-indigo-100","bg-gray-100"
+]
+
 function BeneficiaryPAN() {
 
   const dispatch = useDispatch();
@@ -11,6 +17,8 @@ function BeneficiaryPAN() {
 
   const { policies, status, loading, error } = useSelector((state) => state.policy);
   const [filteredPolicy, setFilteredPolicy] = useState(null);
+
+
 
   useEffect(() => {
     // You can dispatch actions or perform side effects here if needed
@@ -45,6 +53,7 @@ function BeneficiaryPAN() {
         id="policyNo"
         name="policyNo"
         options={policies.map((policy) => ({
+          
           value: policy.policyNo,
           label: policy.policyNo,
         }))}
@@ -55,8 +64,10 @@ function BeneficiaryPAN() {
         
        />
 
-       {filteredPolicy!=null && (
-        <div className="mt-4">
+       {filteredPolicy && (
+        <div className={`overflow-hidden border border-gray-200  
+     ${cardColors[0]} shadow-md rounded-lg p-4 transition-transform 
+     transform hover:scale-105 hover:shadow-lg`}>
           <h3 className="text-lg font-semibold mb-2">Selected Policy Details:</h3>
           <p><strong>Policy Number:</strong> {filteredPolicy[0].policyNo}</p>
           <p><strong>Customer Name:</strong> {filteredPolicy[0].policyHolderName}</p>
