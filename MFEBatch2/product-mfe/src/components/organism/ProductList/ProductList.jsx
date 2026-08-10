@@ -1,19 +1,13 @@
-import {useSelector,useDispatch} from "react-redux";
-import {useEffect} from "react";
-import {fetchProducts} from "../../../redux/features/products/productSlicer.js";
+import {useSelector} from "react-redux";
 import ProductCard from "../../molecules/ProductCard/ProductCard.jsx";
 
-function CustomerViewProducts() {
-    const dispatch = useDispatch();
+function ProductList() {
+  
     const { products, loading, error } = useSelector((state) => state.products);
    
          
     
-    useEffect(() => {
-        dispatch(fetchProducts());
-        
-    }, [dispatch]);
-
+    
    if (loading) {
         return <p>Loading products...</p>;
     }
@@ -54,4 +48,4 @@ function CustomerViewProducts() {
     );
 }
 
-export default CustomerViewProducts;
+export default ProductList;
