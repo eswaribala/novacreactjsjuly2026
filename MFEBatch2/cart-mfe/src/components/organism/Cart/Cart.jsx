@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { ShoppingCart } from "lucide-react";
 
 function Cart() {
@@ -13,6 +13,12 @@ function Cart() {
     (total, item) => total + item.quantity,
     0
   );
+  const dispatch = useDispatch();
+  const handleRemoveItem = (productId) => {
+    // Dispatch an action to remove the item from the cart
+    // You can implement this function based on your Redux setup
+    dispatch({ type: "cart/removeItem", payload: productId });
+  }
 
   return (
     <div
@@ -90,14 +96,7 @@ function Cart() {
               {cartItems.map((item) => (
                <div  key={getProductId(item)}
                   className="
-                    flex
-                    items-center
-                    justify-between
-                    rounded-lg
-                    border
-                    border-gray-200
-                    bg-gray-50
-                    p-4
+                    grid grid-cols-4 gap-3
                   "
 >
                 <h3 className="text-lg font-semibold">{item.name}</h3>
@@ -106,6 +105,24 @@ function Cart() {
                 </p>
                 <p className="text-gray-800 font-bold">{new 
              Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(item.price)}</p>
+                 <button
+                    onClick={() =>
+                      handleRemoveItem(
+                        getProductId(item)
+                      )
+                    }
+                    className="
+                      rounded
+                      bg-red-500
+                      px-4
+                      py-2
+                      text-white
+                      hover:bg-red-600
+                    "
+                  >
+                    Remove
+                  </button>
+
                </div>
 
               ))}
@@ -113,6 +130,42 @@ function Cart() {
             </>
           )}
         </div>
+
+         {/* Total */}
+
+            <div
+              className="
+                mt-5
+                flex
+                justify-between
+                border-t
+                pt-4
+                text-xl
+                font-bold
+              "
+            >
+              <span>Total</span>
+
+              <span>
+                {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(cartItems.reduce((total, item) => total + item.price * item.quantity, 0))}
+              </span>
+            </div>
+
+            <button
+              onClick={() => dispatch({ type: "cart/clearCart" })}
+              className="
+                mt-5
+                w-full
+                rounded-lg
+                bg-gray-700
+                py-2
+                text-white
+                hover:bg-gray-800
+              "
+            >
+              Clear Cart
+            </button>
+
 
     </div>
   );
