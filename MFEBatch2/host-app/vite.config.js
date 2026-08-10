@@ -24,7 +24,7 @@ export default defineConfig({
   },
 
   server: {
-    port: 4000,
+    port: 5173,
     strictPort: true,
   },
 });
