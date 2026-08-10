@@ -53,11 +53,39 @@ function Cart() {
       </div>
 
         {/* Cart Items */}
-        <div className="p-4">
+        <div className="
+              flex
+              min-h-64
+              flex-col
+              items-center
+              justify-center
+            "
+>
           {cartItems.length === 0 ? (
-            <p className="text-gray-500">
-              Your cart is empty.
+           <div
+            className="
+              flex
+              min-h-64
+              flex-col
+              items-center
+              justify-center
+            "
+          >
+            <div className="text-7xl">
+              🛒
+            </div>
+
+            <p
+              className="
+                mt-4
+                text-lg
+                text-gray-500
+              "
+            >
+              Your cart is empty
             </p>
+          </div>
+
           ) : (
             <ul>
               {cartItems.map((item) => (
