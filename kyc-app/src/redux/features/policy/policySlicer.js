@@ -102,6 +102,24 @@ const policySlice = createSlice({
             state.loading = false;
             state.error = action.payload || 'Failed to fetch policies';
         });
+        builder.addCase(getPolicyByIdAsync.pending, (state) => {
+            state.status = 'loading';
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(getPolicyByIdAsync.fulfilled, (state, action) => {
+            state.status = 'succeeded'; 
+            state.loading = false;
+            const policyIndex = state.policies.findIndex(policy => policy.id === action.payload.id);    
+            if (policyIndex !== -1) {
+                state.policies[policyIndex] = action.payload;
+            }
+        })
+        .addCase(getPolicyByIdAsync.rejected, (state, action) => {
+            state.status = 'failed';
+            state.loading = false;
+            state.error = action.payload || 'Failed to fetch policy by ID';
+        });
     }
 });
 
