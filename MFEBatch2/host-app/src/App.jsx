@@ -6,6 +6,9 @@ const ProductList = lazy(() =>
   import("productList/ProductListMFE")
 );
 
+const Cart = lazy(() =>
+  import("cart/cartMFE")
+);  
 function App() {
   
   const dispatch = useDispatch();
@@ -17,7 +20,8 @@ function App() {
   return (
     <Suspense fallback={<p>Loading product list...</p>}>
       <ProductList />
-    </Suspense>
+      <Cart/>
+     </Suspense>
   );
 }
 

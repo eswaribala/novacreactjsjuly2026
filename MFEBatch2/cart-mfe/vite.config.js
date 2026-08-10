@@ -27,7 +27,7 @@ export default defineConfig({
   },
 
   preview: {
-    port: 5001,
+    port: 5002,
     strictPort: true,
   },
 });
