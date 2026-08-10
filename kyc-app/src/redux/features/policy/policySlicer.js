@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import { savePolicy, getPolicies } from '../../../services/policyservice.js';
+import { savePolicy, getPolicies, getPolicyById } from '../../../services/policyservice.js';
 
 //action creator
 export const savePolicyAsync = createAsyncThunk(
@@ -30,6 +30,20 @@ export const getPoliciesAsync = createAsyncThunk(
         }
     }
 );
+export const getPolicyByIdAsync = createAsyncThunk(
+    'policy/getPolicyById',
+    async (id, thunkAPI) => {
+        try {
+            const response = await getPolicyById(id);
+            return response || response.policy || response.data;
+        }   
+    catch (error) {
+            return thunkAPI.rejectWithValue(error.message) ||
+                thunkAPI.rejectWithValue('Failed to fetch policy by ID');
+        }
+    }
+);
+
 
 
 const initialValues ={

@@ -12,3 +12,9 @@ export const getPolicies = async () => {
         method: 'GET',
     });
 }
+
+export const getPolicyById = async (id) => {
+    return await fetchData(`get/${id}`, {
+        method: 'GET',
+    });
+}
