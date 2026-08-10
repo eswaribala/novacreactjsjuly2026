@@ -75,5 +75,44 @@ router.post('/create', policyController.createPolicy);
  */
 router.get('/getAll', policyController.getAllPolicies);
 
+/**
+ * @swagger
+ * /api/auth/get/{id}:
+ *   get:
+ *     summary: Get a policy by ID
+ *     description: Retrieves a policy by its ID.
+ *     tags:
+ *       - Policy
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: number
+ *         description: The ID of the policy to retrieve
+ *     responses:
+ *       200:
+ *         description: Policy found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/getPolicyByIdRequest'
+ *
+ *       404:
+ *         description: Policy not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+router.get('/get/:id', policyController.getPolicyById);
+
 
 module.exports = router;

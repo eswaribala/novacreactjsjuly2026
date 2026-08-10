@@ -103,6 +103,17 @@ const swaggerOptions = {
           },
         },
 
+        getPolicyByIdRequest: {
+          type: "object",
+          required: ["id"],
+          properties: {
+            id: {
+              type: "number",
+              example: 123456,
+            },
+          },
+        },
+
         
 
         User: {
