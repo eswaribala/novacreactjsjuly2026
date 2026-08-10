@@ -1,4 +1,5 @@
 const Policy=require('../models/policyModel');
+const User = require('../models/userModel');
 
 const createPolicy = async (req, res) => {
 
@@ -18,6 +19,7 @@ const createPolicy = async (req, res) => {
         }
         //get user for the given userName
         const user = await User.findOne({ name: userName });
+        console.log('Found user:', user);
         if (!user) {
             return res.status(404).json(
                 { message: 'User not found' });
