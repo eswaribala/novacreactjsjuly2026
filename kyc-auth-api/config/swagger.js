@@ -78,8 +78,12 @@ const swaggerOptions = {
 
         CreatePolicyRequest: {
           type: "object",
-          required: ["policyNo", "policyHolderName", "beneficiaryType", "documentType", "documentNumber"],
+          required: ["userName","policyNo", "policyHolderName", "beneficiaryType", "documentType", "documentNumber"],
           properties: {
+            userName: {
+              type: "string",
+              example: "Parameswari",
+            },
             policyNo: {
               type: "number",
               example: 123456,

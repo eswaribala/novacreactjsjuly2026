@@ -4,9 +4,9 @@ const createPolicy = async (req, res) => {
 
     console.log('Received policy request:', req.body);
     try {
-        const { policyNo, policyHolderName, beneficiaryType, documentType, documentNumber } = req.body;
+        const { userName, policyNo, policyHolderName, beneficiaryType, documentType, documentNumber } = req.body;
 
-        if (!policyNo || !policyHolderName || !beneficiaryType || !documentType || !documentNumber) {
+        if (!userName || !policyNo || !policyHolderName || !beneficiaryType || !documentType || !documentNumber) {
             return res.status(400).json(
                 { message: 'All fields are required' });
         }
@@ -16,8 +16,14 @@ const createPolicy = async (req, res) => {
             return res.status(400).json(
                 { message: 'Policy already exists' });
         }
-
-        const newPolicy = new Policy({ policyNo, policyHolderName, beneficiaryType, documentType, documentNumber });
+        //get user for the given userName
+        const user = await User.findOne({ name: userName });
+        if (!user) {
+            return res.status(404).json(
+                { message: 'User not found' });
+        }
+        
+        const newPolicy = new Policy({ policyNo, policyHolderName, beneficiaryType, documentType, documentNumber, customerId: user.email });
         await newPolicy.save();
         res.status(201).json(
             { message: 'Policy saved successfully' });
