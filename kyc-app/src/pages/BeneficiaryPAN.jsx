@@ -1,8 +1,9 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect, useState} from 'react';
-import { getPolicyByCustomerNameAsync} from '../redux/features/policy/policySlicer';
+import { getPolicyByCustomerNameAsync, verifyDocumentNumberAsync } from '../redux/features/policy/policySlicer';
 import DropDownList from '../components/atoms/DropDownList/DropDownList';
 import { useAuth } from "../contexts/AuthContext.jsx";
+import Button from '../components/atoms/Button/Button';
 
 const cardColors=[
   "bg-red-100",
@@ -15,7 +16,7 @@ function BeneficiaryPAN() {
   const dispatch = useDispatch();
   const { user} = useAuth();
 
-  const { policies, status, loading, error } = useSelector((state) => state.policy);
+  const { policies, status, loading, error, verificationResponse } = useSelector((state) => state.policy);
   const [filteredPolicy, setFilteredPolicy] = useState(null);
   const [randomColorIndex, setRandomColorIndex] = useState(cardColors.length - 1); // Initialize the randomColorIndex variable
 
@@ -51,6 +52,13 @@ function BeneficiaryPAN() {
     setFilteredPolicy(selectedPolicy);
   }
 
+  const handleVerifyDocumentNumber = (policy) => {
+    if (policy && policy.length > 0) {
+      const documentNumber = policy[0].documentNo;
+      dispatch(verifyDocumentNumberAsync(documentNumber));
+    }
+  }
+
   return (
     
     <>
@@ -79,12 +87,27 @@ function BeneficiaryPAN() {
           <p><strong>Beneficiary PAN:</strong> {filteredPolicy[0].beneficiaryPAN}</p>
           <p><strong>Premium Amount:</strong> {filteredPolicy[0].documentType}</p>
           <p><strong>Premium Amount:</strong> {filteredPolicy[0].documentNo}</p>
+          <Button
+           id="verifyDocumentNumber"
+           name="verifyDocumentNumber"
+           type="button"
+            onClick={() => {
+              handleVerifyDocumentNumber(filteredPolicy)
+            }}
+          >Verify Document Number</Button>
+
         </div>
        )}
 
+       {verificationResponse && (
+        <div className={`mt-4 p-4 border rounded-lg ${verificationResponse === 'Document number verified successfully' ? 'bg-green-100 border-green-400 text-green-700' : 'bg-red-100 border-red-400 text-red-700'}`}>
+          {verificationResponse}
+        </div>
+      )}
     </>
-
   );
 }
+
+// Removed extraneous closing tags and return statements
 
 export default BeneficiaryPAN;

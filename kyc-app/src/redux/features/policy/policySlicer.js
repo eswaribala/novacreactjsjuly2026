@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import { savePolicy, getPolicies, getPolicyById, getPolicyByCustomerName } from '../../../services/policyservice.js';
+import { savePolicy, getPolicies, getPolicyById, getPolicyByCustomerName, verifyDocumentNumber } from '../../../services/policyservice.js';
 
 //action creator
 export const savePolicyAsync = createAsyncThunk(
@@ -58,6 +58,20 @@ export const getPolicyByCustomerNameAsync = createAsyncThunk(
     }
 );
 
+export const verifyDocumentNumberAsync = createAsyncThunk(
+    'policy/verifyDocumentNumber',
+    async (documentNumber, thunkAPI) => {
+        try {
+            const response = await verifyDocumentNumber(documentNumber);
+            return response||response.message||response.data;
+        }
+        catch (error) {
+            return thunkAPI.rejectWithValue(error.message) ||
+                thunkAPI.rejectWithValue('Failed to verify document number');
+        }
+    }
+);
+
 
 
 const initialValues ={
@@ -65,7 +79,9 @@ const initialValues ={
     status: 'idle',
     error: null,
     loading: false,
-    successMessage: ''
+    successMessage: '',
+    verificationResponse: null
+
 }
 
 //create slice with reducer
@@ -149,6 +165,25 @@ const policySlice = createSlice({
             state.status = 'failed';
             state.loading = false;
             state.error = action.payload || 'Failed to fetch policy by customer name';
+        });
+        builder.addCase(verifyDocumentNumberAsync.pending, (state) => {
+            state.status = 'loading';
+            state.loading = true;
+            state.error = null;
+            state.verificationResponse = null;
+        })
+        .addCase(verifyDocumentNumberAsync.fulfilled, (state, action) => {
+            state.status = 'succeeded';
+            state.loading = false;
+            console.log('Document number verification result:', action.payload);
+            state.successMessage = action.payload || 'Document number verified successfully';
+            state.verificationResponse = action.payload;
+        })
+        .addCase(verifyDocumentNumberAsync.rejected, (state, action) => {
+            state.status = 'failed';
+            state.loading = false;
+            state.error = action.payload || 'Failed to verify document number';
+            state.verificationResponse = null;
         });
     }
 });

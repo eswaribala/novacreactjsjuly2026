@@ -25,3 +25,9 @@ export const getPolicyByCustomerName = async (name) => {
         body: JSON.stringify({ name }),
     });
 }
+export const verifyDocumentNumber = async (documentNumber) => {
+    return await fetchData(`get/documentNumber`, {
+        method: 'POST',
+        body: JSON.stringify({ documentNumber }),
+    });
+}
