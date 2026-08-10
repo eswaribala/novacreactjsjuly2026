@@ -1,9 +1,8 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
-import { getPolicyByCustomerName } from '../redux/features/policy/policySlicer';
+import { getPolicyByCustomerNameAsync } from '../redux/features/policy/policySlicer';
 import DropDownList from '../components/atoms/DropDownList/DropDownList';
-
-import {useAuth} from '../hooks/useAuth';
+import { useAuth } from "../contexts/AuthContext.jsx";
 
 function BeneficiaryPAN() {
 
@@ -15,8 +14,8 @@ function BeneficiaryPAN() {
 
   useEffect(() => {
     // You can dispatch actions or perform side effects here if needed
-    dispatch(getPolicyByCustomerName(user));
-  }, [dispatch]);
+    dispatch(getPolicyByCustomerNameAsync(user));
+  }, [dispatch, user]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -45,7 +44,7 @@ function BeneficiaryPAN() {
           value: policy.policyNo,
           label: policy.policyNo,
         }))}
-        placeholder="Select the document type"
+        placeholder="Select the Policy Number"
         required
         className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         onChange={handleChange}
