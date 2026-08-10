@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import { savePolicy, getPolicies, getPolicyById } from '../../../services/policyservice.js';
+import { savePolicy, getPolicies, getPolicyById, getPolicyByCustomerName } from '../../../services/policyservice.js';
 
 //action creator
 export const savePolicyAsync = createAsyncThunk(
@@ -40,6 +40,20 @@ export const getPolicyByIdAsync = createAsyncThunk(
     catch (error) {
             return thunkAPI.rejectWithValue(error.message) ||
                 thunkAPI.rejectWithValue('Failed to fetch policy by ID');
+        }
+    }
+);
+
+export const getPolicyByCustomerNameAsync = createAsyncThunk(
+    'policy/getPolicyByCustomerName',
+    async (name, thunkAPI) => {
+        try {
+            const response = await getPolicyByCustomerName(name);
+            return response || response.policy || response.data;
+        }
+        catch (error) {
+            return thunkAPI.rejectWithValue(error.message) ||
+                thunkAPI.rejectWithValue('Failed to fetch policy by customer name');
         }
     }
 );
@@ -119,6 +133,24 @@ const policySlice = createSlice({
             state.status = 'failed';
             state.loading = false;
             state.error = action.payload || 'Failed to fetch policy by ID';
+        });
+        builder.addCase(getPolicyByCustomerNameAsync.pending, (state) => {
+            state.status = 'loading';
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(getPolicyByCustomerNameAsync.fulfilled, (state, action) => {
+            state.status = 'succeeded';
+            state.loading = false;
+            const policyIndex = state.policies.findIndex(policy => policy.id === action.payload.id);    
+            if (policyIndex !== -1) {
+                state.policies[policyIndex] = action.payload;
+            }
+        })
+        .addCase(getPolicyByCustomerNameAsync.rejected, (state, action) => {
+            state.status = 'failed';
+            state.loading = false;
+            state.error = action.payload || 'Failed to fetch policy by customer name';
         });
     }
 });
