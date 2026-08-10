@@ -18,3 +18,10 @@ export const getPolicyById = async (id) => {
         method: 'GET',
     });
 }
+
+export const getPolicyByCustomerName = async (name) => {
+    return await fetchData(`get/customerName`, {
+        method: 'POST',
+        body: JSON.stringify({ name }),
+    });
+}
