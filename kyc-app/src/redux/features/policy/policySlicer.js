@@ -141,11 +141,9 @@ const policySlice = createSlice({
         })
         .addCase(getPolicyByCustomerNameAsync.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.loading = false;
-            const policyIndex = state.policies.findIndex(policy => policy.id === action.payload.id);    
-            if (policyIndex !== -1) {
-                state.policies[policyIndex] = action.payload;
-            }
+            state.loading = false;                        
+            console.log('Policy fetched successfully by customer name:', action.payload);
+            state.policies=action.payload;
         })
         .addCase(getPolicyByCustomerNameAsync.rejected, (state, action) => {
             state.status = 'failed';
