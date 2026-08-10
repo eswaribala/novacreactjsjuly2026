@@ -118,7 +118,16 @@ const swaggerOptions = {
           },
         },
 
-        
+        getPolicyByCustomerIdRequest: {
+          type: "object",
+          required: ["name"],
+          properties: {
+            name: {
+              type: "string",
+              example: "Parameswari",
+            },
+          },
+        },
 
         User: {
           type: "object",

@@ -114,5 +114,43 @@ router.get('/getAll', policyController.getAllPolicies);
  */
 router.get('/get/:id', policyController.getPolicyById);
 
+/**
+ * @swagger
+ * /api/auth/get/customerName:
+ *   post:
+ *     summary: Get policies by customer name
+ *     description: Retrieves policies by the customer's name.
+ *     tags:
+ *       - Policy
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/getPolicyByCustomerIdRequest'
+ *     responses:
+ *       200:
+ *         description: Policy found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/getPolicyByCustomerIdRequest'
+ *
+ *       404:
+ *         description: Policy not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+router.post('/get/customerName', policyController.getPolicyByCustomerId);
+
 
 module.exports = router;

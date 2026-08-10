@@ -78,4 +78,4 @@ const getPolicyByCustomerId= async (req, res) => {
     }
 }
 
-module.exports = { createPolicy, getAllPolicies, getPolicyById };
+module.exports = { createPolicy, getAllPolicies, getPolicyById,getPolicyByCustomerId };
