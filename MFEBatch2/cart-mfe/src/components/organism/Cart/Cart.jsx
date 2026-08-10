@@ -56,14 +56,8 @@ function Cart() {
       </div>
 
         {/* Cart Items */}
-        <div className="
-              flex
-              min-h-64
-              flex-col
-              items-center
-              justify-center
-            "
->
+        <div className="p-5">
+
           {cartItems.length === 0 ? (
            <div
             className="
@@ -73,6 +67,7 @@ function Cart() {
               items-center
               justify-center
             "
+
           >
             <div className="text-7xl">
               🛒
