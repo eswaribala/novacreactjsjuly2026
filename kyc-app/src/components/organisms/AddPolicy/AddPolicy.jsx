@@ -12,6 +12,7 @@ import Toast from "../../atoms/Toast/Toast";
 import {toast} from "react-toastify";
 
 const initialValues={
+   userName:"",
    policyNo:0,
    policyHolderName:"",
    beneficiaryType:"",
@@ -27,7 +28,7 @@ function AddPolicy() {
 
   const[errorMessages,setErrorMessages]=useState({});
 
-  const policyNoRef=useRef(null);
+  const userNameRef=useRef(null);
 
   const dispatch=useDispatch();
 
@@ -38,6 +39,9 @@ function AddPolicy() {
   
   const validateForm=()=>{
     const errors={};
+    if(!values.userName){
+      errors.userName="User name is required";
+    }
     if(!values.policyNo){
       errors.policyNo="Policy number is required";
     }
@@ -76,8 +80,8 @@ function AddPolicy() {
   }
 
   useEffect(()=>{
-    if(policyNoRef.current){
-      policyNoRef.current.focus();
+    if(userNameRef.current){
+      userNameRef.current.focus();
     }
   }, []);
 
@@ -95,13 +99,24 @@ function AddPolicy() {
       <fieldset className="border border-gray-300 p-4 rounded-lg ">
        <legend className=" text-xl text-center font-semibold text-blue-900 dark:text-white">Add Policy</legend> 
       <FormField 
+       id="userName" 
+       label="Customer Name" 
+       type="text" 
+       value={values.userName} 
+       onChange={handleChange} 
+       required 
+       ref={userNameRef}
+       placeholder="Enter the policy number" 
+       error={errorMessages.userName}
+       className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+
+      <FormField 
        id="policyNo" 
        label="Policy Number" 
        type="text" 
        value={values.policyNo==0?"":values.policyNo} 
        onChange={handleChange} 
        required 
-       ref={policyNoRef}
        placeholder="Enter the policy number" 
        error={errorMessages.policyNo}
        className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
