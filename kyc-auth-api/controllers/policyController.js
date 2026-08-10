@@ -78,4 +78,21 @@ const getPolicyByCustomerId= async (req, res) => {
     }
 }
 
-module.exports = { createPolicy, getAllPolicies, getPolicyById,getPolicyByCustomerId };
+const verifyDocumentNo = async (req, res) => {
+    try {
+        const { documentNumber } = req.body;
+        console.log('Received document number:', documentNumber);
+        const verifiedDoc= await Policy.findOne({ documentNumber: documentNumber });
+        console.log('Verified document:', verifiedDoc);
+        if (!verifiedDoc) {
+            return res.status(404).json({ message: 'Document not found' });
+        }
+        res.status(200).json({ message: 'Document verified successfully' });
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+
+module.exports = { createPolicy, getAllPolicies, getPolicyById,getPolicyByCustomerId, verifyDocumentNo };

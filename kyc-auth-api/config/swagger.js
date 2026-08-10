@@ -128,6 +128,16 @@ const swaggerOptions = {
             },
           },
         },
+        verifyDocumentNumberRequest: {
+          type: "object",
+          required: ["documentNumber"], 
+          properties: {
+            documentNumber: {
+              type: "string",
+              example: "A1234567",
+            },
+          },
+        },
 
         User: {
           type: "object",

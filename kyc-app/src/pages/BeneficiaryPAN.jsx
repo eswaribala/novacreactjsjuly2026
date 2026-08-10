@@ -17,7 +17,7 @@ function BeneficiaryPAN() {
 
   const { policies, status, loading, error } = useSelector((state) => state.policy);
   const [filteredPolicy, setFilteredPolicy] = useState(null);
-
+  const [randomColorIndex, setRandomColorIndex] = useState(cardColors.length - 1); // Initialize the randomColorIndex variable
 
 
   useEffect(() => {
@@ -41,7 +41,12 @@ function BeneficiaryPAN() {
     console.log('Selected policy:', e.target.value);
     // Handle the change event as needed
     //filter the policies based on the selected policy number
-    const selectedPolicy = policies.filter((policy) => String(policy.policyNo) === e.target.value);
+     // Initialize the randomColorIndex variable
+    const selectedPolicy = policies.filter((policy,index) => 
+      {
+      setRandomColorIndex(index % cardColors.length); // Cycle through the colors
+        return String(policy.policyNo) === e.target.value;
+      });
     console.log('Selected policy details:', selectedPolicy);
     setFilteredPolicy(selectedPolicy);
   }
@@ -66,7 +71,7 @@ function BeneficiaryPAN() {
 
        {filteredPolicy && (
         <div className={`overflow-hidden border border-gray-200  
-     ${cardColors[0]} shadow-md rounded-lg p-4 transition-transform 
+     ${cardColors[randomColorIndex]} shadow-md rounded-lg p-4 transition-transform 
      transform hover:scale-105 hover:shadow-lg`}>
           <h3 className="text-lg font-semibold mb-2">Selected Policy Details:</h3>
           <p><strong>Policy Number:</strong> {filteredPolicy[0].policyNo}</p>

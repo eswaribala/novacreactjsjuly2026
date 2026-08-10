@@ -152,5 +152,43 @@ router.get('/get/:id', policyController.getPolicyById);
  */
 router.post('/get/customerName', policyController.getPolicyByCustomerId);
 
+/**
+ * @swagger
+ * /api/auth/get/documentNumber:
+ *   post:
+ *     summary: Verify a document by its number
+ *     description: Verifies a document by its number.
+ *     tags:
+ *       - Policy
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/verifyDocumentNumberRequest'
+ *     responses:
+ *       200:
+ *         description: Policy found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/verifyDocumentNumberRequest'
+ *
+ *       404:
+ *         description: Policy not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+router.post('/get/documentNumber', policyController.verifyDocumentNo);
+
 
 module.exports = router;
