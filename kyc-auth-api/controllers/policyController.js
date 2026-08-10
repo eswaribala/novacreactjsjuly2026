@@ -59,4 +59,23 @@ const getPolicyById = async (req, res) => {
     }
 };
 
+const getPolicyByCustomerId= async (req, res) => {
+    const { name } = req.body;
+
+    const user = await User.findOne({ name: name });
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+    
+    try {
+        const policies = await Policy.find({ customerId: user.email });
+        if (policies.length === 0) {
+            return res.status(404).json({ message: 'No policies found for this customer' });
+        }
+        res.status(200).json(policies);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+}
+
 module.exports = { createPolicy, getAllPolicies, getPolicyById };

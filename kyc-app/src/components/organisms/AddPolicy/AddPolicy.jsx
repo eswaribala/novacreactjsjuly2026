@@ -106,7 +106,7 @@ function AddPolicy() {
        onChange={handleChange} 
        required 
        ref={userNameRef}
-       placeholder="Enter the policy number" 
+       placeholder="Enter Customer Name" 
        error={errorMessages.userName}
        className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
 
