@@ -1,36 +1,23 @@
 import { Suspense, lazy } from "react";
-
-const RemoteButton = lazy(() =>
-  import("productRemote/MfeButton")
+import {useDispatch} from 'react-redux';  
+import { fetchProducts } from "./redux/features/products/productSlicer.js";
+import { useEffect } from "react";
+const ProductList = lazy(() =>
+  import("productList/ProductListMFE")
 );
 
 function App() {
-  const handleRemoteButtonClick = () => {
-    alert("Remote button clicked from Host App");
-  };
+  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
 
   return (
-    <div
-      style={{
-        padding: "40px",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
-      <h1>Host Application</h1>
-
-      <p>
-        The button below comes from the remote application.
-      </p>
-
-      <Suspense fallback={<p>Loading remote button...</p>}>
-        <RemoteButton
-          onClick={handleRemoteButtonClick}
-          className="px-4 py-2 bg-blue-600 text-white rounded"
-        >
-          Click Remote Button
-        </RemoteButton>
-      </Suspense>
-    </div>
+    <Suspense fallback={<p>Loading product list...</p>}>
+      <ProductList />
+    </Suspense>
   );
 }
 

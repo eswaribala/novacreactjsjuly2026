@@ -8,15 +8,15 @@ export default defineConfig({
     react(),
     tailwindcss(),
     federation({
-      name: "productRemote",
+      name: "productList",
 
       filename: "remoteEntry.js",
 
       exposes: {
-        "./MfeButton": "./src/components/atoms/Button/Button.jsx",
+        "./ProductListMFE": "./src/components/organism/ProductList/ProductList.jsx",
       },
 
-      shared: ["react", "react-dom"],
+      shared: ["react", "react-dom","react-redux"],
     }),
   ],
 

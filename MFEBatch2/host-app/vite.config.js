@@ -11,11 +11,11 @@ export default defineConfig({
       name: "hostApp",
 
       remotes: {
-        productRemote:
+        productList:
           "http://localhost:5001/assets/remoteEntry.js",
       },
 
-      shared: ["react", "react-dom"],
+      shared: ["react", "react-dom","react-redux"],
     }),
   ],
 
