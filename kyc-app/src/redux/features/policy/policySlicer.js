@@ -141,7 +141,7 @@ const policySlice = createSlice({
         })
         .addCase(getPolicyByCustomerNameAsync.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.loading = false;                        
+            state.loading = false;            
             console.log('Policy fetched successfully by customer name:', action.payload);
             state.policies=action.payload;
         })
