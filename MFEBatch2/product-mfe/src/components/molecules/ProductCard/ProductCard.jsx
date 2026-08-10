@@ -8,7 +8,9 @@ const cardColors=["bg-red-100",
 
 function ProductCard({ product,index }) {
     const randomColor = cardColors[index % cardColors.length];
-    const generatedImageUrl = `https://loremflickr.com/600/400/${product.name.substring(0,5)? "placeholder" : product.name}?lock=${product.productId}`;
+    const imageKeyword = product.name ? product.name.substring(0, 5) : "placeholder";
+    const generatedImageUrl =
+  `https://loremflickr.com/600/400/${encodeURIComponent(imageKeyword)}?lock=${product.productId}`;
     
     const dispatch = useDispatch();
     const handleAddToCart = () => {
