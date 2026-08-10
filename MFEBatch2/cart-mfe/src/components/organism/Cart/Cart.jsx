@@ -6,6 +6,9 @@ function Cart() {
     (state) => state.cart.items 
   );
 
+   const getProductId = (item) => {
+    return item.id || item.productId || item._id;
+  }
   const cartCount = cartItems.reduce(
     (total, item) => total + item.quantity,
     0
@@ -87,13 +90,32 @@ function Cart() {
           </div>
 
           ) : (
-            <ul>
+            <>
+            <div className="space-y-3">
               {cartItems.map((item) => (
-                <li key={item.id} className="mb-2">
-                  {item.name} - Quantity: {item.quantity}
-                </li>
+               <div  key={getProductId(item)}
+                  className="
+                    flex
+                    items-center
+                    justify-between
+                    rounded-lg
+                    border
+                    border-gray-200
+                    bg-gray-50
+                    p-4
+                  "
+>
+                <h3 className="text-lg font-semibold">{item.name}</h3>
+                <p className="text-gray-600">
+                    Quantity: {item.quantity}
+                </p>
+                <p className="text-gray-800 font-bold">{new 
+             Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(item.price)}</p>
+               </div>
+
               ))}
-            </ul>
+              </div>
+            </>
           )}
         </div>
 
