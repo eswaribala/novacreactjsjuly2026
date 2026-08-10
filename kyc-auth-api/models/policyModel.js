@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const User = require('./userModel');
 const policySchema = new mongoose.Schema({
     policyNo: {
         type: Number,
@@ -11,6 +11,11 @@ const policySchema = new mongoose.Schema({
         required: true,
         trim: true,
         
+    },
+    customerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
     },
     beneficiaryType: {
         type: String,
