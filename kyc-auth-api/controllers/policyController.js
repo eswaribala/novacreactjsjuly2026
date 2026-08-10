@@ -37,4 +37,18 @@ const getAllPolicies = async (req, res) => {
     }
 }
 
-module.exports = { createPolicy,getAllPolicies };
+const getPolicyById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const policy = await Policy.findOne({ policyNo: id });
+        if (!policy) {
+            return res.status(404).json({ message: 'Policy not found' });
+        }
+        res.status(200).json(policy);
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+module.exports = { createPolicy, getAllPolicies, getPolicyById };
