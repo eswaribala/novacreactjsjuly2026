@@ -4,6 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+  
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
     "dev:ssr": "node server.js",
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.jsx --outDir dist/server"
