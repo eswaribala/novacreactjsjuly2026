@@ -13,9 +13,9 @@ function EVDashboard() {
      transform hover:scale-105 hover:shadow-lg`}>
                         <div className="flex items-center mb-4">
                             <item.icon className={`w-6 h-6 text-white mr-2`} />
-                            <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                            <h3 className="text-lg font-bold text-white">{item.title}</h3>
                         </div>
-                        <p className="text-white">{item.description}</p>
+                        <p className="text-zinc-300">{item.description}</p>
                     </div>
                 ))}
             </div>
