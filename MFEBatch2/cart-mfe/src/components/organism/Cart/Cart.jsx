@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { ShoppingCart } from "lucide-react";
 import {useNavigate} from "react-router-dom";
+import {Plus, Minus,Trash} from "lucide-react";
 
 function Cart() {
   const navigate = useNavigate();
@@ -22,6 +23,17 @@ function Cart() {
     dispatch({ type: "cart/removeFromCart", payload: productId });
   }
 
+  const handleAddItem = (productId) => {
+    // Dispatch an action to add the item to the cart
+    // You can implement this function based on your Redux setup
+    dispatch({ type: "cart/incrementFromCart", payload: productId });
+  }
+  const handleDecrementItem = (productId) => {
+    // Dispatch an action to decrement the item in the cart
+    // You can implement this function based on your Redux setup
+    dispatch({ type: "cart/decrementFromCart", payload: productId });
+  }
+
   const handleCheckout = () => {
     // Implement your checkout logic here
     console.log("Proceeding to checkout with items:", cartItems);
@@ -31,6 +43,8 @@ function Cart() {
     <div
       className="
         overflow-hidden
+        w-200
+        ml-50
         rounded-xl
         border-2
         border-orange-500
@@ -103,7 +117,7 @@ function Cart() {
               {cartItems.map((item) => (
                <div  key={getProductId(item)}
                   className="
-                    grid grid-cols-4 gap-3
+                    grid grid-cols-6 gap-2
                   "
 >
                 <h3 className="text-lg font-semibold">{item.name}</h3>
@@ -112,7 +126,50 @@ function Cart() {
                 </p>
                 <p className="text-gray-800 font-bold">{new 
              Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(item.price)}</p>
-                 <button
+                <div>
+                <button
+                    onClick={() =>
+                      handleAddItem(
+                        getProductId(item)
+                      )
+                    }
+                    className="
+                      rounded
+                      w-10
+                      bg-green-500
+                      px-4
+                      py-2
+                      font-bold
+                      text-white
+                      hover:bg-green-600
+                    "
+                  >
+                   <Plus size={16} />
+                  </button>
+                  </div>
+                  <div>
+                  <button
+                    onClick={() =>
+                      handleDecrementItem(
+                        getProductId(item)
+                      )
+                    }
+                    className="
+                      rounded
+                      bg-yellow-500
+                      px-4
+                      py-2
+                      w-10
+                      font-bold
+                      text-white
+                      hover:bg-yellow-600
+                    "
+                  >
+                    <Minus size={16} />
+                  </button>
+                  </div>
+                  <div>
+                  <button
                     onClick={() =>
                       handleRemoveItem(
                         getProductId(item)
@@ -123,13 +180,15 @@ function Cart() {
                       bg-red-500
                       px-4
                       py-2
+                      w-15
+                      font-bold
                       text-white
                       hover:bg-red-600
                     "
                   >
-                    Remove
+                    <Trash size={16} />
                   </button>
-
+                  </div>
                </div>
 
               ))}

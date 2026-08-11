@@ -7,7 +7,7 @@ function EVDashboard() {
     // Create card of items from data
     const[showForm, setShowForm] = useState(false);
     const handleClick = (item) => () => {
-        alert(`You clicked on ${item.title}`);
+        console.log(`You clicked on ${item.title}`);
         setShowForm(true);      
     }
 
