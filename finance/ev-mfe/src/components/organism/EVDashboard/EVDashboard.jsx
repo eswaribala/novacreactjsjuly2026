@@ -5,9 +5,10 @@ const colors = ['bg-blue-500', 'bg-green-500', 'bg-yellow-500', 'bg-red-500', 'b
 
 function EVDashboard() {
     // Create card of items from data
-    const[showForm, setShowForm] = useState(false);
-    const handleClick = () => {
-        setShowForm(true);
+  //  const[showForm, setShowForm] = useState(false);
+    const handleClick = (item) => () => {
+        alert(`You clicked on ${item.title}`);
+        //setShowForm(true);      
     }
 
     return (
@@ -16,7 +17,7 @@ function EVDashboard() {
                 {evDashboardData.map((item,index) => (
                     <div key={item.id} className={`overflow-hidden border border-gray-200  
      ${colors[index % colors.length]} shadow-md rounded-lg ml-5 mr-5 mt-10 p-5 transition-transform 
-     transform hover:scale-105 hover:shadow-lg`} onClick={handleClick}>
+     transform hover:scale-105 hover:shadow-lg`} onClick={handleClick(item)}>
                         <div className="flex items-center mb-4">
                             <item.icon className={`w-6 h-6 text-white mr-2`} />
                             <h3 className="text-lg font-bold text-white">{item.title}</h3>
@@ -26,14 +27,7 @@ function EVDashboard() {
                 ))}
             </div>
 
-            {showForm && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                    <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-                        {/* Loan form component can be placed here */}
-                        <LoanForm/>
-                    </div>
-                </div>
-            )}  
+           
         </>
     )
 }
