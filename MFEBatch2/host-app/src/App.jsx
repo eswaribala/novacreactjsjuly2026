@@ -2,13 +2,12 @@ import { Suspense, lazy } from "react";
 import {useDispatch} from 'react-redux';  
 import { fetchProducts } from "./redux/features/products/productSlicer.js";
 import { useEffect } from "react";
-const ProductList = lazy(() =>
-  import("productList/ProductListMFE")
-);
+import { Routes, Route } from "react-router-dom";
+import ProductCartPage from "./Pages/ProductCartPage.jsx";
 
-const Cart = lazy(() =>
-  import("cart/cartMFE")
-);  
+const Order = lazy(() =>
+  import("order/OrderMFE")
+);
 function App() {
   
   const dispatch = useDispatch();
@@ -19,8 +18,11 @@ function App() {
 
   return (
     <Suspense fallback={<p>Loading product list...</p>}>
-      <ProductList />
-      <Cart/>
+     <Routes>
+        <Route path="/" element={<ProductCartPage />} />
+         <Route path="/checkout" element={<Order />} />
+        <Route path="*" element={<p>Page not found</p>} />
+     </Routes>
      </Suspense>
   );
 }

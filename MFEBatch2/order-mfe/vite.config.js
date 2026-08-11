@@ -8,15 +8,15 @@ export default defineConfig({
     react(),
     tailwindcss(),
     federation({
-      name: "productList",
+      name: "order",
 
       filename: "remoteEntry.js",
 
       exposes: {
-        "./ProductListMFE": "./src/components/organism/ProductList/ProductList.jsx",
+        "./OrderMFE": "./src/components/organism/Order/Order.jsx",
       },
 
-      shared: ["react", "react-dom", "react-router-dom", "react-redux"],
+      shared: ["react", "react-dom","react-router-dom","react-redux"],
     }),
   ],
 
@@ -27,7 +27,7 @@ export default defineConfig({
   },
 
   preview: {
-    port: 5001,
+    port: 5003,
     strictPort: true,
   },
 });

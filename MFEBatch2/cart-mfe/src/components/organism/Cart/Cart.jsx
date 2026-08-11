@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { ShoppingCart } from "lucide-react";
+import {useNavigate} from "react-router-dom";
 
 function Cart() {
+  const navigate = useNavigate();
   const cartItems = useSelector(
     (state) => state.cart.items 
   );
@@ -17,9 +19,14 @@ function Cart() {
   const handleRemoveItem = (productId) => {
     // Dispatch an action to remove the item from the cart
     // You can implement this function based on your Redux setup
-    dispatch({ type: "cart/removeItem", payload: productId });
+    dispatch({ type: "cart/removeFromCart", payload: productId });
   }
 
+  const handleCheckout = () => {
+    // Implement your checkout logic here
+    console.log("Proceeding to checkout with items:", cartItems);
+    navigate("/checkout");
+  }
   return (
     <div
       className="
@@ -127,6 +134,26 @@ function Cart() {
 
               ))}
               </div>
+              {cartItems.length > 0 && (
+                <div>
+                  {/* Additional content for non-empty cart can go here */}
+                   <button
+          onClick={handleCheckout}
+          className="
+            mt-6
+            bg-orange-500
+            hover:bg-orange-600
+            text-white
+            px-6
+            py-3
+            rounded-lg
+            font-semibold
+          "
+        >
+          Proceed to Checkout
+        </button>
+                </div>
+              )}
             </>
           )}
         </div>

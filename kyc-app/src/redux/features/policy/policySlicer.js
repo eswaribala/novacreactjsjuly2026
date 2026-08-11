@@ -95,7 +95,10 @@ const policySlice = createSlice({
             state.error = null;
             state.loading = false;
             state.successMessage = '';
-        }
+        },
+        resetVerificationResponse: (state) => {
+        state.verificationResponse = null;
+      },
     },
     extraReducers: (builder) => {
         builder
@@ -188,6 +191,6 @@ const policySlice = createSlice({
     }
 });
 
-export const { clearPolicyMessage } = policySlice.actions;
+export const { clearPolicyMessage,resetVerificationResponse } = policySlice.actions;
 export default policySlice.reducer;
 

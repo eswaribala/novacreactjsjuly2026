@@ -22,6 +22,7 @@ const cartSlicer = createSlice({
       }
     },
     removeFromCart: (state, action) => {
+     // console.log("removeFromCart action.payload", action.payload);
       const productId = action.payload;
       state.items = state.items.filter((item) => item.productId !== productId);
     },

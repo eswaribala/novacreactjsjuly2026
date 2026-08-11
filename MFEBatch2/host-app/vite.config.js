@@ -15,9 +15,11 @@ export default defineConfig({
           "http://localhost:5001/assets/remoteEntry.js",
         cart:
           "http://localhost:5002/assets/remoteEntry.js",
+        order:
+          "http://localhost:5003/assets/remoteEntry.js",
       },
 
-      shared: ["react", "react-dom","react-redux"],
+      shared: ["react", "react-dom", "react-router-dom", "react-redux"],
     }),
   ],
 

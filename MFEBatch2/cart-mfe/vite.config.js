@@ -16,7 +16,7 @@ export default defineConfig({
         "./cartMFE": "./src/components/organism/Cart/Cart.jsx",
       },
 
-      shared: ["react", "react-dom","react-redux"],
+      shared: ["react", "react-dom", "react-router-dom", "react-redux"],
     }),
   ],
 
