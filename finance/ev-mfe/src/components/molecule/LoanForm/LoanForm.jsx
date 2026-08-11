@@ -20,10 +20,46 @@ function LoanForm() {
     <>
     {/*create form grid using Form field and tailwindcss */}
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-    <FormField label="Mobile Number" name="mobileNo" type="number" value={formValues.mobileNo} onChange={handleChange} />
-    <FormField label="Is Assisted" name="isAssisted" type="checkbox" value={formValues.isAssisted} onChange={handleChange} />
-    <FormField label="Partner Code" name="partnerCode" type="text" value={formValues.partnerCode} onChange={handleChange} /> 
-    <FormField label="Partner Name" name="partnerName" type="text" value={formValues.partnerName} onChange={handleChange} />
+    <FormField 
+       id="mobileNo" 
+       label="Mobile Number" 
+       type="number" 
+       value={formValues.mobileNo} 
+       onChange={handleChange} 
+       required 
+       placeholder="Enter your mobile number" 
+     
+       className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+     <FormField 
+       id="isAssisted" 
+       label="Is Assisted" 
+       type="checkbox" 
+       checked={formValues.isAssisted} 
+       onChange={handleChange} 
+       className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+
+<FormField 
+       id="partnerCode" 
+       label="Partner Code" 
+       type="text" 
+       value={formValues.partnerCode} 
+       onChange={handleChange} 
+       required 
+       placeholder="Enter your partner code" 
+     
+       className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+
+<FormField 
+       id="partnerName" 
+       label="Partner Name" 
+       type="text" 
+       value={formValues.partnerName} 
+       onChange={handleChange} 
+       required 
+       placeholder="Enter your partner name" 
+     
+       className="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+
     </div>
     </>
    )

@@ -5,10 +5,10 @@ const colors = ['bg-blue-500', 'bg-green-500', 'bg-yellow-500', 'bg-red-500', 'b
 
 function EVDashboard() {
     // Create card of items from data
-  //  const[showForm, setShowForm] = useState(false);
+    const[showForm, setShowForm] = useState(false);
     const handleClick = (item) => () => {
         alert(`You clicked on ${item.title}`);
-        //setShowForm(true);      
+        setShowForm(true);      
     }
 
     return (
@@ -26,7 +26,7 @@ function EVDashboard() {
                     </div>
                 ))}
             </div>
-
+            {showForm && <LoanForm />}
            
         </>
     )
