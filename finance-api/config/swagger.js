@@ -5,9 +5,9 @@ const swaggerOptions = {
     openapi: "3.0.0",
 
     info: {
-      title: "Authentication API",
+      title: "Partner API",
       version: "1.0.0",
-      description: "API documentation for user registration and login",
+      description: "API documentation for partner management",
     },
 
     servers: [
@@ -19,144 +19,51 @@ const swaggerOptions = {
 
     components: {
       schemas: {
-        RegisterRequest: {
+        CreatePartnerRequest: {
           type: "object",
-          required: ["name", "email", "password"],
+          required: ["mobileNo", "partnerCode", "partnerName"],
           properties: {
-            name: {
-              type: "string",
-              example: "Parameswari",
-            },
-            email: {
-              type: "string",
-              format: "email",
-              example: "parameswari@example.com",
-            },
-            password: {
-              type: "string",
-              format: "password",
-              example: "Password@123",
-            },
-          },
-        },
-
-        LoginRequest: {
-          type: "object",
-          required: ["name", "password"],
-          properties: {
-            name: {
-              type: "string",
-              example: "Parameswari",
-            },
-            password: {
-              type: "string",
-              format: "password",
-              example: "Password@123",
-            },
-          },
-        },
-        ChangePasswordRequest: {
-          type: "object",
-          required: ["name", "oldPassword", "newPassword"],
-          properties: {
-            name: {
-              type: "string",
-              example: "Parameswari",
-            },
-            oldPassword: {
-              type: "string",
-              format: "password",
-              example: "OldPassword@123",
-            },
-            newPassword: {
-              type: "string",
-              format: "password",
-              example: "NewPassword@123",
-            },
-          },
-        },
-
-        CreatePolicyRequest: {
-          type: "object",
-          required: ["userName","policyNo", "policyHolderName", "beneficiaryType", "documentType", "documentNumber"],
-          properties: {
-            userName: {
-              type: "string",
-              example: "Parameswari",
-            },
-            policyNo: {
+            mobileNo: {
               type: "number",
-              example: 123456,
+              example: 1234567890,
             },
-            policyHolderName: {
+            partnerCode: {
               type: "string",
-              example: "John Doe",
+              example: "P12345",
             },
-            beneficiaryType: {
+            partnerName: {
               type: "string",
-              example: "Spouse",
-            },
-            documentType: {
-              type: "string",
-              example: "Passport",
-            },
-            documentNumber: {
-              type: "string",
-              example: "A1234567",
+              example: "Parameswari",
             },
           },
         },
-
-        getPolicyByIdRequest: {
+        GetAllPartnersResponse: {
+          type: "array",
+          items: {
+            $ref: "#/components/schemas/CreatePartnerRequest",
+          },
+        },
+        GetPartnerByMobileNoRequest: {
           type: "object",
-          required: ["id"],
+          required: ["mobileNo", "partnerCode", "partnerName"],
           properties: {
-            id: {
+            mobileNo: {
               type: "number",
-              example: 123456,
+              example: 1234567890,
             },
-          },
-        },
-
-        getPolicyByCustomerIdRequest: {
-          type: "object",
-          required: ["name"],
-          properties: {
-            name: {
+            partnerCode: {
+              type: "string",
+              example: "P12345",
+            },
+            partnerName: {
               type: "string",
               example: "Parameswari",
             },
           },
         },
-        verifyDocumentNumberRequest: {
-          type: "object",
-          required: ["documentNumber"], 
-          properties: {
-            documentNumber: {
-              type: "string",
-              example: "A1234567",
-            },
-          },
-        },
 
-        User: {
-          type: "object",
-          properties: {
-            id: {
-              type: "string",
-              example: "688b40628e7e1f1234567890",
-            },
-            name: {
-              type: "string",
-              example: "Parameswari",
-            },
-            email: {
-              type: "string",
-              example: "parameswari@example.com",
-            },
-          },
-        },
 
+       
         ErrorResponse: {
           type: "object",
           properties: {
