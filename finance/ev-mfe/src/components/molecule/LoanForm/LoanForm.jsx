@@ -11,6 +11,7 @@ const initialValues = {
 
 function LoanForm() {
   const [formValues, setFormValues] = useState(initialValues);
+  const[isDialogOpen, setIsDialogOpen] = useState(false);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -27,12 +28,15 @@ function LoanForm() {
 
     console.log("Loan Application:", formValues);
    dispatch({ type: "partner/savePartner", payload: formValues });
-   alert("Partner verified successfully!");
+   //alert("Partner verified successfully!");
+   setIsDialogOpen(true);
+   setFormValues(initialValues); // Reset form after submission
     // Later you can dispatch Redux action here
     // dispatch(createLoanAsync(formValues));
   };
 
   return (
+    <>
     <form onSubmit={handleSubmit}>
       <div className="mt-6 bg-white shadow-md rounded-xl p-6 mx-4">
 
@@ -207,6 +211,21 @@ function LoanForm() {
         </div>
       </div>
     </form>
+
+    {isDialogOpen && (
+      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+          <p>Partner verified successfully!</p>
+          <button
+            onClick={() => setIsDialogOpen(false)}
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    )}
+    </>
   );
 }
 
