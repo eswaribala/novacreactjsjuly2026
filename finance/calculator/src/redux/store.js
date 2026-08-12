@@ -1,8 +1,8 @@
 import {configureStore} from '@reduxjs/toolkit';
-import policyReducer from './features/policy/policySlicer.js';
+import partnerReducer from './features/partner/partnerSlicer.js';
 
 export const store = configureStore({
     reducer: {
-        policy: policyReducer,
+        partner: partnerReducer,
     },
 }); 
