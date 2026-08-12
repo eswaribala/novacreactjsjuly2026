@@ -8,7 +8,7 @@ import { ApolloProvider } from '@apollo/client/react'
 
 const client=new ApolloClient({
   link:new HttpLink({
-      uri:'http://localhost:4000/graphql'
+      uri:'http://localhost:4000/'
   }),
   
   cache:new InMemoryCache()
