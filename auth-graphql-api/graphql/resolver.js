@@ -12,7 +12,7 @@ const resolvers = {
         },
         getProductById: async (_, { productId }) => {
             try {
-                const product = await Product.findById(productId);
+                const product = await Product.findOne({ productId: productId });
                 if (!product) {
                     throw new Error("Product not found");
                 }
@@ -34,7 +34,7 @@ const resolvers = {
         },
         updateProduct: async (_, { productId, input }) => {
             try {   
-                const updatedProduct = await Product.findByIdAndUpdate(productId, input, { new: true });
+                const updatedProduct = await Product.findOneAndUpdate({ productId: productId }, input, { new: true });
                 if (!updatedProduct) {
                     throw new Error("Product not found");
                 }
@@ -45,7 +45,7 @@ const resolvers = {
         },
         deleteProduct: async (_, { productId }) => {
             try {
-                const deletedProduct = await Product.findByIdAndDelete(productId);
+                const deletedProduct = await Product.findOneAndDelete({ productId: productId });
                 if (!deletedProduct) {
                     throw new Error("Product not found");
                 }
