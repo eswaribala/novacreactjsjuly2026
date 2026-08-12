@@ -10,7 +10,7 @@ type Query{
 
 type Mutation {
     createProduct(input: ProductInput!): Product
-    updateProduct(productId: Int!, input: ProductInput!): Product
+    updateProduct(productId: Int!, input: UpdateProductInput!): Product
     deleteProduct(productId: Int!): Product
   }
 
@@ -22,6 +22,14 @@ input ProductInput {
  price: Float!
  category: String!
    stock: Int!
+}
+
+input UpdateProductInput {
+  name: String
+  description: String
+  price: Float
+  category: String
+  stock: Int
 }
 
 type Product {

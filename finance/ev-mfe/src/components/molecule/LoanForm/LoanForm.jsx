@@ -211,10 +211,11 @@ function LoanForm() {
         </div>
       </div>
     </form>
-
+      
     {isDialogOpen && (
-      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-        <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+     
+      <div className="fixed inset-0 flex items-center justify-self-center border-amber-900  z-50">
+        <div className="bg-yellow-400 p-6 rounded-lg shadow-lg w-96">
           <p>Partner verified successfully!</p>
           <button
             onClick={() => setIsDialogOpen(false)}
