@@ -41,3 +41,5 @@ type Product {
   stock: Int!
 }
   `
+
+module.exports = typeDefs
