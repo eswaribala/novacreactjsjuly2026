@@ -127,6 +127,6 @@ const partnerSlice = createSlice({
     }
 });
 
-export const { clearPartnerMessage} = partnerSlice.actions;
+export const { clearPartnerMessage } = partnerSlice.actions;
 export default partnerSlice.reducer;
 

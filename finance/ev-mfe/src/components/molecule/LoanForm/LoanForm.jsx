@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FormField from "../FormField/FormField";
+import { useDispatch } from "react-redux";
 
 const initialValues = {
   mobileNo: "",
@@ -10,6 +11,7 @@ const initialValues = {
 
 function LoanForm() {
   const [formValues, setFormValues] = useState(initialValues);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -24,7 +26,8 @@ function LoanForm() {
     e.preventDefault();
 
     console.log("Loan Application:", formValues);
-
+   dispatch({ type: "partner/savePartner", payload: formValues });
+   alert("Partner verified successfully!");
     // Later you can dispatch Redux action here
     // dispatch(createLoanAsync(formValues));
   };
