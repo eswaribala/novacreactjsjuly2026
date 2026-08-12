@@ -2,8 +2,8 @@ require("dotenv").config();
 const { ApolloServer } = require("@apollo/server");
 const {startStandaloneServer} = require("@apollo/server/standalone");
 const {connectToDatabase} = require("./config/database.js");
-const typeDefs = require("./graphql/typeDefs.js");
-const resolvers = require("./graphql/resolvers.js");
+const typeDefs = require("./graphql/typesystem/index.js");
+const resolvers = require("./graphql/resolver.js");
 
 async function startServer() {
   try {
