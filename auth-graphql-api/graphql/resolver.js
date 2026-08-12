@@ -21,6 +21,17 @@ const resolvers = {
                 throw new Error("Failed to fetch product");
             }
         },
+        getProductsByCategory: async (_, { category }) => {
+            try {
+                const products = await Product.find({ category: category });
+                if (products.length === 0) {
+                    throw new Error("No products found in this category");
+                }
+            return products;
+            } catch (error) {
+                throw new Error("Failed to fetch products by category");
+            }
+        },
     },
     Mutation: {
         createProduct: async (_, { input }) => {
