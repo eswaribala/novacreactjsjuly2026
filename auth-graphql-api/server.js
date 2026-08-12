@@ -2,12 +2,10 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-const swaggerUi = require("swagger-ui-express");
+
 
 const { connectToDatabase } = require("./config/database");
-const authRoutes = require("./routes/authRoutes");
-const ecommerceRoutes = require("./routes/ecommerceRoutes");
-const swaggerSpecification = require("./config/swagger");
+
 
 const app = express();
 
@@ -26,22 +24,7 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-// Swagger documentation
-app.use(
-  "/api-docs",
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerSpecification)
-);
 
-// Optional OpenAPI JSON endpoint
-app.get("/api-docs.json", (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  res.send(swaggerSpecification);
-});
-
-// Authentication routes
-app.use("/api/auth", authRoutes);
-app.use("/api/auth", ecommerceRoutes);
 
 
 // Global error handler
