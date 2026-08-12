@@ -1,0 +1,130 @@
+<div class="loan-container">
+
+  <h1>💍 Marriage Loan</h1>
+
+  <p class="subtitle">
+    Apply for financial assistance for your special day
+  </p>
+
+  <form (ngSubmit)="applyLoan()">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label>Applicant Name</label>
+
+        <input
+          type="text"
+          name="applicantName"
+          [(ngModel)]="applicantName"
+          placeholder="Enter applicant name"
+          required
+        />
+      </div>
+
+
+      <div class="form-group">
+        <label>Mobile Number</label>
+
+        <input
+          type="tel"
+          name="mobileNo"
+          [(ngModel)]="mobileNo"
+          placeholder="Enter mobile number"
+          required
+        />
+      </div>
+
+
+      <div class="form-group">
+        <label>Marriage Date</label>
+
+        <input
+          type="date"
+          name="marriageDate"
+          [(ngModel)]="marriageDate"
+        />
+      </div>
+
+
+      <div class="form-group">
+        <label>Required Loan Amount</label>
+
+        <input
+          type="number"
+          name="loanAmount"
+          [(ngModel)]="loanAmount"
+          placeholder="Enter loan amount"
+        />
+      </div>
+
+
+      <div class="form-group">
+        <label>Monthly Income</label>
+
+        <input
+          type="number"
+          name="monthlyIncome"
+          [(ngModel)]="monthlyIncome"
+          placeholder="Enter monthly income"
+        />
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Employment Type</label>
+
+        <select
+          name="employmentType"
+          [(ngModel)]="employmentType"
+        >
+
+          <option value="">
+            Select Employment Type
+          </option>
+
+          <option value="Salaried">
+            Salaried
+          </option>
+
+          <option value="Self Employed">
+            Self Employed
+          </option>
+
+          <option value="Business">
+            Business
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>City</label>
+
+        <input
+          type="text"
+          name="city"
+          [(ngModel)]="city"
+          placeholder="Enter city"
+        />
+
+      </div>
+
+    </div>
+
+
+    <div class="button-container">
+
+      <button type="submit">
+        Apply for Marriage Loan
+      </button>
+
+    </div>
+
+  </form>
+
+</div>

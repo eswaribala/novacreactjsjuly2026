@@ -1,0 +1,261 @@
+Step 4 — Build the Angular MFE
+
+Because the React application needs the Angular JavaScript, build Angular:
+
+ng build
+
+Angular creates something similar to:
+
+dist/
+ └── marriage-loan-mfe/
+      └── browser/
+           ├── main-XXXX.js
+           ├── polyfills-XXXX.js
+           └── styles-XXXX.css
+
+For easier MFE development, disable output hashing.
+
+Open:
+
+angular.json
+
+Under the production build options, set:
+
+"outputHashing": "none"
+
+Then run:
+
+ng build
+
+You should get predictable filenames such as:
+
+dist/
+ └── marriage-loan-mfe/
+      └── browser/
+           ├── main.js
+           ├── polyfills.js
+           └── styles.css
+Step 5 — Serve the Angular build independently
+
+Install a small static server:
+
+npm install -g http-server
+
+Go to the generated Angular folder:
+
+cd dist/marriage-loan-mfe/browser
+
+Run:
+
+http-server -p 4200 --cors
+
+Your Angular MFE assets are now independently available from:
+
+http://localhost:4200
+
+This gives you:
+
+React Host                 Angular MFE
+localhost:5173             localhost:4200
+      │                         │
+      │                         │
+      └────── loads ────────────┘
+Step 6 — Load Angular into the React host
+
+Go to your React host.
+
+Suppose it looks like:
+
+host-app/
+├── src/
+│   ├── App.jsx
+│   └── main.jsx
+└── index.html
+
+Open:
+
+index.html
+
+Before:
+
+<body>
+
+  <div id="root"></div>
+
+  <script
+    type="module"
+    src="/src/main.jsx">
+  </script>
+
+</body>
+
+Add the Angular MFE JavaScript:
+
+<body>
+
+  <div id="root"></div>
+
+
+  <!-- Angular Marriage Loan MFE -->
+
+  <script
+    type="module"
+    src="http://localhost:4200/main.js">
+  </script>
+
+
+  <!-- React Host -->
+
+  <script
+    type="module"
+    src="/src/main.jsx">
+  </script>
+
+</body>
+
+If your Angular build also requires a separate polyfills.js, load it before main.js:
+
+<script
+  type="module"
+  src="http://localhost:4200/polyfills.js">
+</script>
+
+<script
+  type="module"
+  src="http://localhost:4200/main.js">
+</script>
+Step 7 — Create React wrapper component
+
+Inside the React host create:
+
+src/components/MarriageLoanMFE.jsx
+
+Add:
+
+function MarriageLoanMFE() {
+
+  return (
+    <div>
+
+      <marriage-loan>
+      </marriage-loan>
+
+    </div>
+  );
+
+}
+
+export default MarriageLoanMFE;
+
+This may look unusual because:
+
+<marriage-loan />
+
+is not a React component.
+
+It is the custom HTML element registered by Angular.
+
+Step 8 — Call it from React App.jsx
+import MarriageLoanMFE
+  from "./components/MarriageLoanMFE";
+
+function App() {
+
+  return (
+    <div>
+
+      <h1>Loan Application</h1>
+
+      <MarriageLoanMFE />
+
+    </div>
+  );
+
+}
+
+export default App;
+
+Now run React:
+
+npm run dev
+
+Open:
+
+http://localhost:5173
+
+You should see:
+
+React Host
+────────────────────────────────────
+
+        Loan Application
+
+        💍 Marriage Loan
+
+Applicant Name     Mobile Number
+
+Marriage Date      Loan Amount
+
+Monthly Income     Employment Type
+
+City
+
+                  [Apply for Loan]
+Step 9 — Add React Router route
+
+You can also show the Angular MFE only when the user navigates to /marriage-loan.
+
+import {
+  Routes,
+  Route
+} from "react-router-dom";
+
+import MarriageLoanMFE
+  from "./components/MarriageLoanMFE";
+
+function App() {
+
+  return (
+
+    <Routes>
+
+      <Route
+        path="/marriage-loan"
+        element={<MarriageLoanMFE />}
+      />
+
+    </Routes>
+
+  );
+
+}
+
+export default App;
+
+Your existing main.jsx can remain:
+
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+
+import App from './App.jsx';
+
+createRoot(
+  document.getElementById('root')
+).render(
+
+  <StrictMode>
+
+    <BrowserRouter>
+
+      <App />
+
+    </BrowserRouter>
+
+  </StrictMode>
+
+);
+
+Then:
+
+http://localhost:5173/marriage-loan
