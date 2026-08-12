@@ -1,5 +1,5 @@
 import {lazy, Suspense} from "react";
-import MarriageLoanMFE from "./components/MarriageLoanMFE";
+//import MarriageLoanMFE from "./components/MarriageLoanMFE";
 const EVDashboard = lazy(() => import("ev-dashboard/EVMFE"));
 function App() {
   
@@ -8,7 +8,9 @@ function App() {
     <>
       <Suspense fallback={<div>Loading...</div>}>
         <EVDashboard />
+        {/* 
         <MarriageLoanMFE/>
+        */}
       </Suspense>
     
     </>

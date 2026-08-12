@@ -3,7 +3,7 @@ import FormField from "../FormField/FormField";
 import { useDispatch } from "react-redux";
 
 const initialValues = {
-  mobileNo: "",
+  mobileNo: 0,
   isAssisted: false,
   partnerCode: "",
   partnerName: "",
@@ -50,9 +50,11 @@ function LoanForm() {
           {/* Mobile Number */}
           <FormField
             id="mobileNo"
+            name="mobileNo"
+            autoComplete="tel"
             label="Mobile Number"
             type="tel"
-            value={formValues.mobileNo}
+            value={formValues.mobileNo==0 ? "" : formValues.mobileNo}
             onChange={handleChange}
             required
             placeholder="Enter mobile number"
@@ -129,6 +131,8 @@ function LoanForm() {
           {/* Partner Code */}
           <FormField
             id="partnerCode"
+            name="partnerCode"
+            autoComplete="off"
             label="Partner Code"
             type="text"
             value={formValues.partnerCode}
@@ -153,6 +157,7 @@ function LoanForm() {
           {/* Partner Name */}
           <FormField
             id="partnerName"
+            name="partnerName"
             label="Partner Name"
             type="text"
             value={formValues.partnerName}
