@@ -5,7 +5,7 @@ import TextArea from "../atoms/TextArea/TextArea";
 import { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import {CREATE_PRODUCT} from '../../graphql/productMutation.js'
-
+import {faker} from '@faker-js/faker';
 
 import {useRef} from "react";
 function AddProduct() {
@@ -84,7 +84,7 @@ function AddProduct() {
         input: {
 
           productId:
-            Number(values.productId),
+            faker.number.int({ min: 1, max: 10000000 }),
 
           
           name:
