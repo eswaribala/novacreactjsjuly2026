@@ -10,7 +10,6 @@ async function startServer() {
     server: {
       middlewareMode: true,
     },
-
     appType: "custom",
   });
 
@@ -54,9 +53,9 @@ async function startServer() {
 
       console.error(error);
 
-      res.status(500).end(
-        error.stack
-      );
+      res
+        .status(500)
+        .end(error.stack);
     }
   });
 

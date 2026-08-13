@@ -20,6 +20,7 @@ function AddProduct() {
 
    const [values, setValues] = useState(initialValues);
    const [errorMessages, setErrorMessages] = useState({});
+   const [disabled, setDisabled] = useState(true);
    const nameRef = useRef(null);
 
    const [createProduct] = useMutation(CREATE_PRODUCT); 
@@ -29,6 +30,14 @@ function AddProduct() {
    const handleChange = (e) => {
     const {id, value} = e.target;
     setValues({...values, [id]: value});
+    if(values.name.trim() !== '' && values.description.trim() !== '' &&
+       values.price > 0 && values.category.trim() !== '' &&
+       values.stock >= 0) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+
    }
 
    const validateForm = () => {
@@ -182,7 +191,8 @@ function AddProduct() {
     </div>   
     <div className="flex justify-center">
     <Button type="submit"
-    className="h-14
+    disabled={disabled}
+    className={`h-14
       
       w-72
       rounded-xl
@@ -197,7 +207,7 @@ function AddProduct() {
       hover:shadow-lg
       focus:outline-none
       focus:ring-4
-      focus:ring-blue-200">
+      focus:ring-blue-200${disabled ? ' opacity-50 cursor-not-allowed' : ''}`}>
       Submit
     </Button>
     </div>

@@ -8,7 +8,11 @@ function Order() {
     const placeOrder = () => {
         // Here you can add logic to handle order placement, such as sending data to a backend server.
         // For now, we'll just navigate to the order confirmation page.
-        navigate("/order-confirmation");
+       navigate("/payment", {
+    state: {
+      amount: total
+    }
+  });
     }
     return (
         <>

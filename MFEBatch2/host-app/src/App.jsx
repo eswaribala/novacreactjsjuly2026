@@ -4,6 +4,7 @@ import { fetchProducts } from "./redux/features/products/productSlicer.js";
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import ProductCartPage from "./Pages/ProductCartPage.jsx";
+import PaymentPage from "./Pages/PaymentPage.jsx";
 
 const Order = lazy(() =>
   import("order/OrderMFE")
@@ -21,6 +22,8 @@ function App() {
      <Routes>
         <Route path="/" element={<ProductCartPage />} />
          <Route path="/checkout" element={<Order />} />
+         <Route path="/payment" element={<PaymentPage />}
+  />
         <Route path="*" element={<p>Page not found</p>} />
      </Routes>
      </Suspense>
