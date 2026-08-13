@@ -1,7 +1,4 @@
-import {
-  TabListProps,
-  TabTriggerSlotProps
-} from "expo-router/ui";
+import { TabListProps, TabTriggerSlotProps } from "expo-router/ui";
 import { SymbolView } from "expo-symbols";
 import { Pressable, StyleSheet, useColorScheme, View } from "react-native";
 import { Footer } from "./footer";
@@ -19,7 +16,7 @@ export default function AppTabs() {
     <>
       <Header />
       <RestaurantContent />
-      <Footer title="Order" />
+      <Footer />
     </>
   );
 }

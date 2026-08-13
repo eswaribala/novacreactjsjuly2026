@@ -1,13 +1,25 @@
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
-export function Footer({ title }: { title: string }) {
+export function Footer() {
+  return (
+    <View style={styles.container}>
+      <View style={styles.bottomNav}>
+        <NavItem title="Home" />
+        <NavItem title="Search" />
+        <NavItem title="Add" />
+        <NavItem title="Messages" />
+        <NavItem title="Profile" />
+      </View>
+    </View>
+  );
+}
+function NavItem({ title }: { title: string }) {
   return (
     <Pressable style={styles.navItem}>
       <Text style={styles.navText}>{title}</Text>
     </Pressable>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
