@@ -14,6 +14,7 @@ function PartnerForm() {
   const[isDialogOpen, setIsDialogOpen] = useState(false);
    const [createPartner] = useMutation(CREATE_PARTNER); 
 
+   
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -188,7 +189,7 @@ function PartnerForm() {
      
       <div className="fixed inset-0 flex items-center justify-self-center border-amber-900  z-50">
         <div className="bg-yellow-400 p-6 rounded-lg shadow-lg w-96">
-          <p>Partner verified successfully!</p>
+          <p>Partner added successfully!</p>
           <button
             onClick={() => setIsDialogOpen(false)}
             className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg"
