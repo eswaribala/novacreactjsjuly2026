@@ -3,8 +3,6 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 function RestaurantContent() {
   return (
     <ScrollView style={styles.content}>
-      <Text style={styles.contentTitle}>Content Area</Text>
-
       <Card
         title="Mutton Briyani"
         description="Hyderabadi style mutton briyani with aromatic spices and tender meat."
@@ -123,19 +121,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     borderTopWidth: 1,
     borderTopColor: "#dddddd",
-  },
-
-  navItem: {
-    alignItems: "center",
-  },
-
-  navIcon: {
-    fontSize: 22,
-  },
-
-  navText: {
-    fontSize: 11,
-    marginTop: 4,
   },
 });
 

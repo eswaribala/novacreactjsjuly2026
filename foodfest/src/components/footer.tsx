@@ -4,18 +4,21 @@ export function Footer() {
   return (
     <View style={styles.container}>
       <View style={styles.bottomNav}>
-        <NavItem title="Home" />
-        <NavItem title="Search" />
-        <NavItem title="Add" />
-        <NavItem title="Messages" />
-        <NavItem title="Profile" />
+        <NavItem title="Home" route="home" />
+        <NavItem title="Order" route="order" />
+        <NavItem title="Cart" route="cart" />
+        <NavItem title="Delivery" route="delivery" />
+        <NavItem title="Notifications" route="notifications" />
       </View>
     </View>
   );
 }
-function NavItem({ title }: { title: string }) {
+function NavItem({ title, route }: { title: string; route: string }) {
   return (
-    <Pressable style={styles.navItem}>
+    <Pressable
+      style={styles.navItem}
+      onPress={() => alert(`Navigate to ${route}`)}
+    >
       <Text style={styles.navText}>{title}</Text>
     </Pressable>
   );
@@ -24,78 +27,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f4f8f2",
-  },
-
-  header: {
-    height: 70,
-    backgroundColor: "#ffffff",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: "#dddddd",
-  },
-
-  headerTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-
-  icon: {
-    fontSize: 24,
-  },
-
-  content: {
-    flex: 1,
-    padding: 16,
-  },
-
-  contentTitle: {
-    textAlign: "center",
-    fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 15,
-    color: "green",
-  },
-
-  card: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#ffffff",
-    padding: 15,
-    marginBottom: 15,
-    borderRadius: 12,
-    elevation: 3,
-  },
-
-  imageBox: {
-    width: 75,
-    height: 75,
-    backgroundColor: "#e5e7eb",
-    borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
-    marginRight: 15,
-  },
-
-  image: {
-    fontSize: 30,
-  },
-
-  cardContent: {
-    flex: 1,
-  },
-
-  cardTitle: {
-    fontSize: 17,
-    fontWeight: "bold",
-    marginBottom: 6,
-  },
-
-  description: {
-    fontSize: 14,
-    color: "#555555",
   },
 
   bottomNav: {
