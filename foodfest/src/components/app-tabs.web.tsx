@@ -15,10 +15,14 @@ import { ThemedView } from './themed-view';
 
 import { Colors, MaxContentWidth, Spacing } from '@/constants/theme';
 import Header from './header';
+import RestaurantContent from './restaurantcontent';
 
 export default function AppTabs() {
   return (
-    <Header/>
+    <>
+      <Header/>
+      <RestaurantContent/>
+    </>
   );
 }
 

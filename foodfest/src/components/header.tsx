@@ -4,7 +4,7 @@ export default Header;
 function Header() {
   return (
     <View style={styles.header}>
-      <Text style={{ color: "navy", fontSize: 32 }}>Khader Briyani</Text>
+      <Text style={{ color: "navy", fontSize: 32 }}>SS Briyani</Text>
       <Text style={{ color: "navy", fontSize: 16 }}>
         Food Fest Open in Chennai Now
       </Text>
