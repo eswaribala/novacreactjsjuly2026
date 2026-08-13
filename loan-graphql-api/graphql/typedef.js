@@ -1,4 +1,4 @@
-
+const {GraphQLBigInt} = require('graphql-scalars');
 const typeDefs = `#graphql
 scalar BigInt
 

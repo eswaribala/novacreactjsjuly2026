@@ -1,10 +1,10 @@
 
 const Partnner=require('../models/partnerModel.js');
-const BigInt = require('graphql-scalars').BigIntResolver;
+const {GraphQLBigInt} = require('graphql-scalars');
 
 
 const resolvers = {
-    BigInt: BigInt,
+    BigInt: GraphQLBigInt,
     Query: {
         getAllPartners: async () => {
             return await Partnner.find();
