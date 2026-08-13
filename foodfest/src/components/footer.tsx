@@ -1,42 +1,13 @@
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-//Restautant menu content
-function RestaurantContent() {
+import { Pressable, StyleSheet, Text } from "react-native";
+
+export function Footer({ title }: { title: string }) {
   return (
-    <ScrollView style={styles.content}>
-      <Text style={styles.contentTitle}>Content Area</Text>
-
-      <Card
-        title="Mutton Briyani"
-        description="Hyderabadi style mutton briyani with aromatic spices and tender meat."
-      />
-
-      <Card
-        title="Chicken Briyani"
-        description="Delicious chicken briyani cooked with fragrant basmati rice and spices."
-      />
-
-      <Card
-        title="Veg Briyani"
-        description="Aromatic vegetable briyani with a mix of fresh vegetables and spices."
-      />
-    </ScrollView>
-  );
-}
-
-function Card({ title, description }: { title: string; description: string }) {
-  return (
-    <Pressable style={styles.card}>
-      <View style={styles.imageBox}>
-        <Text style={styles.image}>🖼️</Text>
-      </View>
-
-      <View style={styles.cardContent}>
-        <Text style={styles.cardTitle}>{title}</Text>
-        <Text style={styles.description}>{description}</Text>
-      </View>
+    <Pressable style={styles.navItem}>
+      <Text style={styles.navText}>{title}</Text>
     </Pressable>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -138,5 +109,3 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
 });
-
-export default RestaurantContent;
