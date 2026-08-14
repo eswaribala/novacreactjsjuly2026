@@ -1,142 +1,28 @@
-import { useLocalSearchParams, usePathname } from "expo-router";
-import { useState } from "react";
-import {
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-
+import { paymentOptions } from "@/data/paymentoptions";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 export default function Payment() {
-  const pathname = usePathname();
-
-  const params = useLocalSearchParams();
-  const cartItems = params.cartItems;
-  const total = params.total;
-
-  const [form, setForm] = useState({
-    cardNumber: "",
-    cardHolderName: "",
-    expiryDate: "",
-    cvv: "",
-  });
-
-  const handleChange = (field: string, value: string) => {
-    setForm({ ...form, [field]: value });
-  };
-
-  const handleSubmit = () => {
-    // Handle form submission
-    console.log(form);
-  };
-
-  //payment logic here
-  //create card details form and handle payment submission
-
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-      >
-        <ScrollView
-          contentContainerStyle={styles.scrollContainer}
-          keyboardShouldPersistTaps="handled"
-        >
-          <View style={styles.card}>
-            <Text style={styles.title}>Card Holder Details</Text>
+    <>
+      <View style={styles.paymentContainer}>
+        {paymentOptions.map((option) => (
+          <Pressable key={option.id} style={styles.paymentItem}>
+            <Image source={{ uri: option.image }} style={styles.paymentImage} />
 
-            <Text style={styles.subtitle}>
-              Please enter your information below
-            </Text>
-
-            {/* Name */}
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>
-                Card Number <Text style={styles.required}>*</Text>
-              </Text>
-
-              <TextInput
-                style={styles.input}
-                placeholder="Enter your card number"
-                placeholderTextColor="#9CA3AF"
-                value={form.cardNumber}
-                onChangeText={(value) => handleChange("cardNumber", value)}
-              />
-            </View>
-
-            {/* Email */}
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>
-                Card Holder Name <Text style={styles.required}>*</Text>
-              </Text>
-
-              <TextInput
-                style={styles.input}
-                placeholder="Enter card holder name"
-                placeholderTextColor="#9CA3AF"
-                value={form.cardHolderName}
-                onChangeText={(value) => handleChange("cardHolderName", value)}
-              />
-            </View>
-
-            {/* Expiry Date */}
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>
-                Expiry Date <Text style={styles.required}>*</Text>
-              </Text>
-
-              <TextInput
-                style={styles.input}
-                placeholder="MM/YY"
-                placeholderTextColor="#9CA3AF"
-                value={form.expiryDate}
-                onChangeText={(value) => handleChange("expiryDate", value)}
-              />
-            </View>
-
-            {/* CVV */}
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>
-                CVV <Text style={styles.required}>*</Text>
-              </Text>
-
-              <TextInput
-                style={styles.input}
-                placeholder="Enter CVV"
-                placeholderTextColor="#9CA3AF"
-                keyboardType="number-pad"
-                maxLength={4}
-                value={form.cvv}
-                onChangeText={(value) => handleChange("cvv", value)}
-              />
-            </View>
-
-            {/* Submit */}
-            <TouchableOpacity
-              style={styles.submitButton}
-              onPress={handleSubmit}
-              activeOpacity={0.8}
-            >
-              <Text style={styles.submitButtonText}>Submit</Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+            <Text style={styles.paymentName}>{option.name}</Text>
+          </Pressable>
+        ))}
+      </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fffaf5",
-    padding: 20,
+  paymentContainer: {
+     flexDirection: "row",      // 👈 horizontal
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 20,
+    paddingVertical: 20,
   },
   heading: {
     fontSize: 24,
@@ -159,18 +45,11 @@ const styles = StyleSheet.create({
   scrollContainer: {
     padding: 20,
   },
-  card: {
-    backgroundColor: "#ffffff",
-    padding: 20,
-    borderRadius: 16,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.07,
-    shadowRadius: 5,
-    elevation: 3,
+  grid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    gap: 20,
   },
   title: {
     fontSize: 22,
@@ -214,6 +93,19 @@ const styles = StyleSheet.create({
   },
   submitButtonText: {
     color: "#ffffff",
+    fontSize: 16,
+    fontWeight: "600",
+  },
+  paymentImage: {
+    width: 50,
+    height: 50,
+    marginBottom: 10,
+  },
+  paymentItem: {
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  paymentName: {
     fontSize: 16,
     fontWeight: "600",
   },
