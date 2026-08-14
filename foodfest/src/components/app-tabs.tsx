@@ -1,11 +1,29 @@
-import { useColorScheme } from "react-native";
+import { Slot } from "expo-router";
+import { StyleSheet, View } from "react-native";
 
-import { Colors } from "@/constants/theme";
+import { Footer } from "./footer";
 import Header from "./header";
 
 export default function AppTabs() {
-  const scheme = useColorScheme();
-  const colors = Colors[scheme === "unspecified" ? "light" : scheme];
+  return (
+    <View style={styles.container}>
+      <Header />
 
-  return <Header />;
+      <View style={styles.content}>
+        <Slot />
+      </View>
+
+      <Footer />
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
+  content: {
+    flex: 1,
+  },
+});

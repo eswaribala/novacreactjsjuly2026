@@ -1,0 +1,35 @@
+npm install -D vitest
+npm install -D @testing-library/react
+npm install -D @testing-library/jest-dom
+npm install -D @testing-library/user-event
+npm install -D jsdom
+
+or
+
+npm install -D vitest jsdom @testing-library/react @testing-library/jest-dom @testing-library/user-event
+
+#vite-cofig
+test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: "./src/setupTests.js",
+  },
+
+create src/setupTests.js 
+
+add
+import "@testing-library/jest-dom";
+
+add in package.json
+
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest"
+  }
+}
+
+
+
+

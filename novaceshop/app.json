@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "foodfest",
-    "slug": "foodfest",
+    "name": "novaceshop",
+    "slug": "novaceshop",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "foodfest",
+    "scheme": "novaceshop",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"
@@ -17,8 +17,7 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false,
-      "package": "com.eswaribala.foodfest"
+      "predictiveBackGestureEnabled": false
     },
     "web": {
       "output": "static",
@@ -38,12 +37,6 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    },
-    "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "cea2188c-b5fa-49af-b8bc-dfcb5c203fa0"
-      }
     }
   }
 }

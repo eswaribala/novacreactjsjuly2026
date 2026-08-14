@@ -1,113 +1,99 @@
-import { StyleSheet, Text, View } from "react-native";
-export default Header;
-function Header() {
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
+export default function Header() {
   return (
     <View style={styles.header}>
-      <Text style={styles.icon}>☰</Text>
-      <Text style={styles.headerTitle}>SS Briyani</Text>
-      <Text style={styles.icon}>🔔</Text>
+      <TouchableOpacity style={styles.iconButton}>
+        <Text style={styles.icon}>☰</Text>
+      </TouchableOpacity>
+
+      <View style={styles.titleContainer}>
+        <Text style={styles.headerTitle}>SS Briyani</Text>
+        <Text style={styles.subtitle}>Fresh & Delicious</Text>
+      </View>
+
+      <TouchableOpacity style={styles.iconButton}>
+        <Text style={styles.icon}>🔔</Text>
+        <View style={styles.notificationBadge}>
+          <Text style={styles.badgeText}>2</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#f4f8f2",
-  },
-
   header: {
-    height: 70,
+    height: 78,
     backgroundColor: "#ffffff",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 20,
+    paddingHorizontal: 18,
+
     borderBottomWidth: 1,
-    borderBottomColor: "#dddddd",
+    borderBottomColor: "#f1f1f1",
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    elevation: 5,
   },
 
-  headerTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
+  iconButton: {
+    width: 45,
+    height: 45,
+    borderRadius: 22,
+    backgroundColor: "#fff7ed",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative",
   },
 
   icon: {
-    fontSize: 24,
+    fontSize: 23,
   },
 
-  content: {
-    flex: 1,
-    padding: 16,
-  },
-
-  contentTitle: {
-    textAlign: "center",
-    fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 15,
-    color: "green",
-  },
-
-  card: {
-    flexDirection: "row",
+  titleContainer: {
     alignItems: "center",
-    backgroundColor: "#ffffff",
-    padding: 15,
-    marginBottom: 15,
-    borderRadius: 12,
-    elevation: 3,
   },
 
-  imageBox: {
-    width: 75,
-    height: 75,
-    backgroundColor: "#e5e7eb",
-    borderRadius: 8,
+  headerTitle: {
+    fontSize: 22,
+    fontWeight: "800",
+    color: "#c2410c",
+  },
+
+  subtitle: {
+    fontSize: 11,
+    color: "#777",
+    marginTop: 2,
+  },
+
+  notificationBadge: {
+    position: "absolute",
+    right: -2,
+    top: -2,
+
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+
+    backgroundColor: "#dc2626",
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 15,
+
+    borderWidth: 2,
+    borderColor: "#ffffff",
   },
 
-  image: {
-    fontSize: 30,
-  },
-
-  cardContent: {
-    flex: 1,
-  },
-
-  cardTitle: {
-    fontSize: 17,
+  badgeText: {
+    color: "#ffffff",
+    fontSize: 9,
     fontWeight: "bold",
-    marginBottom: 6,
-  },
-
-  description: {
-    fontSize: 14,
-    color: "#555555",
-  },
-
-  bottomNav: {
-    height: 75,
-    backgroundColor: "#ffffff",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    borderTopWidth: 1,
-    borderTopColor: "#dddddd",
-  },
-
-  navItem: {
-    alignItems: "center",
-  },
-
-  navIcon: {
-    fontSize: 22,
-  },
-
-  navText: {
-    fontSize: 11,
-    marginTop: 4,
   },
 });

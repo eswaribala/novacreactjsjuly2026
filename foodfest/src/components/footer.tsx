@@ -1,54 +1,187 @@
+import { router, usePathname } from "expo-router";
+import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export function Footer() {
+  const [activeRoute, setActiveRoute] = useState("home");
+  const pathname = usePathname();
+  const handleNavigation = (route: string) => {
+    setActiveRoute(route);
+
+    // Replace this later with React Navigation
+    console.log("Navigate to:", route);
+    if (route === "cart") {
+      router.push("/cart");
+    }
+  };
+
+  const getActiveRoute = () => {
+    if (pathname === "/cart") return "cartPage";
+    if (pathname === "/order") return "order";
+    if (pathname === "/delivery") return "delivery";
+    if (pathname === "/notifications") return "notifications";
+
+    return "home";
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.bottomNav}>
-        <NavItem title="Home" route="home" />
-        <NavItem title="Order" route="order" />
-        <NavItem title="Cart" route="cart" />
-        <NavItem title="Delivery" route="delivery" />
-        <NavItem title="Notifications" route="notifications" />
-      </View>
+    <View style={styles.bottomNav}>
+      <NavItem
+        icon="🏠"
+        title="Home"
+        route="home"
+        activeRoute={activeRoute}
+        onNavigate={handleNavigation}
+      />
+
+      <NavItem
+        icon="🍽️"
+        title="Order"
+        route="order"
+        activeRoute={activeRoute}
+        onNavigate={handleNavigation}
+      />
+
+      <NavItem
+        icon="🛒"
+        title="Cart"
+        route="cart"
+        activeRoute={activeRoute}
+        onNavigate={handleNavigation}
+      />
+
+      <NavItem
+        icon="🛵"
+        title="Delivery"
+        route="delivery"
+        activeRoute={activeRoute}
+        onNavigate={handleNavigation}
+      />
+
+      <NavItem
+        icon="🔔"
+        title="Alerts"
+        route="notifications"
+        activeRoute={activeRoute}
+        onNavigate={handleNavigation}
+      />
     </View>
   );
 }
-function NavItem({ title, route }: { title: string; route: string }) {
+
+type NavItemProps = {
+  icon: string;
+  title: string;
+  route: string;
+  activeRoute: string;
+  onNavigate: (route: string) => void;
+};
+
+function NavItem({
+  icon,
+  title,
+  route,
+  activeRoute,
+  onNavigate,
+}: NavItemProps) {
+  const isActive = activeRoute === route;
+
   return (
     <Pressable
-      style={styles.navItem}
-      onPress={() => alert(`Navigate to ${route}`)}
+      style={({ pressed }) => [
+        styles.navItem,
+        pressed && styles.navItemPressed,
+      ]}
+      onPress={() => onNavigate(route)}
     >
-      <Text style={styles.navText}>{title}</Text>
+      <View style={[styles.iconBox, isActive && styles.activeIconBox]}>
+        <Text style={styles.navIcon}>{icon}</Text>
+      </View>
+
+      <Text style={[styles.navText, isActive && styles.activeNavText]}>
+        {title}
+      </Text>
+
+      {isActive && <View style={styles.activeIndicator} />}
     </Pressable>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#f4f8f2",
-  },
 
+const styles = StyleSheet.create({
   bottomNav: {
-    height: 75,
+    height: 82,
     backgroundColor: "#ffffff",
+
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
+
+    paddingHorizontal: 10,
+
     borderTopWidth: 1,
-    borderTopColor: "#dddddd",
+    borderTopColor: "#f1f1f1",
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: -3,
+    },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+
+    elevation: 10,
   },
 
   navItem: {
+    flex: 1,
+    height: 70,
+
     alignItems: "center",
+    justifyContent: "center",
+  },
+
+  navItemPressed: {
+    opacity: 0.7,
+  },
+
+  iconBox: {
+    width: 38,
+    height: 34,
+
+    alignItems: "center",
+    justifyContent: "center",
+
+    borderRadius: 12,
+  },
+
+  activeIconBox: {
+    backgroundColor: "#fff7ed",
   },
 
   navIcon: {
-    fontSize: 22,
+    fontSize: 21,
   },
 
   navText: {
     fontSize: 11,
+    marginTop: 3,
+
+    color: "#6b7280",
+    fontWeight: "500",
+  },
+
+  activeNavText: {
+    color: "#ea580c",
+    fontWeight: "700",
+  },
+
+  activeIndicator: {
+    width: 24,
+    height: 3,
+
+    backgroundColor: "#ea580c",
+    borderRadius: 5,
+
     marginTop: 4,
   },
 });
