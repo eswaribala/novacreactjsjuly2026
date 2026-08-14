@@ -3,8 +3,23 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export function Footer() {
   const [activeRoute, setActiveRoute] = useState("Home");
+  const pathName = window.location.pathname;
+  const getActiveRoute = () => {
+    if (pathName === "/Home") {
+      return "Home";
+    }
+    if (pathName === "/Search") {
+      return "Search";
+    }
+    if (pathName === "/Favorites") {
+      return "Favorites";
+    }
+    if (pathName === "/Settings") {
+      return "Settings";
+    }
+  };
 
-  const getActiveRoute = (route: string) => {
+  const handleNavigation = (route: string) => {
     setActiveRoute(route);
   };
 
@@ -23,28 +38,28 @@ export function Footer() {
           title="Home"
           route="Home"
           activeRoute={activeRoute}
-          onNavigate={getActiveRoute}
+          onNavigate={handleNavigation}
         />
         <NavItem
           icon="🔍"
           title="Search"
           route="Search"
           activeRoute={activeRoute}
-          onNavigate={getActiveRoute}
+          onNavigate={handleNavigation}
         />
         <NavItem
           icon="❤️"
           title="Favorites"
           route="Favorites"
           activeRoute={activeRoute}
-          onNavigate={getActiveRoute}
+          onNavigate={handleNavigation}
         />
         <NavItem
           icon="⚙️"
           title="Settings"
           route="Settings"
           activeRoute={activeRoute}
-          onNavigate={getActiveRoute}
+          onNavigate={handleNavigation}
         />
       </View>
     </>
