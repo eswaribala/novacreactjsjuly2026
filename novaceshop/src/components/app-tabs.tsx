@@ -4,6 +4,7 @@ import { useColorScheme, Text } from 'react-native';
 import { Colors } from '@/constants/theme';
 import Header from './header';
 import HomeScreen from '@/app';
+import { Footer } from './footer';
 
 export default function AppTabs() {
   const scheme = useColorScheme();
@@ -13,6 +14,7 @@ export default function AppTabs() {
     <>
       <Header/>
       <HomeScreen/>
+      <Footer/>
     </>
   );
 }

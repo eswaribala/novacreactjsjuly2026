@@ -1,22 +1,23 @@
-import {
-  TabListProps,
-  TabTriggerSlotProps
-} from "expo-router/ui";
+import { TabListProps, TabTriggerSlotProps } from "expo-router/ui";
 import { SymbolView } from "expo-symbols";
 import { Pressable, StyleSheet, useColorScheme, View } from "react-native";
 import { ExternalLink } from "./external-link";
+import { Footer } from "./footer";
 import Header from "./header";
 import { ThemedText } from "./themed-text";
 import { ThemedView } from "./themed-view";
 
-import { Colors, MaxContentWidth, Spacing } from "@/constants/theme";
 import HomeScreen from "@/app";
+import { Colors, MaxContentWidth, Spacing } from "@/constants/theme";
 
 export default function AppTabs() {
-  return  <>
-      <Header/>
-      <HomeScreen/>
-    </>;
+  return (
+    <>
+      <Header />
+      <HomeScreen />
+      <Footer />
+    </>
+  );
 }
 
 export function TabButton({
