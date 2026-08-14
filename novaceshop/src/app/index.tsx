@@ -7,10 +7,8 @@ import {
   Text,
   View,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ThemedText } from "@/components/themed-text";
-import { ThemedView } from "@/components/themed-view";
 
 import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
 import { ScrollView } from "react-native";
@@ -40,40 +38,33 @@ export default function HomeScreen() {
     console.log(`Added ${productName} to cart for $${productPrice}`);
   };
   return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ScrollView
-          contentContainerStyle={{
-            paddingVertical: 15,
-            paddingBottom: 50,
-          }}
-        >
-          {products.map((product) => (
-            <View key={product.id} style={styles.card}>
-              <Image
-                source={{ uri: product.image }}
-                style={styles.productImage}
-              />
+    <ScrollView contentContainerStyle={styles.scrollContent}>
+      <View style={styles.productGrid}>
+        {products.map((product) => (
+          <View key={product.id} style={styles.card}>
+            <Image
+              source={{ uri: product.image }}
+              style={styles.productImage}
+            />
 
-              <View style={styles.cardContent}>
-                <Text style={styles.productTitle}>{product.name}</Text>
+            <View style={styles.cardContent}>
+              <Text style={styles.productTitle}>{product.name}</Text>
 
-                <Text style={styles.description}>{product.description}</Text>
+              <Text style={styles.description}>{product.description}</Text>
 
-                <Text style={styles.price}>₹{product.price}</Text>
+              <Text style={styles.price}>₹{product.price}</Text>
 
-                <Pressable
-                  style={styles.cartButton}
-                  onPress={() => addToCart(product.name, product.price)}
-                >
-                  <Text style={styles.cartButtonText}>Add to Cart</Text>
-                </Pressable>
-              </View>
+              <Pressable
+                style={styles.cartButton}
+                onPress={() => addToCart(product.name, product.price)}
+              >
+                <Text style={styles.cartButtonText}>Add to Cart</Text>
+              </Pressable>
             </View>
-          ))}
-        </ScrollView>
-      </SafeAreaView>
-    </ThemedView>
+          </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 }
 
@@ -98,59 +89,46 @@ function Card({ product }: { product: (typeof products)[number] }) {
 }
 
 const styles = StyleSheet.create({
+  scrollContent: {
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    paddingBottom: 50,
+  },
+
   container: {
     flex: 1,
     justifyContent: "center",
     flexDirection: "row",
   },
+
   safeArea: {
     flex: 1,
     paddingHorizontal: Spacing.four,
-    alignItems: "center",
-    gap: Spacing.three,
+
+    // REMOVE alignItems: "center"
+    // alignItems: "center",
+
     paddingBottom: BottomTabInset + Spacing.three,
     maxWidth: MaxContentWidth,
-  },
-  heroSection: {
-    alignItems: "center",
-    justifyContent: "center",
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
-  },
-  productTitle: {
-    fontSize: 20,
-    fontWeight: "700",
-    color: "#1f2937",
-    marginBottom: 8,
-  },
-  code: {
-    textTransform: "uppercase",
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: "stretch",
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
-  },
-  productContainer: {
-    marginBottom: Spacing.four,
+    width: "100%",
   },
 
-  button: {
-    marginTop: Spacing.two,
-    paddingVertical: Spacing.two,
-    paddingHorizontal: Spacing.three,
-    borderRadius: Spacing.three,
-    backgroundColor: "#007bff",
-    alignItems: "center",
+  // ADD THIS
+  productGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "flex-start",
+    gap: 20,
+    width: "100%",
   },
+
   card: {
+    // IMPORTANT - allows 3 cards in one row
+    width: "31%",
+    minWidth: 240,
+
     backgroundColor: "#ffffff",
     borderRadius: 18,
-    marginHorizontal: 16,
-    marginVertical: 10,
     overflow: "hidden",
 
     shadowColor: "#000",
@@ -160,18 +138,28 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.12,
     shadowRadius: 8,
-
     elevation: 5,
+
+    // REMOVE THESE
+    // marginHorizontal: 16,
+    // marginVertical: 10,
   },
 
   productImage: {
     width: "100%",
-    height: 200,
+    height: 180,
     resizeMode: "cover",
   },
 
   cardContent: {
     padding: 16,
+  },
+
+  productTitle: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#1f2937",
+    marginBottom: 8,
   },
 
   productId: {
@@ -202,6 +190,18 @@ const styles = StyleSheet.create({
   },
 
   cartButtonText: {
+    color: "#ffffff",
+    fontSize: 16,
+    fontWeight: "700",
+  },
+  button: {
+    backgroundColor: "#7c3aed",
+    paddingVertical: 10,
+    borderRadius: 8,
+    alignItems: "center",
+    marginTop: 10,
+  },
+  buttonText: {
     color: "#ffffff",
     fontSize: 16,
     fontWeight: "700",
