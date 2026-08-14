@@ -1,112 +1,84 @@
 import { paymentOptions } from "@/data/paymentoptions";
+import { useRouter } from "expo-router";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 export default function Payment() {
+  const router = useRouter();
+  const handlePaymentOptionSelect = (option: string) => {
+    alert(`Selected payment option: ${option}`);
+    // Implement payment logic based on the selected option
+    if (option === "Credit Card" || option === "Debit Card") {
+      // Navigate to card payment screen or show card payment form
+      router.push("/carddetails");
+    }
+  };
   return (
-    <>
+    <View style={styles.container}>
+      <Text style={styles.title}>Choose Payment Method</Text>
+
       <View style={styles.paymentContainer}>
         {paymentOptions.map((option) => (
-          <Pressable key={option.id} style={styles.paymentItem}>
-            <Image source={{ uri: option.image }} style={styles.paymentImage} />
+          <Pressable
+            key={option.id}
+            style={styles.paymentItem}
+            onPress={() => {
+              handlePaymentOptionSelect(option.name);
+            }}
+          >
+            <Image
+              source={{ uri: option.image }}
+              style={styles.paymentImage}
+              resizeMode="contain"
+            />
 
             <Text style={styles.paymentName}>{option.name}</Text>
           </Pressable>
         ))}
       </View>
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  paymentContainer: {
-     flexDirection: "row",      // 👈 horizontal
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 20,
-    paddingVertical: 20,
-  },
-  heading: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-  },
-  subheading: {
-    fontSize: 18,
-    fontWeight: "600",
-    marginBottom: 10,
-  },
-  text: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
-  safeArea: {
+  container: {
     flex: 1,
     backgroundColor: "#fffaf5",
+    paddingTop: 20,
   },
-  scrollContainer: {
-    padding: 20,
-  },
-  grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    gap: 20,
-  },
+
   title: {
     fontSize: 22,
     fontWeight: "700",
-    color: "#172033",
-    marginBottom: 10,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: "#6b7280",
+    textAlign: "center",
     marginBottom: 20,
+    color: "#172033",
   },
-  formGroup: {
-    marginBottom: 15,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: "600",
-    marginBottom: 5,
-  },
-  required: {
-    color: "red",
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#d1d5db",
-    borderRadius: 8,
-    padding: 10,
-    fontSize: 16,
-    color: "#1f2937",
-  },
-  textArea: {
-    height: 100,
-  },
-  submitButton: {
-    backgroundColor: "#c2410c",
-    paddingVertical: 12,
-    borderRadius: 8,
+
+  paymentContainer: {
+    flexDirection: "row",
     alignItems: "center",
-    marginTop: 20,
+    justifyContent: "center",
+    flexWrap: "wrap",
+    gap: 20,
+    paddingHorizontal: 20,
   },
-  submitButtonText: {
-    color: "#ffffff",
-    fontSize: 16,
-    fontWeight: "600",
+
+  paymentItem: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: 110,
+    paddingVertical: 12,
   },
+
   paymentImage: {
     width: 50,
     height: 50,
-    marginBottom: 10,
+    marginBottom: 8,
   },
-  paymentItem: {
-    alignItems: "center",
-    marginBottom: 20,
-  },
+
   paymentName: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "600",
+    textAlign: "center",
+    color: "#111827",
   },
 });

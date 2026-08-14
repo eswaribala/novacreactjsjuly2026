@@ -23,6 +23,9 @@ export function Footer() {
       case "payment":
         router.push("/payment");
         break;
+      case "carddetails":
+        router.push("/carddetails");
+        break;
       case "delivery":
         router.push("/delivery");
         break;
@@ -53,6 +56,9 @@ export function Footer() {
     }
     if (pathname === "/payment") {
       return "payment";
+    }
+    if (pathname === "/carddetails") {
+      return "carddetails";
     }
 
     if (pathname === "/delivery") {

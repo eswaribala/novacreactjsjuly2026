@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Payment() {
+export default function CardDetails() {
   const pathname = usePathname();
 
   const params = useLocalSearchParams();
