@@ -1,6 +1,6 @@
 //creat header component with toggle menu logo notification and profile icon with react native and expo router
 
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 function Header() {
   return (
@@ -10,7 +10,11 @@ function Header() {
       </TouchableOpacity>
 
       <View style={styles.titleContainer}>
-        <Text style={styles.headerTitle}>Novac Shopify</Text>
+        <Image
+          source={require("../../assets/images/novaclogo.png")}
+          style={{ width: 100, height: 100, marginBottom: 4 }}
+        />
+
         <Text style={styles.subtitle}>Trending Collections</Text>
       </View>
 
@@ -26,7 +30,7 @@ function Header() {
 
 const styles = StyleSheet.create({
   header: {
-    height: 78,
+    height: 120,
     backgroundColor: "#ffffff",
     flexDirection: "row",
     alignItems: "center",
