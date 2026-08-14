@@ -1,6 +1,7 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { useCart } from "@/context/cart-context";
+import { useRouter } from "expo-router";
 
 export default function Cart() {
   const { cartItems, addToCart, removeFromCart } = useCart();
@@ -13,7 +14,19 @@ export default function Cart() {
     (sum, item) => sum + getPrice(item.price) * item.quantity,
     0,
   );
-
+  const router = useRouter();
+  const handlePlaceOrder = () => {
+    // Implement your order placement logic here
+    console.log("Placing order with items:", cartItems);
+    console.log("Total amount:", total);
+    router.push({
+  pathname: "/order",
+  params: {
+    cartItems: JSON.stringify(cartItems),
+    total: total.toString(),
+  },
+});
+  };
   return (
     <ScrollView
       style={styles.container}
@@ -84,7 +97,12 @@ export default function Cart() {
             </View>
           </View>
 
-          <Pressable style={styles.orderButton}>
+          <Pressable
+            style={styles.orderButton}
+            onPress={() => {
+              handlePlaceOrder();
+            }}
+          >
             <Text style={styles.orderButtonText}>Place Order</Text>
           </Pressable>
         </>

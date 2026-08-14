@@ -1,5 +1,13 @@
 import { useCart } from "@/context/cart-context";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { foodMenu } from "@/data/foodmenu";
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 type CartItem = {
   title: string;
   price: string;
@@ -26,39 +34,19 @@ function RestaurantContent() {
           Freshly prepared with authentic spices
         </Text>
       </View>
-
-      <Card
-        title="Mutton Briyani"
-        description="Hyderabadi style mutton briyani with aromatic spices and tender meat."
-        price="₹280"
-        rating="4.8"
-        image="🍖"
-        quantity={getQuantity("Mutton Briyani")}
-        onAdd={addToCart}
-        onRemove={removeFromCart}
-      />
-
-      <Card
-        title="Chicken Briyani"
-        description="Delicious chicken briyani cooked with fragrant basmati rice and spices."
-        price="₹220"
-        quantity={getQuantity("Chicken Briyani")}
-        onAdd={addToCart}
-        rating="4.7"
-        image="🍗"
-        onRemove={removeFromCart}
-      />
-
-      <Card
-        title="Veg Briyani"
-        description="Aromatic vegetable briyani with a mix of fresh vegetables and spices."
-        price="₹180"
-        quantity={getQuantity("Veg Briyani")}
-        onAdd={addToCart}
-        rating="4.5"
-        image="🥕"
-        onRemove={removeFromCart}
-      />
+      {foodMenu.map((item) => (
+        <Card
+          key={item.id}
+          title={item.name}
+          description={item.description}
+          price={`₹${item.price}`}
+          rating={`${item.rating}`}
+          image={item.image}
+          quantity={getQuantity(item.name)}
+          onAdd={addToCart}
+          onRemove={removeFromCart}
+        />
+      ))}
     </ScrollView>
   );
 }
@@ -86,8 +74,12 @@ function Card({
 }: CardProps) {
   return (
     <View style={styles.card}>
-      <View style={styles.imageBox}>
-        <Text style={styles.image}>{image}</Text>
+      <View>
+        <Image
+          source={{ uri: image }}
+          style={styles.image}
+          resizeMode="cover"
+        />
       </View>
 
       <View style={styles.cardContent}>
@@ -195,21 +187,11 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.99 }],
   },
 
-  imageBox: {
-    width: 95,
-    height: 95,
-
-    backgroundColor: "#fff7ed",
-    borderRadius: 16,
-
-    alignItems: "center",
-    justifyContent: "center",
-
-    marginRight: 16,
-  },
-
   image: {
-    fontSize: 45,
+    width: 75,
+    height: 75,
+    borderRadius: 12,
+    marginRight: 16,
   },
 
   cardContent: {
