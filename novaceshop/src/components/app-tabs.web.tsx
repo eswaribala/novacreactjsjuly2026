@@ -10,9 +10,13 @@ import { ThemedText } from "./themed-text";
 import { ThemedView } from "./themed-view";
 
 import { Colors, MaxContentWidth, Spacing } from "@/constants/theme";
+import HomeScreen from "@/app";
 
 export default function AppTabs() {
-  return <Header />;
+  return  <>
+      <Header/>
+      <HomeScreen/>
+    </>;
 }
 
 export function TabButton({

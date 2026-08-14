@@ -1,5 +1,12 @@
 import * as Device from "expo-device";
-import { Platform, StyleSheet, View } from "react-native";
+import {
+  Image,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ThemedText } from "@/components/themed-text";
@@ -29,19 +36,39 @@ function getDevMenuHint() {
 
 //show products in a list with image title and price and description and add to cart button with react native and expo router
 export default function HomeScreen() {
+  const addToCart = (productName: string, productPrice: number) => {
+    console.log(`Added ${productName} to cart for $${productPrice}`);
+  };
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <ScrollView
-          style={{ flex: 1, width: "100%" }}
-          contentContainerStyle={{ flexGrow: 1 }}
+          contentContainerStyle={{
+            paddingVertical: 15,
+            paddingBottom: 50,
+          }}
         >
-          <ThemedText style={styles.title}>
-            Welcome to Novac Shopify!
-          </ThemedText>
           {products.map((product) => (
-            <View key={product.id} style={styles.productContainer}>
-              <Card product={product}></Card>
+            <View key={product.id} style={styles.card}>
+              <Image
+                source={{ uri: product.image }}
+                style={styles.productImage}
+              />
+
+              <View style={styles.cardContent}>
+                <Text style={styles.productTitle}>{product.name}</Text>
+
+                <Text style={styles.description}>{product.description}</Text>
+
+                <Text style={styles.price}>₹{product.price}</Text>
+
+                <Pressable
+                  style={styles.cartButton}
+                  onPress={() => addToCart(product.name, product.price)}
+                >
+                  <Text style={styles.cartButtonText}>Add to Cart</Text>
+                </Pressable>
+              </View>
             </View>
           ))}
         </ScrollView>
@@ -57,6 +84,12 @@ function Card({ product }: { product: (typeof products)[number] }) {
       <ThemedText>{product.name}</ThemedText>
       <ThemedText>{product.description}</ThemedText>
       <ThemedText>Price: ${product.price}</ThemedText>
+      <View style={{ width: 200, height: 200, backgroundColor: "lightgray" }}>
+        <Image
+          source={{ uri: product.image }}
+          style={{ width: 200, height: 200 }}
+        />
+      </View>
       <View style={styles.button}>
         <ThemedText>Add to Cart</ThemedText>
       </View>
@@ -85,8 +118,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.four,
     gap: Spacing.four,
   },
-  title: {
-    textAlign: "center",
+  productTitle: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#1f2937",
+    marginBottom: 8,
   },
   code: {
     textTransform: "uppercase",
@@ -101,19 +137,7 @@ const styles = StyleSheet.create({
   productContainer: {
     marginBottom: Spacing.four,
   },
-  card: {
-    padding: Spacing.four,
-    borderRadius: Spacing.four,
-    backgroundColor: "#fff",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
+
   button: {
     marginTop: Spacing.two,
     paddingVertical: Spacing.two,
@@ -121,5 +145,65 @@ const styles = StyleSheet.create({
     borderRadius: Spacing.three,
     backgroundColor: "#007bff",
     alignItems: "center",
+  },
+  card: {
+    backgroundColor: "#ffffff",
+    borderRadius: 18,
+    marginHorizontal: 16,
+    marginVertical: 10,
+    overflow: "hidden",
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
+
+    elevation: 5,
+  },
+
+  productImage: {
+    width: "100%",
+    height: 200,
+    resizeMode: "cover",
+  },
+
+  cardContent: {
+    padding: 16,
+  },
+
+  productId: {
+    fontSize: 12,
+    color: "#888",
+    marginBottom: 4,
+  },
+
+  description: {
+    fontSize: 14,
+    color: "#6b7280",
+    lineHeight: 20,
+    marginBottom: 12,
+  },
+
+  price: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#7c3aed",
+    marginBottom: 16,
+  },
+
+  cartButton: {
+    backgroundColor: "#7c3aed",
+    paddingVertical: 13,
+    borderRadius: 12,
+    alignItems: "center",
+  },
+
+  cartButtonText: {
+    color: "#ffffff",
+    fontSize: 16,
+    fontWeight: "700",
   },
 });
