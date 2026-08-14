@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Header() {
   return (
@@ -6,9 +6,12 @@ export default function Header() {
       <TouchableOpacity style={styles.iconButton}>
         <Text style={styles.icon}>☰</Text>
       </TouchableOpacity>
-
       <View style={styles.titleContainer}>
-        <Text style={styles.headerTitle}>SS Briyani</Text>
+        <Image
+          source={require("../../assets/images/pandalogo.png")}
+          style={{ width: 100, height: 100, borderRadius: 20 }}
+        />
+        <Text style={styles.headerTitle}>Panda Briyani</Text>
         <Text style={styles.subtitle}>Fresh & Delicious</Text>
       </View>
 
@@ -24,7 +27,7 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   header: {
-    height: 78,
+    height: 150,
     backgroundColor: "#ffffff",
     flexDirection: "row",
     alignItems: "center",

@@ -29,7 +29,7 @@ function RestaurantContent() {
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.headingContainer}>
-        <Text style={styles.contentTitle}>Our Special Briyani</Text>
+        <Text style={styles.contentTitle}>Our Delicious Cuisine</Text>
         <Text style={styles.subTitle}>
           Freshly prepared with authentic spices
         </Text>
@@ -149,12 +149,12 @@ const styles = StyleSheet.create({
   contentTitle: {
     fontSize: 26,
     fontWeight: "800",
-    color: "#1f2937",
+    color: "DarkOrange",
   },
 
   subTitle: {
     fontSize: 14,
-    color: "#6b7280",
+    color: "#80786b",
     marginTop: 5,
   },
 

@@ -1,10 +1,6 @@
 import { router, usePathname } from "expo-router";
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { bottomMenu } from "../data/bottommenu";
 
 export function Footer() {
   const pathname = usePathname();
@@ -24,7 +20,9 @@ export function Footer() {
       case "order":
         router.push("/order");
         break;
-
+      case "payment":
+        router.push("/payment");
+        break;
       case "delivery":
         router.push("/delivery");
         break;
@@ -32,7 +30,9 @@ export function Footer() {
       case "notifications":
         router.push("/notifications");
         break;
-
+      case "profile":
+        router.push("/profile");
+        break;
       default:
         router.replace("/");
         break;
@@ -51,6 +51,9 @@ export function Footer() {
     if (pathname === "/order") {
       return "order";
     }
+    if (pathname === "/payment") {
+      return "payment";
+    }
 
     if (pathname === "/delivery") {
       return "delivery";
@@ -58,6 +61,9 @@ export function Footer() {
 
     if (pathname === "/notifications") {
       return "notifications";
+    }
+    if (pathname === "/profile") {
+      return "profile";
     }
 
     return "home";
@@ -67,45 +73,16 @@ export function Footer() {
 
   return (
     <View style={styles.bottomNav}>
-      <NavItem
-        icon="🏠"
-        title="Home"
-        route="home"
-        activeRoute={activeRoute}
-        onNavigate={handleNavigation}
-      />
-
-      <NavItem
-        icon="🛒"
-        title="Cart"
-        route="cart"
-        activeRoute={activeRoute}
-        onNavigate={handleNavigation}
-      />
-
-      <NavItem
-        icon="🍽️"
-        title="Order"
-        route="order"
-        activeRoute={activeRoute}
-        onNavigate={handleNavigation}
-      />
-
-      <NavItem
-        icon="🛵"
-        title="Delivery"
-        route="delivery"
-        activeRoute={activeRoute}
-        onNavigate={handleNavigation}
-      />
-
-      <NavItem
-        icon="🔔"
-        title="Alerts"
-        route="notifications"
-        activeRoute={activeRoute}
-        onNavigate={handleNavigation}
-      />
+      {bottomMenu.map((item, index) => (
+        <NavItem
+          key={index}
+          icon={item.icon}
+          title={item.title}
+          route={item.route}
+          activeRoute={activeRoute}
+          onNavigate={handleNavigation}
+        />
+      ))}
     </View>
   );
 }
@@ -135,21 +112,11 @@ function NavItem({
       ]}
       onPress={() => onNavigate(route)}
     >
-      <View
-        style={[
-          styles.iconBox,
-          isActive && styles.activeIconBox,
-        ]}
-      >
+      <View style={[styles.iconBox, isActive && styles.activeIconBox]}>
         <Text style={styles.navIcon}>{icon}</Text>
       </View>
 
-      <Text
-        style={[
-          styles.navText,
-          isActive && styles.activeNavText,
-        ]}
-      >
+      <Text style={[styles.navText, isActive && styles.activeNavText]}>
         {title}
       </Text>
 

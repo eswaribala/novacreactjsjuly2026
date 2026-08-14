@@ -1,11 +1,11 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
 import {
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    Text,
-    useWindowDimensions,
-    View,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
 } from "react-native";
 
 export default function OrderScreen() {
@@ -29,11 +29,17 @@ export default function OrderScreen() {
     0,
   );
 
-  const handlePlaceOrder = () => {
+  const handlePayment = () => {
     console.log("Order placed:", cartItems);
     console.log("Total:", total);
 
-    // router.push("/order");
+    router.push({
+      pathname: "/payment",
+      params: {
+        cartItems: JSON.stringify(cartItems),
+        total: total.toString(),
+      },
+    });
   };
 
   return (
@@ -68,8 +74,8 @@ export default function OrderScreen() {
             <Text style={styles.totalValue}>₹{total}</Text>
           </View>
 
-          <Pressable style={styles.placeOrderButton} onPress={handlePlaceOrder}>
-            <Text style={styles.placeOrderText}>Place Order</Text>
+          <Pressable style={styles.placeOrderButton} onPress={handlePayment}>
+            <Text style={styles.placeOrderText}>Payment</Text>
           </Pressable>
         </View>
       </View>
