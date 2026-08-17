@@ -12,5 +12,10 @@ export default defineConfig({
     pool: "threads",
     maxWorkers: 1,
     fileParallelism: false,
+    coverage:{
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      reportsDirectory: './coverage',
+    }
   }
 })
