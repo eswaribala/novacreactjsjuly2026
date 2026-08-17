@@ -20,4 +20,11 @@ describe('Logo', () => {
     expect(img).toHaveAttribute('src', expect.stringContaining('kyclogo.png'));
   });
 
+  it('should have the correct alt text', () => {
+    render(<Logo />);
+    const logo = screen.getByTestId('Logo');
+    const img = logo.querySelector('img');
+    expect(img).toHaveAttribute('alt', 'Logo');
+  });
+
 });
