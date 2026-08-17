@@ -1,22 +1,25 @@
 import { render, screen } from '@testing-library/react';
-import { describe, test, expect,vi } from 'vitest';
+import { describe, test, expect, vi, beforeAll } from 'vitest';
 import Button from './Button';
 
 describe('<Button />', () => {
+  let handleClick;
+
+  beforeAll(() => {
+    handleClick = vi.fn();
+  });
+
   test('should render button', () => {
     render(<Button>Submit</Button>);
 
-    const button= screen.getByRole('button', {
+    const button = screen.getByRole('button', {
       name: 'Submit',
     });
 
     expect(button).toBeInTheDocument();
-   
-
-    
   });
 
-  test("Should display button with correct type", () => { 
+  test('Should display button with correct type', () => {
     render(<Button type="submit">Submit</Button>);
 
     const button = screen.getByRole('button', {
@@ -24,23 +27,27 @@ describe('<Button />', () => {
     });
 
     expect(button).toHaveAttribute('type', 'submit');
-  })
+  });
 
-  test("Should Call OnClick When Clicked", async () => {
-    const handleClick = vi.fn();
+  test('Should Call OnClick When Clicked', () => {
     render(<Button onClick={handleClick}>Submit</Button>);
 
     const button = screen.getByRole('button', {
       name: 'Submit',
     });
 
-    await button.click();
+    button.click();
 
     expect(handleClick).toHaveBeenCalledTimes(1);
-  })
+  });
 
-  test("Should be disabled when disabled prop is true", () => {
+  test('Should be disabled when disabled prop is true', () => {
     render(<Button disabled={true}>Submit</Button>);
-    expect(screen.getByRole('button', { name: 'Submit' })).toBeDisabled();
+
+    const button = screen.getByRole('button', {
+      name: 'Submit',
+    });
+
+    expect(button).toBeDisabled();
   });
 });
