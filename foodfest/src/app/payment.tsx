@@ -4,7 +4,7 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 export default function Payment() {
   const router = useRouter();
   const handlePaymentOptionSelect = (option: string) => {
-    alert(`Selected payment option: ${option}`);
+   // alert(`Selected payment option: ${option}`);
     // Implement payment logic based on the selected option
     if (option === "Credit Card" || option === "Debit Card") {
       // Navigate to card payment screen or show card payment form
