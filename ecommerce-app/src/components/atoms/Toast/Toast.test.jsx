@@ -29,4 +29,25 @@ describe('Toast component', () => {
         const toastContainer = screen.getByTestId('toast-container');
         expect(toastContainer).toBeInTheDocument();
     });
+
+    it('renders ToastContainer with correct position', () => {
+        render(<Toast />);
+        const toastContainer = screen.getByTestId('toast-container');
+        expect(toastContainer).toHaveAttribute('data-position', 'top-right');
+    });
+    it('renders ToastContainer with correct autoClose', () => {
+        render(<Toast />);
+        const toastContainer = screen.getByTestId('toast-container');
+        expect(toastContainer).toHaveAttribute('data-autoclose', '5000');
+    });
+    it('renders ToastContainer with correct hideProgressBar', () => {
+        render(<Toast />);
+        const toastContainer = screen.getByTestId('toast-container');
+        expect(toastContainer).toHaveAttribute('data-hide-progress-bar', 'false');
+    });
+    it('renders ToastContainer with correct newestOnTop', () => {
+        render(<Toast />);
+        const toastContainer = screen.getByTestId('toast-container');
+        expect(toastContainer).toHaveAttribute('data-newest-on-top', 'false');
+    });
 });
