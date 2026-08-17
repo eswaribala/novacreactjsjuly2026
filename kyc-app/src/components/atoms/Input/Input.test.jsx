@@ -41,4 +41,22 @@ describe('Input component', () => {
 
     expect(handleChange).toHaveBeenCalled();
   });
+  it('Should call autoComplete when input value changes', () => {
+    const handleAutoComplete = vi.fn();
+    render(
+      <Input
+        placeholder="Enter text"
+        autoComplete="on"
+        onAutoComplete={handleAutoComplete}
+      />
+    );
+
+    const inputElement = screen.getByPlaceholderText("Enter text");
+
+    fireEvent.change(inputElement, {
+      target: { value: "New Value" },
+    });
+
+    expect(handleAutoComplete).toHaveBeenCalled();
+  });
 });
