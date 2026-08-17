@@ -12,6 +12,11 @@ export default defineConfig({
     pool: "threads",
     maxWorkers: 1,
     fileParallelism: false,
+    reporters: ['default', 'html'],
+    outputFile: {
+      html: './test-reports/test-report.html',
+    },
+
     coverage:{
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
