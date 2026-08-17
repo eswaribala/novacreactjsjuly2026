@@ -17,6 +17,7 @@
   "dependencies": {
     "@primeuix/styled": "^1.0.0",
     "@reduxjs/toolkit": "^2.12.0",
+    "cypress": "^15.20.1",
     "lucide-react": "^1.27.0",
     "primeicons": "^8.0.0",
     "primereact": "^10.9.8",
@@ -38,6 +39,7 @@
     "@vitest/coverage-v8": "^4.1.10",
     "@vitest/ui": "^4.1.10",
     "eslint": "^10.6.0",
+    "eslint-plugin-cypress": "^7.0.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.3",
     "globals": "^17.7.0",
