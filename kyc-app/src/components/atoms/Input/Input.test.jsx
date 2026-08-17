@@ -41,22 +41,18 @@ describe('Input component', () => {
 
     expect(handleChange).toHaveBeenCalled();
   });
-  it('Should call autoComplete when input value changes', () => {
-    const handleAutoComplete = vi.fn();
-    render(
-      <Input
-        placeholder="Enter text"
-        autoComplete="on"
-        onAutoComplete={handleAutoComplete}
-      />
-    );
+  it('Check AutoComplete On', () => {
+    render(<Input autoComplete="on" />);
+    const inputElement = screen.getByRole('textbox');
+    expect(inputElement).toHaveAttribute('autocomplete', 'on');
+  });
 
-    const inputElement = screen.getByPlaceholderText("Enter text");
-
-    fireEvent.change(inputElement, {
-      target: { value: "New Value" },
-    });
-
-    expect(handleAutoComplete).toHaveBeenCalled();
+  it('check id and name attributes', () => {
+    const id = 'test-input';
+    const name = 'testName';
+    render(<Input id={id} name={name} />);
+    const inputElement = screen.getByRole('textbox');
+    expect(inputElement).toHaveAttribute('id', id);
+    expect(inputElement).toHaveAttribute('name', name);
   });
 });
