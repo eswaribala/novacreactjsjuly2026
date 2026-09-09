@@ -1,0 +1,37 @@
+React + Vite setup (Windows / VS Code)
+Install Node.js LTS from nodejs.org. Then verify:
+node -v
+npm -v
+Open the VS Code terminal in the folder where you want the project, then run:
+npm create vite@latest my-react-app
+Choose:
+Framework: React
+Variant: JavaScript
+
+Choose React + TypeScript instead if you want TypeScript.
+
+Start the project:
+cd my-react-app
+npm install
+npm run dev
+Open the URL printed in the terminal, usually:
+http://localhost:5173
+
+Main files:
+
+my-react-app/
+├── src/
+│   ├── App.jsx       # Main page component
+│   ├── main.jsx      # React application entry point
+│   └── index.css     # Global styles
+├── public/           # Static files
+├── package.json      # Dependencies and scripts
+└── vite.config.js    # Vite configuration
+
+To stop the local server, press Ctrl + C.
+
+For a production build:
+
+npm run build
+
+The deployable files will be created in the dist folder.
